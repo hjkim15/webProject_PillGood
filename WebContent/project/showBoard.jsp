@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+
+    
 <!--11/24. 새로 제작한 html. jsp  pillDetail처럼 제작하면 됨. css 시급..! pillDetail과 같은 방식으로 디자인 수정하면 될 듯. -->
 
 <!DOCTYPE html>

@@ -190,7 +190,7 @@
                     <hr>
                     <h2 class="blog-post-title" id="birth">생년월일</h2>
                     <div class=" col-sm-6">
-                        <span class="input-group-text col-sm-5"><%=bean.getBirth() %>></span>
+                        <span class="input-group-text col-sm-5"><%=bean.getBirth() %></span>
                         <p>생년월일은 수정이 불가합니다.</p>
 
                     </div>
