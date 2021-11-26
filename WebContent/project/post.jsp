@@ -1,7 +1,22 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" import = "java.util.*, java.sql.*, project.*"%>
+<jsp:useBean id="mgr" class="project.MemberMgr"/>
+<%@include file="header.jsp" %>
+<%
+	request.setCharacterEncoding("EUC-KR");
+//	String id = (String)session.getAttribute("idKey");
+	if(id2 == null){ 		
+%>  
+	<script>
+  		alert("로그인이 필요합니다.");
+  		location.href = "sessionLogin.jsp"; 
+	</script>
+
+<% }
+	MemberBean bean = mgr.getMember(id2); 
+%>
+
 <html>
 <head>
-    <%@include file = "header.jsp"%>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,14 +64,15 @@
 </table>
 <br/>
 <form name="postFrm" method="post" action="boardPost" enctype="multipart/form-data">
-<table width="600" cellpadding="3" align="center">
+<table width="1000" cellpadding="3" align="center">
    <tr>
       <td align=center>
       <table align="center">
          <tr>
-            <td width="10%">성 명</td>
+            <td width="10%">닉네임</td>
             <td width="90%">
-            <input name="name" size="10" maxlength="8"></td>
+            <input name="nickname" value=<%=bean.getNickname()%>><td>
+            
          </tr>
          <tr>
             <td>제 목</td>
@@ -72,7 +88,7 @@
          </tr>
          <tr>
             <td>내 용</td>
-            <td><textarea name="content" rows="10" cols="50"></textarea></td>
+            <td><textarea name="content" rows="10" cols="70"></textarea></td>
          </tr>
          <tr>
              <div class="input-group mb-3">
@@ -103,12 +119,14 @@
               <td>파일찾기</td> 
               <td><input type="file" name="filename" size="50" maxlength="50"></td>
           </tr>
-          <tr>
+          
+<!--          <tr>
              <td>내용타입</td>
              <td> HTML<input type=radio name="contentType" value="HTTP" >&nbsp;&nbsp;&nbsp;
                TEXT<input type=radio name="contentType" value="TEXT" checked>
                </td>
-          </tr>
+          </tr> -->
+          
          <tr>
             <td colspan="2"><hr/></td>
          </tr>

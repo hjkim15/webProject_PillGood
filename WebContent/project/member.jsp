@@ -147,12 +147,6 @@
                     </div>
                   </div>
 
-                  <div class="col-sm-6">
-                    <label for="userType" class="form-label">User type</label><br>
-
-                    <input type="radio" name="userType" value="0" checked> 일반
-                    <input type="radio" name="userType" value="1"> 약사
-                  </div>
 
                   <div class="col-12">
                     <label for="bDay" class="form-label">Birthday </label>

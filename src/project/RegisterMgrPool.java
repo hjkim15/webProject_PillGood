@@ -23,7 +23,7 @@ public class RegisterMgrPool {
 	   Vector<RegisterBean> vlist = new Vector<RegisterBean>();
 	    try {
 	    	conn = pool.getConnection();
-	    	String strQuery = "select * from medicine";
+	    	String strQuery = "select * from medicininfo";
 	    	stmt = conn.createStatement();
 	    	rs = stmt.executeQuery(strQuery);
 	    	while(rs.next()) {

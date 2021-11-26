@@ -59,7 +59,7 @@ public class BoardMgr {
          while (rs.next()) {
             BoardBean bean = new BoardBean();
             bean.setNum(rs.getInt("num"));
-            bean.setName(rs.getString("name"));
+            bean.setNickName(rs.getString("nickname"));
             bean.setSubject(rs.getString("subject"));
             bean.setPos(rs.getInt("pos"));
             bean.setRef(rs.getInt("ref"));
@@ -138,10 +138,10 @@ public class BoardMgr {
          if (multi.getParameter("contentType").equalsIgnoreCase("TEXT")) {
             content = UtilMgr.replace(content, "<", "&lt;");
          }
-         sql = "insert tblBoard(name,content,subject,ref,pos,depth,regdate,pass,count,ip,filename,filesize,boardType,grade)";
+         sql = "insert tblBoard(nickname,content,subject,ref,pos,depth,regdate,pass,count,ip,filename,filesize,boardType,grade)";
          sql += "values(?, ?, ?, ?, 0, 0, now(), ?, 0, ?, ?, ?, ?, ?)";
          pstmt = con.prepareStatement(sql);
-         pstmt.setString(1, multi.getParameter("name"));
+         pstmt.setString(1, multi.getParameter("nickname"));
          pstmt.setString(2, content);
          pstmt.setString(3, multi.getParameter("subject"));
          pstmt.setInt(4, ref);
@@ -174,7 +174,7 @@ public class BoardMgr {
          rs = pstmt.executeQuery();
          if (rs.next()) {
             bean.setNum(rs.getInt("num"));
-            bean.setName(rs.getString("name"));
+            bean.setNickName(rs.getString("nickname"));
             bean.setSubject(rs.getString("subject"));
             bean.setContent(rs.getString("content"));
             bean.setPos(rs.getInt("pos"));
@@ -254,7 +254,7 @@ public class BoardMgr {
          con = pool.getConnection();
          sql = "update tblBoard set name=?,subject=?,content=? where num=?";
          pstmt = con.prepareStatement(sql);
-         pstmt.setString(1, bean.getName());
+         pstmt.setString(1, bean.getNickName());
          pstmt.setString(2, bean.getSubject());
          pstmt.setString(3, bean.getContent());
          pstmt.setInt(4, bean.getNum());
@@ -273,12 +273,12 @@ public class BoardMgr {
       String sql = null;
       try {
          con = pool.getConnection();
-         sql = "insert tblBoard (name,content,subject,ref,pos,depth,regdate,pass,count,ip)";
+         sql = "insert tblBoard (nickname,content,subject,ref,pos,depth,regdate,pass,count,ip)";
          sql += "values(?,?,?,?,?,?,now(),?,0,?)";
          int depth = bean.getDepth() + 1;
          int pos = bean.getPos() + 1;
          pstmt = con.prepareStatement(sql);
-         pstmt.setString(1, bean.getName());
+         pstmt.setString(1, bean.getNickName());
          pstmt.setString(2, bean.getContent());
          pstmt.setString(3, bean.getSubject());
          pstmt.setInt(4, bean.getRef());
@@ -348,29 +348,5 @@ public class BoardMgr {
          }
       }
       
-   //페이징 및 블럭 테스트를 위한 게시물 저장 메소드 
-   public void post1000(){
-      Connection con = null;
-      PreparedStatement pstmt = null;
-      String sql = null;
-      try {
-         con = pool.getConnection();
-         sql = "insert tblBoard(name,content,subject,ref,pos,depth,regdate,pass,count,ip,filename,filesize,boardType,grade)";
-         sql+="values('aaa', 'bbb', 'ccc', 0, 0, 0, now(), '1111',0, '127.0.0.1', null, 0, 0, 1);";
-         pstmt = con.prepareStatement(sql);
-         for (int i = 0; i < 1000; i++) {
-            pstmt.executeUpdate();
-         }
-      } catch (Exception e) {
-         e.printStackTrace();
-      } finally {
-         pool.freeConnection(con, pstmt);
-      }
-   }
-   
-   //main
-   public static void main(String[] args) {
-      new BoardMgr().post1000();
-      System.out.println("SUCCESS");
-   }
+
 }

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
 <jsp:useBean id="bean" class="project.BoardBean" scope="session"/>
+<%@include file="header.jsp" %>
 <%
 	  String nowPage = request.getParameter("nowPage");
 	  String subject = bean.getSubject();

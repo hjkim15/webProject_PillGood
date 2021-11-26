@@ -16,7 +16,7 @@ public class BoardReplyServlet extends HttpServlet {
 		request.setCharacterEncoding("EUC-KR");
 		BoardMgr bMgr = new BoardMgr();
 		BoardBean reBean = new BoardBean();
-		reBean.setName(request.getParameter("name"));
+		reBean.setNickName(request.getParameter("nickname"));
 		reBean.setSubject(request.getParameter("subject"));
 		reBean.setContent(request.getParameter("content"));
 		reBean.setRef(Integer.parseInt(request.getParameter("ref"))); 

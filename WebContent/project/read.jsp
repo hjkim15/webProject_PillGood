@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
 <%@page import="project.BoardBean"%>
 <jsp:useBean id="bMgr" class="project.BoardMgr" />
+<%@include file="header.jsp" %>
 <%
 	  request.setCharacterEncoding("EUC-KR");
 	  int num = Integer.parseInt(request.getParameter("num"));
@@ -9,7 +10,7 @@
 	  String keyWord = request.getParameter("keyWord");
 	  bMgr.upCount(num);//조회수 증가
 	  BoardBean bean = bMgr.getBoard(num);//게시물 가져오기
-	  String name = bean.getName();
+	  String nickname = bean.getNickName();
 	  String subject = bean.getSubject();
       String regdate = bean.getRegdate();
 	  String content = bean.getContent();
@@ -44,8 +45,8 @@
   <td colspan="2">
    <table cellpadding="3" cellspacing="0" width="100%"> 
     <tr> 
-  <td align="center" bgcolor="#DDDDDD" width="10%"> 이 름 </td>
-  <td bgcolor="#FFFFE8"><%=name%></td>
+  <td align="center" bgcolor="#DDDDDD" width="10%"> 닉네임 </td>
+  <td bgcolor="#FFFFE8"><%=nickname%></td>
   <td align="center" bgcolor="#DDDDDD" width="10%"> 등록날짜 </td>
   <td bgcolor="#FFFFE8"><%=regdate%></td>
  </tr>

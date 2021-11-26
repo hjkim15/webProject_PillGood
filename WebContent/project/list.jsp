@@ -1,10 +1,24 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" import = "java.util.*, java.sql.*, project.*"%>
+<jsp:useBean id="mgr" class="project.MemberMgr"/>
 <%@page import="project.BoardBean"%>
 <%@page import="java.util.Vector"%>
 <jsp:useBean id="bMgr" class="project.BoardMgr" />
  <%@include file="header.jsp" %>
+
 <%	
 	  request.setCharacterEncoding("EUC-KR");
+
+	request.setCharacterEncoding("EUC-KR");
+	//String id = (String)session.getAttribute("idKey");
+	if(id == null){ 		
+	%>  
+	<script>
+		alert("로그인이 필요합니다.");
+		location.href = "sessionLogin.jsp"; 
+	</script>
+
+<% }
+	MemberBean mBean = mgr.getMember(id2); 
 	  
       int totalRecord=0; //전체레코드수
 	  int numPerPage=10; // 페이지당 레코드 수 
@@ -50,6 +64,24 @@
 <head>
 <title>JSP Board</title>
 <link href="script.css" rel="stylesheet">
+    <style type="text/css">
+        .star-rating {
+            /* border: solid 1px #ccc; */
+            display: flex;
+            flex-direction: row-reverse;
+            font-size: 1.5em;
+            justify-content: space-around;
+            padding: 0 .2em;
+            text-align: center;
+            width: 5em;
+        }
+
+        .star-rating label {
+           color: #ccc;
+           
+        }
+
+    </style>
 <script type="text/javascript">
 	function list() {
 		document.listFrm.action = "list.jsp";
@@ -107,7 +139,9 @@
 					<tr align="center" bgcolor="#D0D0D0" height="120%">
 						<td>번 호</td>
 						<td>제 목</td>
-						<td>이 름</td>
+						<td>닉네임</td>
+						<td>게시글 유형</td>
+						<td>별점</td>
 						<td>날 짜</td>
 						<td>조회수</td>
 					</tr>
@@ -116,9 +150,14 @@
 							if (i == listSize) break;
 							BoardBean bean = vlist.get(i);
 							int num = bean.getNum();
-							String name = bean.getName();
+							String nickname = bean.getNickName();
+							int boardType = bean.getBoardType();
+							String bT = null;
+							boolean star = false;
+							int grade = bean.getGrade();
 							String subject = bean.getSubject();
 							String regdate = bean.getRegdate();
+							
 							int depth = bean.getDepth();
 							int count = bean.getCount();
 					%>
@@ -134,9 +173,38 @@
 									}
 								}
 						%>
-						  <a href="javascript:read('<%=num%>')"><%=subject%></a>
+						  <a href="javascript:read('<%=num%>')"><%=subject%></a> 
 						</td>
-						<td align="center"><%=name%></td>
+						<td align="center"><%=nickname%></td>
+						<%
+							if(bean.getBoardType() == 0){ bT = "약후기"; star = true;}
+							if(bean.getBoardType() == 1) bT = "약 등록 요청";
+							if(bean.getBoardType() == 2) bT = "자유 게시글";
+						%>
+						<td align="center"><%=bT%></td>
+						
+						<td align="center">
+							<%
+							String bright = "#fc0";
+							String dark = "#ccc";
+							String[] color = {dark, dark, dark, dark, dark};
+								if(star){
+									if(grade == 1){ color[0] = bright;}
+									if(grade == 2){ color[0] = bright;color[1] = bright;}
+									if(grade == 3){ color[0] = bright;color[1] = bright; color[2] = bright;}
+									if(grade == 4){ color[0] = bright;color[1] = bright; color[2] = bright;color[3] = bright;}
+									if(grade == 5){ color[0] = bright;color[1] = bright; color[2] = bright;color[3] = bright; color[4] = bright;}%>
+							           <div class="star-rating ">
+		                                <label for="5-stars" class="star" style="color:<%=color[4]%>;">&#9733;</label>
+		                                <label for="4-stars" class="star" style="color:<%=color[3]%>;">&#9733;</label>
+		                                <label for="3-stars" class="star" style="color:<%=color[2]%>;">&#9733;</label>
+		                                <label for="2-stars" class="star" style="color:<%=color[1]%>;">&#9733;</label>
+		                                <label for="1-star" class="star" style="color:<%=color[0]%>;">&#9733;</label>
+		                            </div>	
+						<% 		}%>
+                 				
+						
+						</td>
 						<td align="center"><%=regdate%></td>
 						<td align="center"><%=count%></td>
 						</tr>

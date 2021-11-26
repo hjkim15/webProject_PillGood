@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=EUC-KR"%>
 <%@page import="project.BoardBean"%>
 <jsp:useBean id="bMgr" class="project.BoardMgr" />
+<%@include file="header.jsp" %>
 <html>
 <head>
 <title>JSP Board</title>

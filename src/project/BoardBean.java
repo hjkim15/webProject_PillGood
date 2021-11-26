@@ -3,7 +3,7 @@ package project;
 public class BoardBean {
    
    private int num;
-   private String name;        
+   private String nickname;        
    private String subject;      
    private String content;     
    private int pos;            
@@ -24,11 +24,11 @@ public class BoardBean {
    public void setNum(int num) {
       this.num = num;
    }
-   public String getName() {
-      return name;
+   public String getNickName() {
+      return nickname;
    }
-   public void setName(String name) {
-      this.name = name;
+   public void setNickName(String nickname) {
+      this.nickname = nickname;
    }
    public String getSubject() {
       return subject;

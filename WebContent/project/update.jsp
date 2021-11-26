@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
  <%@ page import="project.BoardBean"%>
+ <%@include file="header.jsp" %>
 <% 
 	  int num = Integer.parseInt(request.getParameter("num"));
 	  String nowPage = request.getParameter("nowPage");
 	  BoardBean bean = (BoardBean)session.getAttribute("bean");
 	  String subject = bean.getSubject();
-	  String name = bean.getName(); 
+	  String name = bean.getNickName(); 
 	  String content = bean.getContent(); 
 %>
 <html>

@@ -3,11 +3,11 @@
 <!--디자인 수정 필요-->
 
 <%@ page contentType="text/html; charset=EUC-KR"%>
+<%@include file="header.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <%@include file="header.jsp" %>
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
