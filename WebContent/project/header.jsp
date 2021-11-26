@@ -78,18 +78,20 @@
            <!-- 게시판 -->
         
            <div class="dropdown">
-            <button class="btn  btn-sm " type="button" id="dropdownMenuButtonSM" data-bs-toggle="dropdown" aria-expanded="false">
-                게시판
+           <button class="btn btn-sm " type="button" id="dropdownMenuButtonSM">
+           <!--  <button class="btn  btn-sm " type="button" id="dropdownMenuButtonSM" data-bs-toggle="dropdown" aria-expanded="false"> -->
+                <a href="list.jsp">게시판 </a>
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonSM">
+             
+<!--             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonSM">
               <li><h6 class="dropdown-header">게시판</h6></li>
-              <li><a class="dropdown-item" href="#">약 추천 </a></li>
-              <li><a class="dropdown-item" href="#">약 후기 </a></li>
+         <li><a class="dropdown-item" href="#">약 추천 </a></li>     
+           <li><a class="dropdown-item" href="#">약 후기 </a></li>   
               <li><a class="dropdown-item" href="#">약 등록요청 </a></li>
               <li><hr class="dropdown-divider"></li>
-              <!-- <li><a class="dropdown-item" href="sessionLogin.html">로그인 후 사용하세요</a></li>  -->
+              <li><a class="dropdown-item" href="sessionLogin.html">로그인 후 사용하세요</a></li> 
               <li><a class="dropdown-item" href="sessionLogin.jsp">로그인 후 사용하세요</a></li> 
-            </ul>
+            </ul> -->
           </div>
         
            <!-- 마이페이지 -->
