@@ -28,7 +28,7 @@ function pwdCheck() {
 }
 
 function codeCheck(code){
-	frm = document.regFrm;
+	frm = document.frm;
 	if (code == "") {
 		alert("약사코드를 입력해 주세요");
 		frm.code.focus();
