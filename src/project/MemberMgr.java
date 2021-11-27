@@ -149,6 +149,29 @@ public class MemberMgr {
       }
       return bean;
    }
+   
+   //약사 확인
+   public boolean checkPharmacist(int code, int personalNumber) {
+	      Connection con = null;
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      String sql = null;
+	      boolean flag = false;
+	      try {
+	         con = pool.getConnection();
+	         sql = "select * from pauthentication where pCode = ? and registrationID = ?";
+	         pstmt = con.prepareStatement(sql);
+	         pstmt.setInt(1, code);
+	         pstmt.setInt(2, personalNumber);
+	         flag = pstmt.executeQuery().next();
+	      } catch(Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         pool.freeConnection(con,pstmt,rs);
+	      }
+	      return flag;
+	   }
+   
 
    // 회원정보수정
    public boolean updateMember(MemberBean bean) {
