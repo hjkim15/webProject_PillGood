@@ -3,8 +3,11 @@
 <jsp:useBean id="memMgr" class="project.MemberMgr" />
 
 <%
-    int code = Integer.parseInt(request.getParameter("code"));
-	int personalNumber = Integer.parseInt(request.getParameter("personalNumber"));
+	request.setCharacterEncoding("EUC-KR");
+	int code = 0;
+	if(request.getParameter("code") != null)
+     code = Integer.parseInt(request.getParameter("code"));
+	/* int personalNumber = Integer.parseInt(request.getParameter("personalNumber")); */
 	boolean c = false;
 			
 /* //	if(request.getParameter("code") != null)
@@ -13,7 +16,7 @@
 //	if(request.getParameter("personalNumber") != null)
 		personalNumber = Integer.parseInt(request.getParameter("personalNumber")); */
 
-	if(memMgr.checkPharmacist(code, personalNumber)){
+	if(memMgr.checkPharmacist2(code)){
 		c = true; 
 	 	}
 	else{
@@ -21,14 +24,18 @@
 		}
 %>
 
- 	<script> 
-
- 		if(<%=c%> == false){
- 			alert("불일치한다");
- 			location.href="chemistCode.jsp";
- 		}else{
- 			alert("일치한다");
- 			 window.close(); 
- 		}
- 	
-	</script>
+</head>
+<body >
+	<div >
+		<br/><b><%=code%></b>
+		<%
+			if (c) {
+				out.println("가 일치합니다.<p/>");
+			} else {
+				out.println("는 일치하지 않습니다.<p/>");
+			}
+		%>
+		<a href="#" onClick="self.close()">닫기</a>
+	</div>
+</body>
+</html>

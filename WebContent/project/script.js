@@ -27,19 +27,15 @@ function pwdCheck() {
 
 }
 
-function chemistCodeCheck(code, personalNumber) {
-	fRm = document.frm;
+function codeCheck(code){
+	frm = document.regFrm;
 	if (code == "") {
 		alert("약사코드를 입력해 주세요");
-		fRm.code.focus();
+		frm.code.focus();
 		return;
 	}
-	if(personalNumber){
-		alert("주민번호를 입력해 주세요");
-		fRm.personalNumber.focus();
-		return;
-	}
-	url = "chemistCodeProc.jsp?code=" + encodeURI(code) + "&personalNumber=" + encodeURI(personalNumber);
-	 window.open(url, "Oh~~~", "width=300, height=150");
+	url = "chemistCodeProc.jsp?code=" + encodeURI(code);
+	window.open(url, "codeCheck", "width=300, height=150");
 	
 }
+

@@ -4,17 +4,16 @@
 <%@include file="header.jsp"%>
 <%
 	request.setCharacterEncoding("EUC-KR");
-
-	if (id == null) {
+//	String id = (String)session.getAttribute("idKey");
+	if(id == null){ 		
 %>
 <script>
-	alert("로그인이 필요합니다.");
-	location.href = "sessionLogin.jsp";
-</script>
+  		alert("로그인이 필요합니다.");
+  		location.href = "sessionLogin.jsp"; 
+	</script>
 
-<%
-	}
-	MemberBean bean = mgr.getMember(id2);
+<% }
+	MemberBean bean = mgr.getMember(id2); 
 %>
 
 
@@ -126,6 +125,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 </style>
 <link href="script.css" rel="stylesheet">
+
 <!-- jQuery -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -135,27 +135,27 @@ h1, h2, h3, h4, h5, h6 {
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 
+<script type="text/javascript" src="script.js" charset="utf-8"></script> 
 <script type="text/javascript">
-	function codeCheck() {
-		url = "chemistCode.jsp";
-		window.open(url, "ChemistCode", "width=500,height=350");
-	}
+/* function codeCheck(){
+   url = "chemistCode.jsp";
+   window.open(url, "ChemistCode","width=300,height=150");
+} */
 
-	document.getElementById("divId").style.display = "none";
-	
-	function setDisplay() {
-		if ($('input:radio[id=normal]').is(':checked')) {
-			$('#divId').hide();
-		}
-		if ($('input:radio[id=chemist]').is(':checked')) {
-			$('#divId').show();
-		}
-	}
-	
+document.getElementById("divId").style.display = "none";
+function setDisplay(){
+    if($('input:radio[id=normal]').is(':checked')){
+        $('#divId').hide();
+    }
+    if($('input:radio[id=chemist]').is(':checked')){
+        $('#divId').show();
+    }
+}
 </script>
 </head>
 
 <body>
+<form name="regFrm" method="post" action="myPage.jsp">
 	<div class="container">
 		<div class="row g-5">
 			<div class="col-md-4">
@@ -196,7 +196,7 @@ h1, h2, h3, h4, h5, h6 {
 					<h2 class="blog-post-title" id="name">이름</h2>
 					<div class=" col-sm-6">
 
-						<span class="input-group-text col-sm-5"><%=bean.getName()%></span>
+						<span class="input-group-text col-sm-5"><%=bean.getName() %></span>
 						<p>이름은 수정이 불가합니다.</p>
 					</div>
 					<hr>
@@ -204,13 +204,13 @@ h1, h2, h3, h4, h5, h6 {
 					<h2 class="blog-post-title" id="id">아이디</h2>
 					<div class=" col-sm-6">
 
-						<span class="input-group-text col-sm-5"><%=bean.getUserId()%></span>
+						<span class="input-group-text col-sm-5"><%=bean.getUserId() %></span>
 						<p>아이디는 수정이 불가합니다.</p>
 					</div>
 					<hr>
 					<h2 class="blog-post-title" id="birth">생년월일</h2>
 					<div class=" col-sm-6">
-						<span class="input-group-text col-sm-5"><%=bean.getBirth()%></span>
+						<span class="input-group-text col-sm-5"><%=bean.getBirth() %></span>
 						<p>생년월일은 수정이 불가합니다.</p>
 
 					</div>
@@ -220,7 +220,7 @@ h1, h2, h3, h4, h5, h6 {
 					<h2 class="blog-post-title" id="nickname">닉네임</h2>
 					<div class=" col-sm-3">
 						<span class="input-group">기존 닉네임</span> <span
-							class="input-group-text"><%=bean.getNickname()%></span>
+							class="input-group-text"><%=bean.getNickname() %></span>
 					</div>
 
 					<div class="col-sm-3">
@@ -262,16 +262,8 @@ h1, h2, h3, h4, h5, h6 {
 					</div>
 					<div class="col-sm-3" id="divId" style="display: none">
 						<br />
-						<form name="frm" method="post" action="chemistCodeProc.jsp">
-							약사코드<input name="code"> 주민번호 <input name="personalNumber">
-							<input type="submit" class="w-100 btn btn-primary btn-dark" value="닫아 씨발">
-						</form>
-					</div>
-
-					<div class="col-sm-3" id="divId" style="display: none">
-						<br />
-						<button class="w-100 btn btn-primary btn-dark" type="submit"
-							onClick="codeCheck()">경력입력</button>
+						<input type="text" class="form-control" placeholder="코드 입력하세요" name="code" value="" required />
+						<input type="button" class="w-100 btn btn-primary btn-dark" value="중복 확인"  onClick="codeCheck(this.form.code.value)">
 					</div>
 					<hr>
 
@@ -300,7 +292,7 @@ h1, h2, h3, h4, h5, h6 {
 					<h2 class="blog-post-title" id="email">이메일</h2>
 					<div class=" col-sm-6">
 						<span class="input-group">기존 이메일</span> <span
-							class="input-group-text"><%=bean.getEmail()%></span>
+							class="input-group-text"><%=bean.getEmail() %></span>
 					</div>
 
 					<div class="col-sm-6">
@@ -316,10 +308,12 @@ h1, h2, h3, h4, h5, h6 {
 					<div>
 						<span class="input-group">기존 증상</span>
 						<%
-							for (int i = 0; i < 5; i++) {
-
-							}
-						%>
+                        	for(int i = 0; i < 5; i++){
+                        		
+                        	}
+                        
+                        
+                        %>
 						<span class="badge bg-info text-dark">두통</span> <span
 							class="badge bg-info text-dark">치통</span> <span
 							class="badge bg-info text-dark">생리통</span>
@@ -393,6 +387,7 @@ h1, h2, h3, h4, h5, h6 {
 
 		</div>
 	</div>
+	</form>
 </body>
 
 </html>
