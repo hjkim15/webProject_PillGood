@@ -120,12 +120,12 @@
               <td><input type="file" name="filename" size="50" maxlength="50"></td>
           </tr>
           
-<!--          <tr>
+         <tr>
              <td>내용타입</td>
              <td> HTML<input type=radio name="contentType" value="HTTP" >&nbsp;&nbsp;&nbsp;
                TEXT<input type=radio name="contentType" value="TEXT" checked>
                </td>
-          </tr> -->
+          </tr> 
           
          <tr>
             <td colspan="2"><hr/></td>

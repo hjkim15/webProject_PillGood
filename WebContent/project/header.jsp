@@ -93,6 +93,13 @@
               <li><a class="dropdown-item" href="sessionLogin.jsp">로그인 후 사용하세요</a></li> 
             </ul> -->
           </div>
+          
+          <div class="dropdown">
+            <button class="btn btn-sm " type="button" id="dropdownMenuButtonSM">
+              <a href="qnaList.jsp">QnA </a>
+            </button> 
+            
+          </div>
         
            <!-- 마이페이지 -->
         

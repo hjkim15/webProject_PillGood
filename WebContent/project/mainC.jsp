@@ -2,8 +2,8 @@
 <!--광고 아래 블록들 내용 수정 필요. 게시글 불러오는 법 확인해야. jsp 사용하는건지 확인해보기.-->
 <!--디자인 수정 필요-->
 
-<%@ page contentType="text/html; charset=EUC-KR"%>
-<%@include file="header.jsp" %>
+ <%@ page contentType="text/html; charset=EUC-KR"%> 
+ <%@include file="header.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,37 +30,29 @@
         /*rtl:Amiri, Georgia, "Times New Roman", serif*/
       ;
     }
-
-
     .flex-auto {
       flex: 0 0 auto;
     }
-
     @media (min-width: 768px) {
       .h-md-250 {
         height: 250px;
       }
     }
-
     body {
       padding-top: 3rem;
       padding-bottom: 3rem;
       color: #5a5a5a;
     }
-
     .carousel {
       margin-bottom: 4rem;
     }
-
     .carousel-caption {
       bottom: 3rem;
       z-index: 10;
     }
-
     .carousel-item {
       height: 32rem;
     }
-
     .carousel-item>img {
       position: absolute;
       top: 0;
@@ -68,16 +60,13 @@
       min-width: 100%;
       height: 32rem;
     }
-
     @media (min-width: 40em) {
       .carousel-caption p {
         margin-bottom: 1.25rem;
         font-size: 1.25rem;
         line-height: 1.4;
       }
-
     }
-
     @media (min-width: 62em) {
       .featurette-heading {
         margin-top: 7rem;
@@ -102,7 +91,7 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="  card-img-top" src="main.jpg" width="100%" height="100%"></img>
+            <img class="  card-img-top" src="mainC1.jpg" width="100%" height="100%"></img>
 
             <div class="container">
               <div class="carousel-caption text-start">
@@ -113,7 +102,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img class="  card-img-top" src="main.jpg" width="100%" height="100%"></img>
+            <img class="  card-img-top" src="mainC2.jpg" width="100%" height="100%"></img>
 
             <div class="container">
               <div class="carousel-caption">
@@ -124,7 +113,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img class="  card-img-top" src="main.jpg" width="100%" height="100%"></img>
+            <img class="  card-img-top" src="mainC3.jpg" width="100%" height="100%"></img>
 
             <div class="container">
               <div class="carousel-caption text-end">
@@ -149,18 +138,20 @@
 
 
       <div class="row" data-masonry='{"percentPosition": true }'>
+        <div><h1>조회수 높은 게시글</h1></div>
+        <hr>
         <div class="col-sm-6 col-lg-4 mb-4">
           <div class="col">
             <div class="card shadow-sm">
-              <img class="  card-img-top" src="main.jpg" width="100%" height="225"></img>
+              <img class="  card-img-top" src="tblboardIMG/review/review1.png" width="100%" height="225"></img>
               <div class="card-body">
-                <p class="card-text">약 리뷰/이름 등 상세 정보. 약 리뷰/상세페이지로 연결되도록.</p>
+                <p class="card-text">게시글 제목</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Favorite</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">닉네임</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">게시글 보기</button>
                   </div>
-                  <small class="text-muted">9 mins</small>
+                  <small class="text-muted">작성 시간</small>
                 </div>
               </div>
             </div>
@@ -168,87 +159,99 @@
         </div>
 
         <div class="col-sm-6 col-lg-4 mb-4">
-          <div class="card p-3">
-            <figure class="p-3 mb-0">
-              <blockquote class="blockquote">
-                <p>참고 자료 링크 걸기</p>
-              </blockquote>
-              <figcaption class="blockquote-footer mb-0 text-muted">
-                여기에 <cite title="Source Title">링크</cite>
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4 mb-4">
           <div class="col">
             <div class="card shadow-sm">
-              <img class=" card-img-top" src="main.jpg" width="100%" height="225"></img>
+              <img class="  card-img-top" src="tblboardIMG/review/review2.png" width="100%" height="225"></img>
               <div class="card-body">
-                <p class="card-text">약 리뷰/이름 등 상세 정보. 약 리뷰/상세페이지로 연결되도록.</p>
+                <p class="card-text">게시글 제목</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Favorite</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">닉네임</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">게시글 보기</button>
                   </div>
-                  <small class="text-muted">9 mins</small>
+                  <small class="text-muted">작성 시간</small>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-sm-6 col-lg-4 mb-4">
-          <div class="card bg-primary text-white text-center p-3">
-            <figure class="mb-0">
-              <blockquote class="blockquote">
-                <p>게시판 글</p>
-              </blockquote>
-              <figcaption class="blockquote-footer mb-0 text-white">
-                어떤 게시판인지 <a href="#">링크 더 보기</a>
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4 mb-4">
-          <div class="card text-center">
-            <div class="card-body">
-              <h5 class="card-title">웹사이트에 대해서</h5>
-              <p class="card-text">웹사이트 제작 의도가 궁금하신가요? 더 알아보세요. </p>
-              <p class="card-text"><a href="#"><small class="text-muted">링크</small></a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="main.jpg" width="100%" height="225"></img>
 
-          </div>
-        </div>
         <div class="col-sm-6 col-lg-4 mb-4">
-          <div class="card p-3 text-end">
-            <figure class="mb-0">
-              <blockquote class="blockquote">
-                <p>약 등록요청 게시판 글</p>
-              </blockquote>
-              <figcaption class="blockquote-footer mb-0 text-muted">
-                여기에 <cite title="Source Title">작성자 아이디</cite>
-                <!--이건 jsp 로? -->
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">약 정보가 알아보기 복잡한가요?</h5>
-              <p class="card-text">이 웹사이트로 약에 대한 정보를 간단하게 알아보세요.</p>
-              <p class="card-text"><small class="text-muted">링크</small></p>
+          <div class="col">
+            <div class="card shadow-sm">
+              <img class="  card-img-top" src="tblboardIMG/review/review3.png" width="100%" height="225"></img>
+              <div class="card-body">
+                <p class="card-text">게시글 제목</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">닉네임</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">게시글 보기</button>
+                  </div>
+                  <small class="text-muted">작성 시간</small>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+        <div class="col-sm-6 col-lg-4 mb-4">
+          <div class="col">
+            <div class="card shadow-sm">
+              <img class="  card-img-top" src="tblboardIMG/review/review4.png" width="100%" height="225"></img>
+              <div class="card-body">
+                <p class="card-text">게시글 제목</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">닉네임</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">게시글 보기</button>
+                  </div>
+                  <small class="text-muted">작성 시간</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 mb-4">
+          <div class="col">
+            <div class="card shadow-sm">
+              <img class="  card-img-top" src="tblboardIMG/review/review5.png" width="100%" height="225"></img>
+              <div class="card-body">
+                <p class="card-text">게시글 제목</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">닉네임</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">게시글 보기</button>
+                  </div>
+                  <small class="text-muted">작성 시간</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 mb-4">
+          <div class="col">
+            <div class="card shadow-sm">
+              <img class="  card-img-top" src="tblboardIMG/review/review6.png" width="100%" height="225"></img>
+              <div class="card-body">
+                <p class="card-text">게시글 제목</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">닉네임</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">게시글 보기</button>
+                  </div>
+                  <small class="text-muted">작성 시간</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </main>
 
-    <%@include file="footer.jsp" %>
+   <%@include file="footer.jsp" %>
 
 
     <script src="javascript.js"></script>

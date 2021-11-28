@@ -1,16 +1,17 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
-<%@page import="project.BoardBean"%>
-<jsp:useBean id="bMgr" class="project.BoardMgr" />
-<%@include file="header.jsp" %>
+<%@page import="project.qnaBoardBean"%>
+<%@ page import = "project.MemberBean" %>
+<jsp:useBean id="qMgr" class="project.qnaBoardMgr" />
+<jsp:useBean id="memMgr" class="project.MemberMgr" />
 <%
 	  request.setCharacterEncoding("EUC-KR");
 	  int num = Integer.parseInt(request.getParameter("num"));
 	  String nowPage = request.getParameter("nowPage");
 	  String keyField = request.getParameter("keyField");
 	  String keyWord = request.getParameter("keyWord");
-	  bMgr.upCount(num);//조회수 증가
-	  BoardBean bean = bMgr.getBoard(num);//게시물 가져오기
-	  String nickname = bean.getNickName();
+	  qMgr.upCount(num);//조회수 증가
+	  qnaBoardBean bean = qMgr.getBoard(num);//게시물 가져오기
+	  String name = bean.getNickname();
 	  String subject = bean.getSubject();
       String regdate = bean.getRegdate();
 	  String content = bean.getContent();
@@ -19,6 +20,9 @@
 	  String ip = bean.getIp();
 	  int count = bean.getCount();
 	  session.setAttribute("bean", bean);//게시물을 세션에 저장
+	  
+	  String id = (String)session.getAttribute("idKey");
+	  MemberBean mBean = memMgr.getMember(id);
 %>
 <html>
 <head>
@@ -46,7 +50,7 @@
    <table cellpadding="3" cellspacing="0" width="100%"> 
     <tr> 
   <td align="center" bgcolor="#DDDDDD" width="10%"> 닉네임 </td>
-  <td bgcolor="#FFFFE8"><%=nickname%></td>
+  <td bgcolor="#FFFFE8"><%=name%></td>
   <td align="center" bgcolor="#DDDDDD" width="10%"> 등록날짜 </td>
   <td bgcolor="#FFFFE8"><%=regdate%></td>
  </tr>
@@ -65,7 +69,7 @@
    </tr>
    <tr> 
     <td colspan="4"><br/><pre><%=content%>
-
+         <img class=" img-fluid mx-auto" src="<%=filename%>" width="300" height="500"></img>
     
     </pre><br/></td>
    </tr>
@@ -81,18 +85,19 @@
   <td align="center" colspan="2"> 
  <hr/>
  [ <a href="javascript:list()" >리스트</a> | 
- <a href="update.jsp?nowPage=<%=nowPage%>&num=<%=num%>" >수 정</a> |
- <a href="reply.jsp?nowPage=<%=nowPage%>" >답 변</a> |
- <a href="delete.jsp?nowPage=<%=nowPage%>&num=<%=num%>">삭 제</a> ]<br/>
+ <a href="qnaUpdate.jsp?nowPage=<%=nowPage%>&num=<%=num%>" >수 정</a> |
+ <%if(memMgr.checkUserType(id) == true){ %>
+ <a href="qnaReply.jsp?nowPage=<%=nowPage%>" >답 변</a> |<% } %>
+ <a href="qnaDelete.jsp?nowPage=<%=nowPage%>&num=<%=num%>">삭 제</a> ]<br/>
   </td>
  </tr>
 </table>
 
-<form name="downFrm" action="download.jsp" method="post">
+<form name="downFrm" action="qnaDownload.jsp" method="post">
 	<input type="hidden" name="filename">
 </form>
 
-<form name="listFrm" method="post" action="list.jsp">
+<form name="listFrm" method="post" action="qnaList.jsp">
 	<input type="hidden" name="nowPage" value="<%=nowPage%>">
 	<%if(!(keyWord==null || keyWord.equals(""))){ %>
 	<input type="hidden" name="keyField" value="<%=keyField%>">
