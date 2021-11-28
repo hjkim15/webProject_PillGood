@@ -7,7 +7,7 @@ function nicknameCheck(nickname) {
 		return;
 	}
 	url = "nicknameCheck.jsp?nickname=" + encodeURI(nickname);
-	window.open(url, "nicknameCheck", "width=300, height=150");
+	window.open(url, "nicknameCheck", "width=500, height=150");
 }
 
 function pwdCheck() {
@@ -24,7 +24,25 @@ function pwdCheck() {
 		return;
 	} else
 		alert("비밀번호 일치한다");
+}
 
+function pwdCheck2() {
+	if (document.regFrm.NPsw.value == "") {
+		alert("입력해라~!");
+		document.regFrm.pw.focus();
+	} else if (document.regFrm.NPswCheck.value == "") {
+		alert("입력해라~!");
+		document.regFrm.NPswCheck.focus();
+	} else if (document.regFrm.NPsw.value != document.regFrm.NPswCheck.value) {
+		alert("비밀번호가 일치하지 않습니다.");
+		document.regFrm.NPswCheck.value = "";
+		document.regFrm.NPswCheck.focus();
+		return;
+	} else{
+		alert("비밀번호 일치한다");
+		document.regFrm.newPassword.value = "일치합니다";
+		
+		}
 }
 
 function codeCheck(code, personalNumber){

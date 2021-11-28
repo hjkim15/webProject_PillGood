@@ -1,0 +1,14 @@
+	tr{
+		background-color: rgba(199, 214, 189, 1);
+	}
+	.tblcontent{
+		background-color: rgb(237, 244, 234) !important;
+	}
+	.td-col{
+		background-color:rgb(252, 248, 233) ;
+		 height:21;
+		  text-align:center;
+	}
+#hide{
+    visibility: hidden;
+}

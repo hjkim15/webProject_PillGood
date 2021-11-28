@@ -22,8 +22,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판 등록창</title>
 
-    <link href="script.css" rel="stylesheet">
 
+    <link href="script.css" rel="stylesheet">
+    <link href="notice.css" rel="stylesheet">
     <style>
         .container-md {
             background-color: beige;
@@ -63,38 +64,38 @@
    </tr>
 </table>
 <br/>
+<div class="container">
 <form name="postFrm" method="post" action="boardPost" enctype="multipart/form-data">
 <table width="1000" cellpadding="3" align="center">
    <tr>
       <td align=center>
       <table align="center">
          <tr>
-            <td width="10%">닉네임</td>
+            <td >닉네임</td>
             <td width="90%">
-            <input name="nickname" value=<%=bean.getNickname()%>><td>
-            
+            <input class="form-control tblcontent" name="nickname" value=<%=bean.getNickname()%>></td>
+    
          </tr>
          <tr>
-            <td>제 목</td>
+            <td>제목</td>
             <td>
-            <input name="subject" size="50" maxlength="30"></td>
+            <input class="form-control tblcontent" name="subject" size="50" maxlength="30"></td>
          </tr>
          <tr>
              <td>게시판 종류</td>
-             <td><input type = "radio" name = "boardType" value = "0" >약후기
+             <td class="form-control tblcontent"><input type = "radio" name = "boardType" value = "0" >약후기
                  <input type = "radio" name = "boardType" value = "1">약등록요청
                  <input type = "radio" name = "boardType" value = "2">자유게시판
              </td>
          </tr>
          <tr>
             <td>내 용</td>
-            <td><textarea name="content" rows="10" cols="70"></textarea></td>
+            <td><textarea class="form-control tblcontent" name="content" rows="10" cols="70"></textarea></td>
          </tr>
          <tr>
-             <div class="input-group mb-3">
-                        <span class="input-group-text">별점</span>
+            <td>별 점</td>
                         <!--https://codepen.io/chris22smith/pen/MJzLJN-->
-                        <div class=" form-control">
+                        <td><div class="form-control tblcontent">
                             <div class="star-rating ">
                                 <input type="radio" id="5-stars" name="grade" value="5" />
                                 <label for="5-stars" class="star">&#9733;</label>
@@ -108,19 +109,19 @@
                                 <label for="1-star" class="star">&#9733;</label>
                             </div>
                         </div>
-                    </div>
+                        </td>
          </tr>
          <tr>
             <td>비밀 번호</td>
-            <td><input type="password" name="pass" size="15" maxlength="15"></td>
+            <td><input class="form-control tblcontent" type="password" name="pass" size="15" maxlength="15"></td>
          </tr>
          <tr>
           <tr>
               <td>파일찾기</td> 
-              <td><input type="file" name="filename" size="50" maxlength="50"></td>
+              <td><input class="form-control tblcontent" type="file" name="filename" size="50" maxlength="50"></td>
           </tr>
           
-         <tr>
+         <tr id="hide">
              <td>내용타입</td>
              <td> HTML<input type=radio name="contentType" value="HTTP" >&nbsp;&nbsp;&nbsp;
                TEXT<input type=radio name="contentType" value="TEXT" checked>
@@ -132,9 +133,9 @@
          </tr>
          <tr>
             <td colspan="2">
-                <input type="submit" value="등록">
-                <input type="reset" value="다시쓰기">
-                <input type="button" value="리스트" onClick="javascript:location.href='list.jsp'">
+                <input class = "btn btn-sm btn-outline-secondary" type="submit" value="등록">
+                <input class = "btn btn-sm btn-outline-secondary" type="reset" value="다시쓰기">
+                <input class = "btn btn-sm btn-outline-secondary" type="button" value="리스트" onClick="javascript:location.href='list.jsp'">
             </td>
          </tr>
       </table>
@@ -142,7 +143,7 @@
    </tr>
 </table>
 <input type="hidden" name="ip" value="<%=request.getRemoteAddr()%>">
-</form>
+</form></div>
 </div>
 </body>
 </html>

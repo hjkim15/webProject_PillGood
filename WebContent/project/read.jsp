@@ -22,8 +22,10 @@
 %>
 <html>
 <head>
-<title>JSP Board</title>
-<link href="style.css" rel="stylesheet" type="text/css">
+<title>게시글 읽기</title>
+<link href="script.css" rel="stylesheet">
+<link href="notice.css" rel="stylesheet">
+
 <script type="text/javascript">
 	function list(){
 	    document.listFrm.submit();
@@ -34,12 +36,13 @@
 		 document.downFrm.submit();
 	}
 </script>
+
 </head>
-<body bgcolor="#FFFFCC">
+<body >
 <br/><br/>
 <table align="center" width="600" cellspacing="3">
  <tr>
-  <td bgcolor="#9CA2EE" height="25" align="center">글읽기</td>
+  <td class="td-col">글읽기</td>
  </tr>
  <tr>
   <td colspan="2">
@@ -99,5 +102,6 @@
 	<input type="hidden" name="keyWord" value="<%=keyWord%>">
 	<%}%>
 </form>
+ <%@include file="footer.jsp" %>
 </body>
 </html>

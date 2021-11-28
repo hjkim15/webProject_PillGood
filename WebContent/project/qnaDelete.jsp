@@ -3,8 +3,9 @@
 <jsp:useBean id="qMgr" class="project.qnaBoardMgr" />
 <html>
 <head>
-<title>JSP Board</title>
-<link href="style.css" rel="stylesheet" type="text/css">
+<title>QnA 삭제하기</title>
+<link href="script.css" rel="stylesheet">
+<link href="notice.css" rel="stylesheet">
 <%
 	request.setCharacterEncoding("EUC-KR");
 	String nowPage = request.getParameter("nowPage");
@@ -37,12 +38,12 @@
 	}
 </script>
 </head>
-<body bgcolor="#FFFFCC">
+<body >
 	<div align="center">
 		<br/><br/>
 		<table width="600" cellpadding="3">
 			<tr>
-				<td bgcolor=#dddddd height="21" align="center">
+				<td class="td-col">
 					사용자의 비밀번호를 입력해주세요.
 				</td>
 			</tr>
@@ -54,7 +55,7 @@
 						<table>
 							<tr>
 								<td align="center">
-									<input type="password" name="pass" size="17" maxlength="15">
+									<input class="form-control tblcontent" type="password" name="pass" size="17" maxlength="15">
 								</td>
 							</tr>
 							<tr>
@@ -62,9 +63,9 @@
 							</tr>
 							<tr>
 								<td align="center">
-									<input type="button" value="삭제완료" onClick="check()"> 
-									<input type="reset" value="다시쓰기">
-									<input type="button" value="뒤로" onClick="history.go(-1)">
+									<input class = "btn btn-sm btn-outline-secondary" type="button" value="삭제완료" onClick="check()"> 
+									<input class = "btn btn-sm btn-outline-secondary" type="reset" value="다시쓰기">
+									<input class = "btn btn-sm btn-outline-secondary" type="button" value="뒤로" onClick="history.go(-1)">
 								</td>
 							</tr>
 						</table>

@@ -48,8 +48,7 @@
 %>
 <html>
 <head>
-<link href="style.css" rel="stylesheet" type="text/css">
-<link href="script.css" rel="stylesheet">
+	<link href="script.css" rel="stylesheet">
 <script type="text/javascript">
 	function list() {
 		document.listFrm.action = "qnaList.jsp";
@@ -61,10 +60,10 @@
 		document.readFrm.submit();
 	}
 	
-	function block(value){
-		 document.readFrm.nowPage.value=<%=pagePerBlock%>*(value-1)+1;
-		 document.readFrm.submit();
-	} 
+	// function block(value){
+	// 	 document.readFrm.nowPage.value=<%=pagePerBlock%>*(value-1)+1;
+	// 	 document.readFrm.submit();
+	// } 
 	
 	function read(num){
 		document.readFrm.num.value=num;

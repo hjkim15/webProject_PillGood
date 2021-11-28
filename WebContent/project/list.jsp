@@ -9,7 +9,7 @@
 	  request.setCharacterEncoding("EUC-KR");
 
 	request.setCharacterEncoding("EUC-KR");
-	//String id = (String)session.getAttribute("idKey");
+
 	if(id == null){ 		
 	%>  
 	<script>

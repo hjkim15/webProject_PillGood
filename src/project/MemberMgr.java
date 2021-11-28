@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 public class MemberMgr {
-	private static int number = 2;
+	private static int number = 50;
 
 	private DBConnectionMgr pool;
 
@@ -59,8 +59,8 @@ public class MemberMgr {
 			pstmt.setInt(6, bean.getGender());
 			pstmt.setString(7, bean.getNickname());
 
-			String symptom[] = bean.getSymptom();
 			char st[] = { '0', '0', '0', '0' };
+			String symptom[] = bean.getSymptom();
 			String lists[] = { "감기", "두통", "생리통", "소화불량" };
 			for (int i = 0; i < symptom.length; i++) {
 				for (int j = 0; j < lists.length; j++) {
@@ -68,7 +68,6 @@ public class MemberMgr {
 						st[j] = '1';
 				}
 			}
-
 			pstmt.setString(8, new String(st));
 
 			pstmt.setInt(9, bean.getUserType());

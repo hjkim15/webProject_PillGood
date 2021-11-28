@@ -5,6 +5,8 @@
 <%
 	request.setCharacterEncoding("EUC-KR");
 	String message = "";
+	String symptom[] = new String[4];
+
 	if (id == null) {
 %>
 <script>
@@ -15,6 +17,21 @@
 <%
 	}
 	MemberBean bean = mgr.getMember(id2);
+	
+	try { 
+		symptom = bean.getSymptom();
+		
+		if(symptom[0].contains("1")){symptom[0] = "감기";}
+		if(symptom[1].contains("1")){ symptom[1] = "두통";}
+		if(symptom[2].contains("1")){ symptom[2] = "생리통";}
+		if(symptom[3].contains("1")){ symptom[3] = "소화불량";}
+		
+	}catch (NullPointerException e) { 
+		System.out.println("--NullPointerException 발생--"); 
+		System.out.println("기존 코드를 체크해 주세요!!"); }
+	finally { 
+		System.out.println("예외처리 코드가 오류없이 진행되었습니다."); 
+		}
 	
 %>
 
@@ -129,12 +146,10 @@ h1, h2, h3, h4, h5, h6 {
 <link href="script.css" rel="stylesheet">
 
 <!-- jQuery -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!-- 부트 스트랩 CDN -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 
 
@@ -215,13 +230,12 @@ h1, h2, h3, h4, h5, h6 {
 							<span class="input-group">새 닉네임</span> <input type="text"
 								class="form-control" placeholder="새 닉네임 입력" name="newNname"
 								id="text1" value="" required />
-
+							<input type="text" id="newNickname" value="" style="display:none">
 						</div>
 
 						<div class="col-sm-2">
 							<br>
-							<button class="w-100 btn btn-primary btn-dark" type="submit">중복
-								확인</button>
+							<input type="button" class="w-100 btn btn-primary btn-dark" value="중복 확인" onClick="nicknameCheck(this.form.newNname.value)">
 						</div>
 						<hr>
 
@@ -254,7 +268,7 @@ h1, h2, h3, h4, h5, h6 {
 								약사코드<input name="code" class="form-control"><br /> 주민번호<input
 									name="personalNumber" class="form-control"><br /> 
 							<input type="button" class="w-100 btn btn-primary btn-dark" value="확인" id="confirm" onClick = "codeCheck(this.form.code.value, this.form.personalNumber.value);view()">
-								<input type="text" id="showMessage">
+								<input type="text" id="showMessage" style="display: none">
 							</form>
 						</div>
 
@@ -276,13 +290,12 @@ h1, h2, h3, h4, h5, h6 {
 							<span class="input-group">새 비밀번호 확인</span> <input type="password"
 								class="form-control" placeholder="다시 입력" name="NPswCheck"
 								value="" required />
-
+							<input type="text" id="newPassword" style="display:none">							
 						</div>
+						
 						<div class="col-sm-4">
 							<br>
-							<button class="w-100 btn btn-primary btn-dark" type="submit">비밀번호
-								변경 확인</button>
-							<!--버튼 누르면 약사 코드 확인하는 프롬프트 창. 아니면 위에서 약사 버튼 선택하면 약사 코드 입력하는 칸 나타나도록.-->
+							<input type="button" class="w-100 btn btn-primary btn-dark" value="변경 확인" onClick="pwdCheck2()">
 						</div>
 
 						<hr>
@@ -296,7 +309,7 @@ h1, h2, h3, h4, h5, h6 {
 						<div class="col-sm-6">
 							<span class="input-group">새 이메일</span> <input type="email"
 								class="form-control" placeholder="새 이메일 입력" name="newEmail"
-								value="" required />
+								value="" />
 
 						</div>
 						<hr>
@@ -305,14 +318,17 @@ h1, h2, h3, h4, h5, h6 {
 						<h2 class="blog-post-title" id="symptom">즐겨찾는 증상</h2>
 						<div>
 							<span class="input-group">기존 증상</span>
-							<%
-								for (int i = 0; i < 5; i++) {
-
-								}
-							%>
-							<span class="badge bg-info text-dark">두통</span> <span
+ 							<%
+								for(int i = 0; i < symptom.length; i++){
+									if(symptom[i].equals("0")){;}
+									else{%>
+										<span class="badge bg-info text-dark"><%=symptom[i] %></span>
+								<%}
+									}%>
+							 
+<!-- 							<span class="badge bg-info text-dark">두통</span> <span
 								class="badge bg-info text-dark">치통</span> <span
-								class="badge bg-info text-dark">생리통</span>
+								class="badge bg-info text-dark">생리통</span> -->
 
 						</div>
 						<div>
@@ -336,7 +352,7 @@ h1, h2, h3, h4, h5, h6 {
 
 						</div>
 						<hr>
-						<h2 class="blog-post-title" id="brand">즐겨찾는 브랜드</h2>
+<!-- 						<h2 class="blog-post-title" id="brand">즐겨찾는 브랜드</h2>
 						<div>
 							<span class="input-group">기존 브랜드</span> <span
 								class="badge bg-info text-dark">녹십자</span> <span
@@ -364,7 +380,7 @@ h1, h2, h3, h4, h5, h6 {
 							</div>
 
 						</div>
-						<hr>
+						<hr> -->
 
 
 
@@ -384,6 +400,9 @@ h1, h2, h3, h4, h5, h6 {
 			</div>
 		</div>
 	</form>
+	
+	<script type="text/javascript" src="script.js" charset="utf-8"></script> 	
+	
 	<script type="text/javascript">
 		document.getElementById("divId").style.display = "none";
 		function setDisplay() {
@@ -409,7 +428,7 @@ h1, h2, h3, h4, h5, h6 {
 		}
 		
 	</script>
-	<script type="text/javascript" src="script.js" charset="utf-8"></script> 
+
 </body>
 
 </html>

@@ -10,8 +10,10 @@
 %>
 <html>
 <head>
-<title>JSP Board</title>
-<link href="style.css" rel="stylesheet" type="text/css">
+<title>QnA 수정하기</title>
+<link href="script.css" rel="stylesheet">
+<link href="notice.css" rel="stylesheet">
+
 <script>
 	function check() {
 	   if (document.updateFrm.pass.value == "") {
@@ -22,13 +24,14 @@
 	   document.updateFrm.submit();
 	}
 </script>
+
 </head>
-<body bgcolor="#FFFFCC">
+<body >
 <div align="center"><br/><br/>
 <table width="600" cellpadding="3">
   <tr>
-   <td bgcolor="#FF9018"  height="21" align="center">수정하기</td>
-  </tr>
+	<td class="td-col">수정하기</td>
+</tr>
 </table>
 <form name="updateFrm" method="post" action="qnaBoardUpdate">
 <table width="600" cellpadding="7">
@@ -36,38 +39,38 @@
   <td>
    <table>
     <tr>
-     <td width="20%">성 명</td>
-     <td width="80%">
-	  <input name="name" value="<%=name%>" size="30" maxlength="20">
-	 </td>
+		<td >닉네임</td>
+		<td width="80%">
+			<input class="form-control tblcontent" name="name" value="<%=name%>"  maxlength="20">
+		</td>
 	</tr>
 	<tr>
-     <td>제 목</td>
-     <td>
-	  <input name="subject" size="50" value="<%=subject%>" maxlength="50">
-	 </td>
-    <tr>
-     <td>내 용</td>
-     <td>
-	  <textarea name="content" rows="10" cols="50"><%=content%></textarea>
-	 </td>
-    </tr>
-	<tr>
-     <td>비밀 번호</td> 
-     <td><input type="password" name="pass" size="15" maxlength="15">
-      수정 시에는 비밀번호가 필요합니다.</td>
-    </tr>
-	<tr>
-     <td colspan="2" height="5"><hr/></td>
-    </tr>
-	<tr>
-     <td colspan="2">
-	  <input type="button" value="수정완료" onClick="check()">
-      <input type="reset" value="다시수정"> 
-      <input type="button" value="뒤로" onClick="history.go(-1)">
-	 </td>
-    </tr> 
-   </table>
+		<td >제 목</td>
+		<td class="mb-3">
+		 <input class="form-control tblcontent" name="subject" value="<%=subject%>" maxlength="50">
+		</td>
+	   <tr>
+		<td>내 용</td>
+		<td>
+		 <textarea class="form-control tblcontent" name="content" rows="10" cols="50"><%=content%></textarea>
+		</td>
+	   </tr>
+	   <tr>
+		<td >비밀 번호</td> 
+		<td><input class="form-control tblcontent " type="password" name="pass" >
+		 수정 시에는 비밀번호가 필요합니다.</td>
+	   </tr>
+	   <tr>
+		<td colspan="2" ><hr/></td>
+	   </tr>
+	   <tr >
+		<td colspan="2" >
+		 <input type="button" class = "btn btn-sm btn-outline-secondary" value="수정완료" onClick="check()">
+		 <input type="reset" class = "btn btn-sm btn-outline-secondary" value="다시수정"> 
+		 <input type="button" class = "btn btn-sm btn-outline-secondary" value="뒤로" onClick="history.go(-1)">
+		</td>
+	   </tr> 
+	  </table>
   </td>
  </tr>
 </table>

@@ -26,8 +26,9 @@
 %>
 <html>
 <head>
-<title>JSP Board</title>
-<link href="style.css" rel="stylesheet" type="text/css">
+<title>QnA 게시판</title>
+<link href="script.css" rel="stylesheet">
+<link href="notice.css" rel="stylesheet">
 <script type="text/javascript">
 	function list(){
 	    document.listFrm.submit();
@@ -39,12 +40,12 @@
 	}
 </script>
 </head>
-<body bgcolor="#FFFFCC">
+<body >
 <br/><br/>
 <table align="center" width="600" cellspacing="3">
  <tr>
-  <td bgcolor="#9CA2EE" height="25" align="center">글읽기</td>
- </tr>
+	<td class="td-col">글읽기</td>
+</tr>
  <tr>
   <td colspan="2">
    <table cellpadding="3" cellspacing="0" width="100%"> 

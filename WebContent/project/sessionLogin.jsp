@@ -5,12 +5,13 @@
 
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=EUC-KR"%>
-<% String id=(String)session.getAttribute("idKey"); if(id!=null){ %>
+<%-- <% String id=(String)session.getAttribute("idKey"); 
+if(id!=null){ %>
 <script>
   alert("로그인 되었습니다");
   location.href = "mainC.jsp";
 </script>
-<% } %>
+<% } %> --%>
 <html lang="en">
 
 <head>
@@ -170,7 +171,6 @@
 
       <footer class="my-5 pt-5 text-muted text-center text-small">
 
-        <p class="text-center text-muted"> <a href="#" >PillGood</a> by <a href="introduceUs.html" >&copy;성신약국</a></p>
         <p class="text-center text-muted"> <a href="#">PillGood</a> by <a href="introduceUs.jsp">&copy;성신약국</a>
         </p>
 

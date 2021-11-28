@@ -2,20 +2,23 @@
 <jsp:useBean id="bean" class="project.qnaBoardBean" scope="session"/>
 <%
 	  String nowPage = request.getParameter("nowPage");
+	  String nickname = bean.getNickname();
 	  String subject = bean.getSubject();
 	  String content = bean.getContent(); 
 %>
 <html>
 <head>
-<title>JSPBoard</title>
-<link href="style.css" rel="stylesheet" type="text/css">
+<title>QnA 답변하기</title>
+<link href="script.css" rel="stylesheet">
+<link href="notice.css" rel="stylesheet">
+
 </head>
-<body bgcolor="#FFFFCC">
+<body>
 <div align="center">
 <br><br>
  <table width="600" cellpadding="3">
   <tr>
-   <td bgcolor="#CCCC00" height="21" align="center">답변하기</td>
+   <td class="td-col">답변하기</td>
   </tr>
 </table>
 <form method="post" action="qnaBoardReply" >
@@ -24,19 +27,19 @@
   <td>
    <table>
     <tr>
-     <td width="20%">성 명</td>
+     <td>닉네임</td>
      <td width="80%">
-	  <input name="name" size="30" maxlength="20"></td>
+      <input class="form-control tblcontent" name="name" value="<%=nickname%>"  maxlength="20">
     </tr>
     <tr>
      <td>제 목</td>
-     <td>
-	  <input name="subject" size="50" value="답변 : <%=subject%>" maxlength="50"></td> 
-    </tr>
+     <td class="mb-3">
+      <input class="form-control tblcontent" name="subject" value="<%=subject%>" maxlength="50">
+     </td>
 	<tr>
      <td>내 용</td>
      <td>
-	  <textarea name="content" rows="12" cols="50">
+	  <textarea class="form-control tblcontent" name="content" rows="12" cols="50">
       	<%=content %>
       	========답변 글을 쓰세요.=======
       	</textarea>
@@ -45,17 +48,17 @@
     <tr>
      <td>비밀 번호</td> 
      <td>
-	  <input type="password" name="pass" size="15" maxlength="15"></td> 
+	  <input class="form-control tblcontent" type="password" name="pass" size="15" maxlength="15"></td> 
     </tr>
     <tr>
      <td colspan="2" height="5"><hr/></td>
     </tr>
 	<tr> 
-     <td colspan="2">
-	  <input type="submit" value="답변등록" >
-      <input type="reset" value="다시쓰기">
-      <input type="button" value="뒤로" onClick="history.back()"></td>
-    </tr> 
+    <td colspan="2" >
+      <input type="button" class = "btn btn-sm btn-outline-secondary" value="수정완료" onClick="check()">
+        <input type="reset" class = "btn btn-sm btn-outline-secondary" value="다시수정"> 
+        <input type="button" class = "btn btn-sm btn-outline-secondary" value="뒤로" onClick="history.go(-1)">
+     </td>
    </table>
   </td>
  </tr>
