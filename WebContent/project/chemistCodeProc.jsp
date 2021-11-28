@@ -5,29 +5,31 @@
 <%
 	request.setCharacterEncoding("EUC-KR");
 	int code = 0;
-	if(request.getParameter("code") != null)
-     code = Integer.parseInt(request.getParameter("code"));
-	/* int personalNumber = Integer.parseInt(request.getParameter("personalNumber")); */
+	int personalNumber = 0;
 	boolean c = false;
-			
-/* //	if(request.getParameter("code") != null)
-		code = Integer.parseInt(request.getParameter("code"));
 	
-//	if(request.getParameter("personalNumber") != null)
-		personalNumber = Integer.parseInt(request.getParameter("personalNumber")); */
+	try{
+		if(request.getParameter("code") != null)
+			code = Integer.parseInt(request.getParameter("code"));
+		if(request.getParameter("personalNumber") != null)
+		    personalNumber = Integer.parseInt(request.getParameter("personalNumber"));
+		
+	}catch(NumberFormatException e){
+		code = 0;
+		personalNumber=0;
+	}  
 
-	if(memMgr.checkPharmacist2(code)){
-		c = true; 
-	 	}
-	else{
-		c = false;
-		}
+	if(memMgr.checkPharmacist(code, personalNumber)) c = true; 
+	else c = false;
 %>
-
+<!DOCTYPE html>
+<html>
+<head>
+<title>nickname 중복체크</title>
 </head>
 <body >
 	<div >
-		<br/><b><%=code%></b>
+		<br/><b><%=code%> <%=personalNumber %></b>
 		<%
 			if (c) {
 				out.println("가 일치합니다.<p/>");

@@ -4,7 +4,6 @@
 <%@include file="header.jsp"%>
 <%
 	request.setCharacterEncoding("EUC-KR");
-	//	String id = (String)session.getAttribute("idKey");
 	if (id == null) {
 %>
 <script>
@@ -28,6 +27,7 @@
 <title>mypage</title>
 
 <style>
+
 .input-group-text {
 	display: inline;
 }
@@ -242,20 +242,19 @@ h1, h2, h3, h4, h5, h6 {
 
 						<h2 class="blog-post-title" id="memberType">회원 타입</h2>
 						<div class="col-sm-3">
-							<input type="radio" id="normal" name="userType" value="0"
-								onchange="setDisplay()" checked> 일반 <input type="radio"
-								id="chemist" name="userType" value="1" onchange="setDisplay()">
+							<input type="radio" id="normal" name="userType" value="0" onchange="setDisplay()" checked> 일반 
+							<input type="radio" id="chemist" name="userType" value="1" onchange="setDisplay()">
 							약사
 						</div>
 						<div class="col-sm-3" id="divId" style="display: none">
 							<br />
-							<form name="frm">
-								<input type="text" class="form-control" placeholder="코드 입력하세요"
-									name="code" value="" required /> <input type="button"
-									class="w-100 btn btn-primary btn-dark" value="중복 확인"
-									onClick="codeCheck(this.form.code.value)">
-							</form>
+							<form name="frm"> 
+								<input type="text" class="form-control"  name="code" value="" required />
+								<input type="text" class="form-control"  name="personalNumber" value="" required />
+								<input type="button"class="w-100 btn btn-primary btn-dark" value="중복 확인" onClick="codeCheck(this.form.code.value, this.form.personalNumber.value)">
+							</form> 
 						</div>
+											
 						<hr>
 
 						<h2 class="blog-post-title" id="password">비밀번호</h2>
@@ -377,12 +376,8 @@ h1, h2, h3, h4, h5, h6 {
 			</div>
 		</div>
 	</form>
+	
 	<script type="text/javascript">
-		/* function codeCheck(){
-		 url = "chemistCode.jsp";
-		 window.open(url, "ChemistCode","width=300,height=150");
-		 } */
-
 		document.getElementById("divId").style.display = "none";
 		function setDisplay() {
 			if ($('input:radio[id=normal]').is(':checked')) {
@@ -392,6 +387,7 @@ h1, h2, h3, h4, h5, h6 {
 				$('#divId').show();
 			}
 		}
+		
 	</script>
 	<script type="text/javascript" src="script.js" charset="utf-8"></script>
 </body>
