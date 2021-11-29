@@ -9,10 +9,20 @@
 <jsp:setProperty  name="pBean" property="userId"/>
 <jsp:setProperty  name="pBean" property="pcode"/>
 <jsp:setProperty  name="pBean" property="career"/>
+
 <%
+	  request.setCharacterEncoding("EUC-KR");
+	  String newNname = "";
+	  
+	  if(request.getParameter("newNname")!=null){
+		  newNname = request.getParameter("newNname");
+		  mBean.setNickname(newNname);  
+	  }
+	  
 	  boolean result = mgr.updateMember(mBean);
 	  boolean result2 = mgr.insertPharmacist(pBean);
 	  System.out.println(result2);
+	  
 	  if(result){
 %>
 <script type="text/javascript">

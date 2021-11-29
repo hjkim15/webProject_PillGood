@@ -6,7 +6,8 @@
 	request.setCharacterEncoding("EUC-KR");
 	String message = "";
 	String symptom[] = new String[4];
-	
+	String sym = "";
+	String sym2 = "";
 	if (id == null) {
 %>
 <script>
@@ -18,6 +19,7 @@
 	}
 	MemberBean bean = mgr.getMember(id2);
 	int gender = bean.getGender();
+	int userType = bean.getUserType();
 	
 	try { 
 		symptom = bean.getSymptom();
@@ -223,47 +225,42 @@ h1, h2, h3, h4, h5, h6 {
 						<!--회원가입 페이지처럼 중복확인 테스트 등 해야함.-->
 						<h2 class="blog-post-title" id="nickname">닉네임</h2>
 						<div class=" col-sm-3">
-							<span class="input-group">기존 닉네임</span> <span
-								class="input-group-text"><%=bean.getNickname()%></span>
+							<span class="input-group">기존 닉네임</span>
+							 <input type="text" name="nickname"
+								class="input-group-text" value="<%=bean.getNickname()%>" readonly/>
 						</div>
 
 						<div class="col-sm-3">
 							<span class="input-group">새 닉네임</span>
 							 <input type="text"
-								class="form-control" placeholder="새 닉네임 입력" name="nickname"
-								id="text1" value="" />
+								class="form-control" placeholder="새 닉네임 입력"
+								id="text1" value="" name="newNname" />
 							<input type="text" name="newNickname" id="newNickname" value="">
 						</div>
 
 						<div class="col-sm-2">
 							<br>
-							<input type="button" id="newN" class="w-100 btn btn-primary btn-dark" value="중복 확인" onClick="nicknameCheck(this.form.nickname.value)">
-							<input type="button" class="w-100 btn btn-primary btn-dark" value="수정" onClick="checkNickname(this.form.newNname.value, this.form.newNickname.value)">
+							<input type="button" id="newN" class="w-100 btn btn-primary btn-dark" value="중복 확인" onClick="nicknameCheck(this.form.nickname.value)">	
 						</div>
 						<hr>
 
 						<h2 class="blog-post-title" id="gender">성별</h2>
 						<div class="col-sm-4">	
 						
-					<%	out.println("<input type='radio' name='gender' class='form-check-input' ");
-					 	out.println("value='0' "  + (gender == 0 ? "checked" : "") + ">");
-						out.println("<label class='form-check-label' for='gender'>" + "male" + "</label>");
-													
-						out.println("<input type=radio name=gender class=form-check-input ");
-						out.println("value=1" + (gender == 1 ? "checked" : "") + ">");
-						out.println("<label class=form-check-label for=gender>" + "female" + "</label>");
-						
-						%>
-<!-- 							<div class="badge bg-info text-dark">
+						<div class="badge bg-info text-dark">
 								<input name="gender" type="radio" class="form-check-input"
-									value="0"  required> <label class="form-check-label"
+									value="0"  <%
+									if(gender == 0) out.println("checked ");
+									%>required> <label class="form-check-label"
 									for="gender">male</label>
 							</div>
 							<div class="badge bg-info text-dark">
 								<input name="gender" type="radio" class="form-check-input"
-									value="1"  required> <label
+									value="1" <%
+									if(gender == 1) out.println("checked ");
+									%> required> <label
 									class="form-check-label" for="gender">female</label>
-							</div> -->
+							</div>
 
 						</div>
 						<hr>
@@ -271,9 +268,14 @@ h1, h2, h3, h4, h5, h6 {
 						<h2 class="blog-post-title" id="memberType">회원 타입</h2>
 						<div class="col-sm-3">
 							<input type="radio" id="normal" name="userType" value="0"
-								onchange="setDisplay()" checked> 일반 
+								onchange="setDisplay()" <%
+								if(userType == 0) out.println("checked ");
+								%>> 일반 
 							<input type="radio"
-								id="chemist" name="userType" value="1" onchange="setDisplay()">
+								id="chemist" name="userType" value="1"  <%
+								if(userType == 1) out.println("checked ");
+								%>
+								onchange="setDisplay()">
 							약사
 						</div>
 						<br />
@@ -296,9 +298,10 @@ h1, h2, h3, h4, h5, h6 {
 
 						<h2 class="blog-post-title" id="password">비밀번호</h2>
 						<div class="col-sm-3">
+							<input type="text" name="pw" value="<%=bean.getPw()%>" style="display:none">
 							<span class="input-group">새 비밀번호</span>
 							 <input type="password" id="text2"
-								class="form-control" placeholder="new password" name="pw"
+								class="form-control" placeholder="new password"
 								value="" />
 
 						</div>
@@ -318,14 +321,15 @@ h1, h2, h3, h4, h5, h6 {
 
 						<h2 class="blog-post-title" id="email">이메일</h2>
 						<div class=" col-sm-6">
-							<span class="input-group">기존 이메일</span> <span
-								class="input-group-text"><%=bean.getEmail()%></span>
+							<span class="input-group">기존 이메일</span> 
+							<input type="text" name="email"
+								class="input-group-text" value="<%=bean.getEmail()%>" readonly/>
 						</div>
 
 						<div class="col-sm-6">
 							<span class="input-group">새 이메일</span> 
 							<input type="email"
-								class="form-control" placeholder="새 이메일 입력" name="email"
+								class="form-control" placeholder="새 이메일 입력" 
 								value="" />
 
 						</div>
@@ -339,39 +343,31 @@ h1, h2, h3, h4, h5, h6 {
 								for(int i = 0; i < symptom.length; i++){
 									if(symptom[i].equals("0")){;}
 									else{%>
-										<span class="badge bg-info text-dark"><%=symptom[i] %></span>
+										<input type="text" name="<%=sym%>" class="badge bg-info text-dark" value="<%=symptom[i] %>">
+
 								<%}
 									}%>
 
 						</div>
 						<div>
 							<span class="input-group">새 증상</span>
-							<% 
-							String list[] = { "감기", "두통", "생리통", "소화불량"};
-										String symptoms[] = bean.getSymptom();
-										for (int i = 0; i < list.length; i++) {
-											out.println( list[i]);
-											out.println("<input type=checkbox name=symptom class=badge bg-info text-dark");
-											out.println("value=" + "'" +list[i] + "'"
-											+ (symptoms[i].equals("1") ? "checked" : "") + ">");
-										}	
-							%>					
-<!-- 							<div class="badge bg-info text-dark">
-								<input type="checkbox" class="btn"> <label
+				
+							<div class="badge bg-info text-dark">
+								<input type="checkbox" name="<%=sym2 %>" value="감기" class="btn"> <label
 									class="form-check-label">감기</label>
 							</div>
 							<div class="badge bg-info text-dark">
-								<input type="checkbox" class="btn "> <label
+								<input type="checkbox" name="<%=sym2 %>" class="btn" value="두통"> <label
 									class="form-check-label">두통</label>
 							</div>
 							<div class="badge bg-info text-dark">
-								<input type="checkbox" class="btn"> <label
+								<input type="checkbox" name="<%=sym2 %>" class="btn" value="생리통"> <label
 									class="form-check-label">생리통</label>
 							</div>
 							<div class="badge bg-info text-dark">
-								<input type="checkbox" class="btn "> <label
+								<input type="checkbox" name="<%=sym2 %>" class="btn " value="소화불량"> <label
 									class="form-check-label">소화불량</label>
-							</div> -->
+							</div >
 
 						</div>
 						<hr>
