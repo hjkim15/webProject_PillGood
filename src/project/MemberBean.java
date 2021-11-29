@@ -11,6 +11,7 @@ private String nickname;
 private String symptom[];
 private int userType;
 private String birth;
+private String img;
 
 public void setUser_Idx(int user_Idx) {
    this.user_Idx = user_Idx;
@@ -72,4 +73,10 @@ public void setBirth(String birth) {
 public String getBirth() {
    return birth;
 }
+public void setImg(String img) {
+	   this.img = img;
+	}
+	public String getImg() {
+	   return this.img;
+	}
 }

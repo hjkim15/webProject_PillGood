@@ -5,16 +5,19 @@
 <jsp:useBean id="mBean" class="project.MemberBean"/>
 <jsp:setProperty  name="mBean" property="*"/>
 
-<jsp:useBean id="pBean" class="project.MemberBean"/>
-<jsp:setProperty  name="pBean" property=""/>
+<jsp:useBean id="pBean" class="project.pharmacistBean"/>
+<jsp:setProperty  name="pBean" property="userId"/>
+<jsp:setProperty  name="pBean" property="pcode"/>
+<jsp:setProperty  name="pBean" property="career"/>
 <%
 	  boolean result = mgr.updateMember(mBean);
-		System.out.println(mBean.getEmail());
+	  boolean result2 = mgr.insertPharmacist(pBean);
+	  System.out.println(result2);
 	  if(result){
 %>
 <script type="text/javascript">
 		alert("회원정보 수정 하였습니다.");
-		location.href="../main.jsp";
+		location.href="myPage.jsp";
 </script>
 <% }else{%>
 <script type="text/javascript">

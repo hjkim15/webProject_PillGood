@@ -27,13 +27,13 @@ function pwdCheck() {
 }
 
 function pwdCheck2() {
-	if (document.regFrm.pw == "") {
+	if (document.regFrm.pw.value == "") {
 		alert("입력해라~!");
 		document.regFrm.pw.focus();
 	} else if (document.regFrm.NPswCheck.value == "") {
 		alert("입력해라~!");
 		document.regFrm.NPswCheck.focus();
-	} else if ($( 'input#text2' ).value() != document.regFrm.NPswCheck.value) {
+	} else if (document.regFrm.pw.value != document.regFrm.NPswCheck.value) {
 		alert("비밀번호가 일치하지 않습니다.");
 		document.regFrm.NPswCheck.value = "";
 		document.regFrm.NPswCheck.focus();

@@ -2,8 +2,8 @@ package project;
 
 public class pharmacistBean {
 	private String userId;
+	private int pcode;
 	private int career;
-	private int pCode;
 	
 	
 	public void setUserId(String userId) {
@@ -22,11 +22,11 @@ public class pharmacistBean {
 		return this.career;
 	}
 
-	public void setPCode(int pCode) {
-		this.pCode = pCode;
+	public void setPcode(int pcode) {
+		this.pcode = pcode;
 	}
 
-	public int getPCode() {
-		return this.pCode;
+	public int getPcode() {
+		return this.pcode;
 	}
 }

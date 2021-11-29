@@ -89,11 +89,11 @@ public class MemberMgr {
 		boolean flag = false;
 		try {
 			con = pool.getConnection();
-			sql = "insert pharmacistinfo(userId,career,pCode) values(?,?,?)";
+			sql = "insert pharmacistinfo(userId,career,pcode) values(?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getUserId());
 			pstmt.setInt(2, bean.getCareer());
-			pstmt.setInt(3, bean.getPCode());
+			pstmt.setInt(3, bean.getPcode());
 
 			if (pstmt.executeUpdate() == 1)
 				flag = true;
@@ -242,14 +242,16 @@ public class MemberMgr {
 		boolean flag = false;
 		try {
 			con = pool.getConnection();
-			String sql = "update userinfo set pw=?,"
-					+ "email=?, gender=?, nickname=?, symptom=?, userType=? where userId = ?";
+			String sql = "update userinfo set userId=?, pw=?, name=?,"
+					+ "email=?, gender=?, nickname=?, symptom=?, userType=?, birth=?, img=? where userId = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, bean.getPw());
-			pstmt.setString(2, bean.getEmail());
-			pstmt.setInt(3, bean.getGender());
-			pstmt.setString(4, bean.getNickname());
-
+			pstmt.setString(1, bean.getUserId());
+			pstmt.setString(2, bean.getPw());
+			pstmt.setString(3, bean.getName());
+			pstmt.setString(4, bean.getEmail());
+			pstmt.setInt(5, bean.getGender());
+			pstmt.setString(6, bean.getNickname());
+			
 			char symptom[] = { '0', '0', '0', '0' };
 			if (bean.getSymptom() != null) {
 				String symptoms[] = bean.getSymptom();
@@ -260,8 +262,11 @@ public class MemberMgr {
 							symptom[j] = '1';
 				}
 			}
-			pstmt.setString(5, new String(symptom));
-			pstmt.setInt(6, bean.getUserType());
+			pstmt.setString(7, new String(symptom));
+			pstmt.setInt(8, bean.getUserType());
+			pstmt.setString(9, bean.getBirth());
+			pstmt.setString(10, bean.getImg());
+			pstmt.setString(11, bean.getUserId());
 			int count = pstmt.executeUpdate();
 			if (count > 0)
 				flag = true;
