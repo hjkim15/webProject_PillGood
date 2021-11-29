@@ -81,7 +81,30 @@ public class MemberMgr {
 		}
 		return flag;
 	}
+	
+	public boolean insertPharmacist(pharmacistBean bean) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		boolean flag = false;
+		try {
+			con = pool.getConnection();
+			sql = "insert pharmacistinfo(userId,career,pCode) values(?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getUserId());
+			pstmt.setInt(2, bean.getCareer());
+			pstmt.setInt(3, bean.getPCode());
 
+			if (pstmt.executeUpdate() == 1)
+				flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+		return flag;
+	}
+	
 	// ·Î±×ÀÎ
 	public boolean loginMember(String id, String pwd) {
 		Connection con = null;
@@ -219,16 +242,13 @@ public class MemberMgr {
 		boolean flag = false;
 		try {
 			con = pool.getConnection();
-			String sql = "update userinfo set user_Idx=?, userId=?, pw=?, name=?,"
-					+ "email=?, gender=?, nickname=?, symptom=?, userType=?, birth=? where userId = ?";
+			String sql = "update userinfo set pw=?,"
+					+ "email=?, gender=?, nickname=?, symptom=?, userType=? where userId = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, bean.getUser_Idx());
-			pstmt.setString(2, bean.getUserId());
-			pstmt.setString(3, bean.getPw());
-			pstmt.setString(4, bean.getName());
-			pstmt.setString(5, bean.getEmail());
-			pstmt.setInt(6, bean.getGender());
-			pstmt.setString(7, bean.getNickname());
+			pstmt.setString(1, bean.getPw());
+			pstmt.setString(2, bean.getEmail());
+			pstmt.setInt(3, bean.getGender());
+			pstmt.setString(4, bean.getNickname());
 
 			char symptom[] = { '0', '0', '0', '0' };
 			if (bean.getSymptom() != null) {
@@ -240,9 +260,8 @@ public class MemberMgr {
 							symptom[j] = '1';
 				}
 			}
-			pstmt.setString(8, new String(symptom));
-			pstmt.setInt(9, bean.getUserType());
-			pstmt.setString(10, bean.getBirth());
+			pstmt.setString(5, new String(symptom));
+			pstmt.setInt(6, bean.getUserType());
 			int count = pstmt.executeUpdate();
 			if (count > 0)
 				flag = true;

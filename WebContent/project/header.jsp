@@ -53,9 +53,8 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonSM">
               <li><h6 class="dropdown-header">웹사이트 소개</h6></li>
-              <li><a class="dropdown-item" href="aboutOurPg.html" >기획 의도</a></li>
-              <li><a class="dropdown-item" href="introduceUs.html">구성원</a></li>
-              <li><a class="dropdown-item" href="#">참고 자료</a></li>
+              <li><a class="dropdown-item" href="aboutOurPg.jsp" >기획 의도</a></li>
+              <li><a class="dropdown-item" href="introduceUs.jsp">구성원</a></li>
             </ul>
           </div>
         

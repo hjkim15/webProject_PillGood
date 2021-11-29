@@ -6,7 +6,7 @@
 	request.setCharacterEncoding("EUC-KR");
 	String message = "";
 	String symptom[] = new String[4];
-
+	
 	if (id == null) {
 %>
 <script>
@@ -158,7 +158,7 @@ h1, h2, h3, h4, h5, h6 {
 </head>
 
 <body>
-	<form name="regFrm" method="post" action="myPage.jsp">
+	<form name="regFrm" method="post" action="memberUpdateProc.jsp">
 		<div class="container">
 			<div class="row g-5">
 				<div class="col-md-4">
@@ -199,7 +199,7 @@ h1, h2, h3, h4, h5, h6 {
 						<h2 class="blog-post-title" id="name">이름</h2>
 						<div class=" col-sm-6">
 
-							<span class="input-group-text col-sm-5"><%=bean.getName()%></span>
+							<input type="text" name="name" class="input-group-text col-sm-5" value="<%=bean.getName()%>" readonly/>
 							<p>이름은 수정이 불가합니다.</p>
 						</div>
 						<hr>
@@ -207,13 +207,13 @@ h1, h2, h3, h4, h5, h6 {
 						<h2 class="blog-post-title" id="id">아이디</h2>
 						<div class=" col-sm-6">
 
-							<span class="input-group-text col-sm-5"><%=bean.getUserId()%></span>
+							<input type="text" name="userId"class="input-group-text col-sm-5"  value="<%=bean.getUserId()%>" readonly/>
 							<p>아이디는 수정이 불가합니다.</p>
 						</div>
 						<hr>
 						<h2 class="blog-post-title" id="birth">생년월일</h2>
 						<div class=" col-sm-6">
-							<span class="input-group-text col-sm-5"><%=bean.getBirth()%></span>
+							<input type="text" name="birth" class="input-group-text col-sm-5" value="<%=bean.getBirth()%>" readonly/>
 							<p>생년월일은 수정이 불가합니다.</p>
 
 						</div>
@@ -227,15 +227,17 @@ h1, h2, h3, h4, h5, h6 {
 						</div>
 
 						<div class="col-sm-3">
-							<span class="input-group">새 닉네임</span> <input type="text"
-								class="form-control" placeholder="새 닉네임 입력" name="newNname"
-								id="text1" value="" required />
-							<input type="text" id="newNickname" value="" style="display:none">
+							<span class="input-group">새 닉네임</span>
+							 <input type="text"
+								class="form-control" placeholder="새 닉네임 입력" name="nickname"
+								id="text1" value="" />
+							<input type="text" name="newNickname" id="newNickname" value="">
 						</div>
 
 						<div class="col-sm-2">
 							<br>
-							<input type="button" class="w-100 btn btn-primary btn-dark" value="중복 확인" onClick="nicknameCheck(this.form.newNname.value)">
+							<input type="button" id="newN" class="w-100 btn btn-primary btn-dark" value="중복 확인" onClick="nicknameCheck(this.form.newNname.value)">
+							<input type="button" class="w-100 btn btn-primary btn-dark" value="수정" onClick="checkNickname(this.form.newNname.value, this.form.newNickname.value)">
 						</div>
 						<hr>
 
@@ -243,12 +245,12 @@ h1, h2, h3, h4, h5, h6 {
 						<div class="col-sm-4">
 							<div class="badge bg-info text-dark">
 								<input name="gender" type="radio" class="form-check-input"
-									value="male" required> <label class="form-check-label"
+									value="0" required> <label class="form-check-label"
 									for="gender">male</label>
 							</div>
 							<div class="badge bg-info text-dark">
 								<input name="gender" type="radio" class="form-check-input"
-									value="female" checked required> <label
+									value="1" checked required> <label
 									class="form-check-label" for="gender">female</label>
 							</div>
 
@@ -258,17 +260,18 @@ h1, h2, h3, h4, h5, h6 {
 						<h2 class="blog-post-title" id="memberType">회원 타입</h2>
 						<div class="col-sm-3">
 							<input type="radio" id="normal" name="userType" value="0"
-								onchange="setDisplay()" checked> 일반 <input type="radio"
+								onchange="setDisplay()" checked> 일반 
+							<input type="radio"
 								id="chemist" name="userType" value="1" onchange="setDisplay()">
 							약사
 						</div>
 						<br />
 						<div class="col-sm-3" id="divId" style="display: none">
 							<form name="frm">
-								약사코드<input name="code" class="form-control"><br /> 주민번호<input
-									name="personalNumber" class="form-control"><br /> 
-							<input type="button" class="w-100 btn btn-primary btn-dark" value="확인" id="confirm" onClick = "codeCheck(this.form.code.value, this.form.personalNumber.value);view()">
-								<input type="text" id="showMessage" style="display: none">
+								약사코드<input id="code" name="pCode" class="form-control"><br /> 주민번호
+								<input id="personalNumber" class="form-control"><br /> 
+								<input type="text" id="showMessage" >
+							<input type="button" class="w-100 btn btn-primary btn-dark" value="확인" id="confirm" onClick = "codeCheck($( 'input#code' ).val(), $( 'input#personalNumber' ).val());view()">
 							</form>
 						</div>
 
@@ -281,8 +284,9 @@ h1, h2, h3, h4, h5, h6 {
 
 						<h2 class="blog-post-title" id="password">비밀번호</h2>
 						<div class="col-sm-3">
-							<span class="input-group">새 비밀번호</span> <input type="password"
-								class="form-control" placeholder="new password" name="NPsw"
+							<span class="input-group">새 비밀번호</span>
+							 <input type="password" id="text2"
+								class="form-control" placeholder="new password" name="pw"
 								value="" required />
 
 						</div>
@@ -290,12 +294,12 @@ h1, h2, h3, h4, h5, h6 {
 							<span class="input-group">새 비밀번호 확인</span> <input type="password"
 								class="form-control" placeholder="다시 입력" name="NPswCheck"
 								value="" required />
-							<input type="text" id="newPassword" style="display:none">							
+							<input type="text" id="newPassword" >							
 						</div>
 						
 						<div class="col-sm-4">
 							<br>
-							<input type="button" class="w-100 btn btn-primary btn-dark" value="변경 확인" onClick="pwdCheck2()">
+							<input type="button" id="newP" class="w-100 btn btn-primary btn-dark" value="변경 확인" onClick="pwdCheck2()">
 						</div>
 
 						<hr>
@@ -307,7 +311,8 @@ h1, h2, h3, h4, h5, h6 {
 						</div>
 
 						<div class="col-sm-6">
-							<span class="input-group">새 이메일</span> <input type="email"
+							<span class="input-group">새 이메일</span> 
+							<input type="email"
 								class="form-control" placeholder="새 이메일 입력" name="newEmail"
 								value="" />
 
@@ -389,8 +394,9 @@ h1, h2, h3, h4, h5, h6 {
 
 
 					<nav class="blog-pagination" aria-label="Pagination">
-						<a class="btn btn-outline-primary" href="#">수정</a> <a
-							class="btn btn-outline-secondary" href="mainC.jsp">취소</a>
+						<!-- <input type="button" class="btn btn-outline-primary" value="수정" onClick="finalCheck()"> -->
+						<input type="submit" class="btn btn-outline-primary" value="수정" >
+						<a class="btn btn-outline-secondary" href="mainC.jsp">취소</a>
 
 					</nav>
 
@@ -401,7 +407,7 @@ h1, h2, h3, h4, h5, h6 {
 		</div>
 	</form>
 	
-	<script type="text/javascript" src="script.js" charset="utf-8"></script> 	
+ 	<script type="text/javascript" src="script.js" charset="utf-8"></script> 	 
 	
 	<script type="text/javascript">
 		document.getElementById("divId").style.display = "none";
@@ -426,7 +432,6 @@ h1, h2, h3, h4, h5, h6 {
 			
 			document.getElementById('hiddenInput').reload();
 		}
-		
 	</script>
 
 </body>

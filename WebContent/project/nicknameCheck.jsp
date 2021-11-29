@@ -45,9 +45,12 @@ a:hover {
 
 	<script>
   		function insert() {
-	   		var parent = window.opener;
+	   		var parent = window.opener;	   		
 	  	 	window.opener.document.getElementById("newNickname").value = "<%=check%>";
 	   
+ 	   		if("<%=check%>" == "불가능합니다"){
+	   			window.opener.document.getElementById("text1").value = "";
+	   			} 
 			self.close();
 		}
    </script>
