@@ -349,23 +349,23 @@ h1, h2, h3, h4, h5, h6 {
 									}%>
 
 						</div>
-						<div>
+						<div id="ch">
 							<span class="input-group">새 증상</span>
 				
 							<div class="badge bg-info text-dark">
-								<input type="checkbox" name="<%=sym2 %>" value="감기" class="btn"> <label
+								<input type="checkbox" id="ck" name="<%=sym2 %>" value="감기" class="btn"> <label
 									class="form-check-label">감기</label>
 							</div>
 							<div class="badge bg-info text-dark">
-								<input type="checkbox" name="<%=sym2 %>" class="btn" value="두통"> <label
+								<input type="checkbox" id="ck" name="<%=sym2 %>" class="btn" value="두통"> <label
 									class="form-check-label">두통</label>
 							</div>
 							<div class="badge bg-info text-dark">
-								<input type="checkbox" name="<%=sym2 %>" class="btn" value="생리통"> <label
+								<input type="checkbox" id="ck" name="<%=sym2 %>" class="btn" value="생리통"> <label
 									class="form-check-label">생리통</label>
 							</div>
 							<div class="badge bg-info text-dark">
-								<input type="checkbox" name="<%=sym2 %>" class="btn " value="소화불량"> <label
+								<input type="checkbox" id="ck" name="<%=sym2 %>" class="btn " value="소화불량"> <label
 									class="form-check-label">소화불량</label>
 							</div >
 
@@ -421,9 +421,24 @@ h1, h2, h3, h4, h5, h6 {
 		</div>
 	</form>
 	
- 	<script type="text/javascript" src="script.js" charset="utf-8"></script> 	 
-	
+  
+	<script type="text/javascript" src="script.js" charset="utf-8"></script> 	
 	<script type="text/javascript">
+
+ 		
+		window.onload = function(){
+	 		var itemList = document.querySelector('.ch');
+	 		var checkList = document.querySelectorAll('.ck');
+	 		
+			itemList.addEventListener('click', function(){
+		
+			for(var i = 0; i < checkList.length; i++){
+				if(checkList.item.is(":checked"))
+					console.log("체크");
+			}
+		}) 
+		}
+	
 		document.getElementById("divId").style.display = "none";
 		function setDisplay() {
 			if ($('input:radio[id=normal]').is(':checked')) {
@@ -447,7 +462,7 @@ h1, h2, h3, h4, h5, h6 {
 			document.getElementById('hiddenInput').reload();
 		}
 	</script>
-
+	
 </body>
 
 </html>

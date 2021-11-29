@@ -5,12 +5,11 @@
 
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=EUC-KR"%>
-<%-- <% String id=(String)session.getAttribute("idKey"); 
-if(id!=null){ %>
-<script>
+<%-- <% String id=(String)session.getAttribute("idKey"); if(id!=null){ %>
+ <script>
   alert("로그인 되었습니다");
   location.href = "mainC.jsp";
-</script>
+</script> 
 <% } %> --%>
 <html lang="en">
 
@@ -25,16 +24,37 @@ if(id!=null){ %>
 <link href="header_footer.css" rel="stylesheet">
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+  @font-face {
+        font-family: 'RIDIBatang';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    body {
+      font-family: 'Roboto Mono', monospace;
+      align-items: center;
+      }
+
+    p{
+
+     position: absolute;
+     border-radius: 20px;
+     right: 44%;
+   }
+  
+
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Noto Sans KR", sans-serif;
+    font-family: "Noto Sans KR", sans-serif, 'RIDIBatang';
   }
 
   a {
     text-decoration: none;
     color: black;
+    justify-content: center;
   }
 
   li {
@@ -158,7 +178,7 @@ if(id!=null){ %>
           <div class="login_etc">
             <div class="checkbox">
               <!-- <p> 아직 회원이 아니신가요?<br/><a href="member.html">회원가입</a></p> -->
-              <p> 아직 회원이 아니신가요?<br /><a href="member.jsp">회원가입</a></p>
+              <p>아직 회원이 아니신가요?<br /><a href="member.jsp">회원가입</a></p>
             </div>
 
           </div>
