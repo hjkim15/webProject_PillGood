@@ -26,24 +26,7 @@ function pwdCheck() {
 		alert("비밀번호 일치한다");
 }
 
-function pwdCheck2() {
-	if (document.regFrm.pw.value == "") {
-		alert("입력해라~!");
-		document.regFrm.pw.focus();
-	} else if (document.regFrm.NPswCheck.value == "") {
-		alert("입력해라~!");
-		document.regFrm.NPswCheck.focus();
-	} else if (document.regFrm.pw.value != document.regFrm.NPswCheck.value) {
-		alert("비밀번호가 일치하지 않습니다.");
-		document.regFrm.NPswCheck.value = "";
-		document.regFrm.NPswCheck.focus();
-		return;
-	} else{
-		alert("비밀번호 일치한다");
-		document.regFrm.newPassword.value = "일치합니다";
-		
-		}
-}
+
 
 function codeCheck(code, personalNumber){
 	frm = document.frm;
@@ -63,23 +46,4 @@ function codeCheck(code, personalNumber){
 }
 
 
-/*function finalCheck(){
-	var newNname = $( 'input#text1' ).val();
-	var newNickname = $( 'input#newNickname' ).val();
-	var NPsw= $( 'input#text2' ).val();
-	var newPassword = $( 'input#newPassword' ).val();
-	var showMessage = $( 'input#showMessage' ).val();
-	
-	
-	if(!(newNname == "" ) && (newNickname == ""))	document.getElementById("newN").focus();
-	if(!(NPsw == "") && (newPassword == ""))	document.getElementById("newP").focus(); //새 비밀번호 적혀있는데 확인 부분 null 이면
-	
-	console.log(showMessage);
-	
-	if($('input:radio[id=chemist]').is(':checked')){
-		if(showMessage == ""){	document.getElementById("confirm").focus();}
-	}
-	
-
-}*/
 

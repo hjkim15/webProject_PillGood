@@ -32,6 +32,7 @@ MemberBean mBean = memMgr.getMember(id);
 	   c = true;
 	   userType = 1;
 	   message = "일치합니다";
+	   
    }
    else {
 	   c = false;

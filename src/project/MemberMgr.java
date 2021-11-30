@@ -172,6 +172,31 @@ public class MemberMgr {
 		return bean;
 	}
 
+	public pharmacistBean getPharmMember(String id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		pharmacistBean bean = null;
+		try {
+			con = pool.getConnection();
+			String sql = "select * from pharmacistinfo where userId = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				bean = new pharmacistBean();
+				bean.setUserId(rs.getString("userId"));
+				bean.setCareer(rs.getInt("career"));
+				bean.setPcode(rs.getInt("pcode"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
+		return bean;
+	}
+	
 	// 약사코드 확인
 	public boolean checkPharmacist(int code, int personalNumber) {
 		Connection con = null;
@@ -277,4 +302,28 @@ public class MemberMgr {
 		}
 		return flag;
 	}
+
+
+//약사정보 수정
+public boolean updatePharmacist(pharmacistBean bean) {
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	boolean flag = false;
+	try {
+		con = pool.getConnection();
+		String sql = "update pharmacistinfo set career=? where userId = ?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, bean.getCareer());
+		pstmt.setString(2, bean.getUserId());
+
+		int count = pstmt.executeUpdate();
+		if (count > 0)
+			flag = true;
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		pool.freeConnection(con, pstmt);
+	}
+	return flag;
+}
 }
