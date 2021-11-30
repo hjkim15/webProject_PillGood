@@ -6,9 +6,8 @@
 	request.setCharacterEncoding("EUC-KR");
 	String message = "";
 	String symptom[] = new String[4];
-	String sym = "";
-	String sym2 = "";
-	if (id == null) {
+	
+	if (id2 == null) {
 %>
 <script>
 	alert("로그인이 필요합니다.");
@@ -18,12 +17,10 @@
 <%
 	}
 	MemberBean bean = mgr.getMember(id2);
-	int gender = bean.getGender();
-	int userType = bean.getUserType();
+
 	
 	try { 
-		symptom = bean.getSymptom();
-		
+		symptom = bean.getSymptom();		
 		if(symptom[0].contains("1")){symptom[0] = "감기";}
 		if(symptom[1].contains("1")){ symptom[1] = "두통";}
 		if(symptom[2].contains("1")){ symptom[2] = "생리통";}
@@ -33,9 +30,13 @@
 		System.out.println("--NullPointerException 발생--"); 
 		System.out.println("기존 코드를 체크해 주세요!!"); }
 	finally { 
-		System.out.println("예외처리 코드가 오류없이 진행되었습니다."); 
+		/* System.out.println("예외처리 코드가 오류없이 진행되었습니다.");  */
 		}
 	
+	int gender = bean.getGender();
+	int userType = bean.getUserType();
+	
+
 %>
 
 
@@ -343,29 +344,29 @@ h1, h2, h3, h4, h5, h6 {
 								for(int i = 0; i < symptom.length; i++){
 									if(symptom[i].equals("0")){;}
 									else{%>
-										<input type="text" name="<%=sym%>" class="badge bg-info text-dark" value="<%=symptom[i] %>">
-
+										<input type="text" class="ck" name="" value="<%=symptom[i]%>" style="display:none">
+										<span class="badge bg-info text-dark"><%=symptom[i]%></span>
 								<%}
 									}%>
 
 						</div>
-						<div id="ch">
+						<div >
 							<span class="input-group">새 증상</span>
 				
 							<div class="badge bg-info text-dark">
-								<input type="checkbox" id="ck" name="<%=sym2 %>" value="감기" class="btn"> <label
+								<input type="checkbox" name="" class="btn ch" value="감기" > <label
 									class="form-check-label">감기</label>
 							</div>
 							<div class="badge bg-info text-dark">
-								<input type="checkbox" id="ck" name="<%=sym2 %>" class="btn" value="두통"> <label
+								<input type="checkbox" name="" class="btn ch" value="두통"> <label
 									class="form-check-label">두통</label>
 							</div>
 							<div class="badge bg-info text-dark">
-								<input type="checkbox" id="ck" name="<%=sym2 %>" class="btn" value="생리통"> <label
+								<input type="checkbox" name="" class="btn ch" value="생리통"> <label
 									class="form-check-label">생리통</label>
 							</div>
 							<div class="badge bg-info text-dark">
-								<input type="checkbox" id="ck" name="<%=sym2 %>" class="btn " value="소화불량"> <label
+								<input type="checkbox" name="" class="btn ch" value="소화불량"> <label
 									class="form-check-label">소화불량</label>
 							</div >
 
@@ -409,7 +410,8 @@ h1, h2, h3, h4, h5, h6 {
 
 					<nav class="blog-pagination" aria-label="Pagination">
 						<!-- <input type="button" class="btn btn-outline-primary" value="수정" onClick="finalCheck()"> -->
-						<input type="submit" class="btn btn-outline-primary" value="수정" >
+						<!-- <input type="submit" class="btn btn-outline-primary" value="수정" > -->
+						<input type="button" class="btn btn-outline-primary" value="수정"  onClick="subMit()"> 
 						<a class="btn btn-outline-secondary" href="mainC.jsp">취소</a>
 
 					</nav>
@@ -421,23 +423,7 @@ h1, h2, h3, h4, h5, h6 {
 		</div>
 	</form>
 	
-  
-	<script type="text/javascript" src="script.js" charset="utf-8"></script> 	
 	<script type="text/javascript">
-
- 		
-		window.onload = function(){
-	 		var itemList = document.querySelector('.ch');
-	 		var checkList = document.querySelectorAll('.ck');
-	 		
-			itemList.addEventListener('click', function(){
-		
-			for(var i = 0; i < checkList.length; i++){
-				if(checkList.item.is(":checked"))
-					console.log("체크");
-			}
-		}) 
-		}
 	
 		document.getElementById("divId").style.display = "none";
 		function setDisplay() {
@@ -461,8 +447,55 @@ h1, h2, h3, h4, h5, h6 {
 			
 			document.getElementById('hiddenInput').reload();
 		}
+		
+		function subMit(){
+			var symList = document.querySelectorAll(".ck"); //기존 증상
+			var nsymList = document.querySelectorAll(".ch") //새로 선택한 증상
+			var count = 0;
+			
+			//새로운 증상 선택하는가 확인
+	        for (var i=0; i<nsymList.length; i++) { 
+	            if (nsymList[i].checked == true) count++;                
+	        }
+	        
+	       //새로운 증상 선택한게 없다면
+	        if(count == 0){ 
+	        	for(var i = 0; i < symList.length; i++){
+	        		symList[i].setAttribute("name", "symptom");
+	        	}
+	        	
+	        }else{
+	        	for(var i = 0; i < nsymList.length; i++){
+	        		nsymList[i].setAttribute("name", "symptom");
+	        	}
+	        alert(count); 
+	        }
+<%-- 	         alert(count); 
+	        if(count > 0){ //체크한게 하나라도 있다면
+	        	<%sym = ""; sym2 = "symptom";%>
+	        }else{
+	        	<%
+	        	sym = "symptom"; 
+	        	sym2 = "";
+	        	System.out.println(sym2);
+	        	
+	        	%>
+	        } 
+	        if(count == 0){
+	        	<%sym = "symptom"; sym2 = "";%>
+	        }
+	        
+	       var ls = document.querySelectorAll('#ck');
+	       for(var i = 0; i < ls.length; i++){
+	    	   alert(ls.length);
+	    	   alert(ls[i].getAttribute('name'));
+	       }--%>
+	        
+	         document.regFrm.submit();  
+		}
 	</script>
-	
+	  
+	<script type="text/javascript" src="script.js" charset="utf-8"></script> 	
 </body>
 
 </html>
