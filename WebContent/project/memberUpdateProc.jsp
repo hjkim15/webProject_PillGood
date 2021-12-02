@@ -56,7 +56,8 @@
 		mBean.setUserType(0);
 	}
 
-	boolean result = mgr.updateMember(mBean);
+	 boolean result = mgr.updateMember(mBean); 
+	
 
 	if ((result == true) && (result2 == true)) {
 %>
@@ -74,3 +75,4 @@
 <%
 	}
 %>
+

@@ -20,9 +20,7 @@ public class MemberMgr {
 	private static int number = 50;
 
 	private DBConnectionMgr pool;
-	private static final String SAVEFOLDER = "C:/Jsp/webProject_PillGood/WebContent/project/fileupload";
-	private static final String ENCTYPE = "EUC-KR";
-	private static int MAXSIZE = 5 * 1024 * 1024;
+
 
 	public MemberMgr() {
 		try {
@@ -290,30 +288,14 @@ public class MemberMgr {
 	}
 
 	// 회원정보수정
-	public boolean updateMember(MemberBean bean, HttpServletRequest req) {
+	public boolean updateMember(MemberBean bean) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		MultipartRequest multi = null;
-		int filesize = 0;
-		String filename = null;
 		boolean flag = false;
 		try {
 			con = pool.getConnection();
-			File file = new File(SAVEFOLDER);
-			if (!file.exists())
-				file.mkdirs();
-			multi = new MultipartRequest(req, SAVEFOLDER, MAXSIZE, ENCTYPE, new DefaultFileRenamePolicy());
-
-			if (multi.getFilesystemName("filename") != null) {
-				filename = multi.getFilesystemName("filename");
-				filesize = (int) multi.getFile("filename").length();
-			}
-			String content = multi.getParameter("content");
-			if (multi.getParameter("contentType").equalsIgnoreCase("TEXT")) {
-				content = UtilMgr.replace(content, "<", "&lt;");
-			}
 			String sql = "update userinfo set userId=?, pw=?, name=?,"
-					+ "email=?, gender=?, nickname=?, symptom=?, userType=?, birth=?, img=? where userId = ?";
+					+ "email=?, gender=?, nickname=?, symptom=?, userType=?, birth=? where userId = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getUserId());
 			pstmt.setString(2, bean.getPw());
@@ -334,11 +316,12 @@ public class MemberMgr {
 							symptom[j] = '1';
 				}
 			}
-			pstmt.setString(7, new String(symptom));
+		pstmt.setString(7, new String(symptom));
 			pstmt.setInt(8, bean.getUserType());
 			pstmt.setString(9, bean.getBirth());
-			pstmt.setString(10, filename);
-			pstmt.setString(11, bean.getUserId());
+/*			pstmt.setString(10, bean.getImg());
+			pstmt.setString(11, bean.getUserId());*/
+			pstmt.setString(10, bean.getUserId());
 			int count = pstmt.executeUpdate();
 			if (count > 0)
 				flag = true;

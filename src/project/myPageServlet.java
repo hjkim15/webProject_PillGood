@@ -18,7 +18,7 @@ public class myPageServlet extends HttpServlet {
 		request.setCharacterEncoding("EUC-KR");
 		MemberMgr bMgr = new MemberMgr();
 		bMgr.insertBoard(request);
-		response.sendRedirect("list.jsp");
+		response.sendRedirect("myPage.jsp");
 	}
 
 }
