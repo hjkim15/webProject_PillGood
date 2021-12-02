@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
-<jsp:useBean id="regMgr" class="project.RegisterMgr" />
+<jsp:useBean id="mMgr" class="project.MemberMgr" />
 <%
     String id = "";
 	String pwd = "";
@@ -7,7 +7,7 @@
 	   id  = request.getParameter("id");
 	if(request.getParameter("pwd") != null) 
 	   pwd  = request.getParameter("pwd");
-	if(regMgr.loginRegister(id, pwd)){
+	if(mMgr.loginRegister(id, pwd)){
 		session.setAttribute("idKey",id);
 %>
 	<script> 

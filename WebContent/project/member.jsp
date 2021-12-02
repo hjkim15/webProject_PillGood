@@ -1,3 +1,5 @@
+<!-- 지혜♥ -->
+
 <!--회원가입 jsp 페이지. html, css, jsp 대부분 완료. javascript 수정 필요, jsp 에러 확인 시 체크 필요. 11/21-->
 
 <!--invalid feedback 자바스크립트 확인하기.-->
@@ -145,12 +147,6 @@
                     </div>
                   </div>
 
-                  <div class="col-sm-6">
-                    <label for="userType" class="form-label">User type</label><br>
-
-                    <input type="radio" name="userType" value="0" checked> 일반
-                    <input type="radio" name="userType" value="1"> 약사
-                  </div>
 
                   <div class="col-12">
                     <label for="bDay" class="form-label">Birthday </label>
@@ -161,21 +157,21 @@
                   </div>
 
                   <div class="col-12">
-                    <label for="symptom" class="form-label">Sypmtom </label>
+                    <label for="symptom" class="form-label">Symptom </label>
                     <div class="form-check ">
-                      <input type="checkbox" class="form-check-input" id="symptom">
+                      <input type="checkbox" name="symptom" class="form-check-input" value="감기">
                       <label class="form-check-label" for="symptom">감기</label>
                     </div>
                     <div class="form-check">
-                      <input type="checkbox" class="form-check-input" id="symptom">
+                      <input type="checkbox" name="symptom" class="form-check-input" value="두통">
                       <label class="form-check-label" for="symptom">두통</label>
                     </div>
                     <div class="form-check">
-                      <input type="checkbox" class="form-check-input" id="symptom">
+                      <input type="checkbox" name="symptom" class="form-check-input" value="생리통">
                       <label class="form-check-label" for="symptom">생리통</label>
                     </div>
                     <div class="form-check">
-                      <input type="checkbox" class="form-check-input" id="symptom">
+                      <input type="checkbox" name="symptom" class="form-check-input" value="소화불량">
                       <label class="form-check-label" for="symptom">소화불량</label>
                     </div>
 
