@@ -30,8 +30,7 @@ public class RegisterMgr {
 		}
 	}
 
-	// 게시판 리스트
-	public Vector<RegisterBean> getMList(String keyField, String keyWord, int start, int end) {
+	public Vector<RegisterBean> getMList(String prodName, int start, int end) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -39,25 +38,37 @@ public class RegisterMgr {
 		Vector<RegisterBean> vlist = new Vector<RegisterBean>();
 		try {
 			con = pool.getConnection();
-			if (keyWord.equals("null") || keyWord.equals("")) {
-				sql = "select * from medicininfo order by ref desc, pos limit ?, ?";
+			if (prodName.equals("null") || prodName.equals("")) {
+				sql = "select * from medicininfo limit ?, ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 			} else {
-				sql = "select * from  medicininfo where " + keyField + " like ? ";
-				sql += "order by ref desc, pos limit ? , ?";
+				sql = "select * from  medicininfo where medicineName" + " like ?  limit ? , ?";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, "%" + keyWord + "%");
+				pstmt.setString(1, "%" + prodName + "%");
 				pstmt.setInt(2, start);
 				pstmt.setInt(3, end);
 			}
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				RegisterBean bean = new RegisterBean();
-				bean.setMedicineName(rs.getString("medicineName"));
-				bean.setManufactureName(rs.getString("manufactureName"));
-				bean.setImage(rs.getString("image"));
+	    		bean.setMedicine_Idx(rs.getInt("medicine_Idx"));
+	    		bean.setMedicineName(rs.getString("medicineName"));
+	    		bean.setManufactureName(rs.getString("manufactureName"));
+	    		bean.setIngrediant(rs.getString("ingrediant"));
+	    		bean.setMedicine_Efficacy(rs.getString("medicine_Efficacy"));
+	    		bean.setDosage(rs.getString("dosage"));
+	    		bean.setNtk(rs.getString("ntk"));
+	    		bean.setCaution(rs.getString("caution"));
+	    		bean.setWarningThings(rs.getString("warningThings"));
+	    		bean.setAdverseReaction(rs.getString("adverseReaction"));
+	    		bean.setStorageMethod(rs.getString("storageMethod"));
+	    		bean.setAppearance(rs.getString("appearance"));
+	    		bean.setImage(rs.getString("image"));
+	    		bean.setDosageForm(rs.getString("dosageForm"));
+	    		bean.setEfficacy(rs.getString("efficacy"));
+	    		bean.setSymptom(rs.getString("symptom"));
 				vlist.add(bean);
 			}
 		} catch (Exception e) {
@@ -68,36 +79,9 @@ public class RegisterMgr {
 		return vlist;
 	}
 
-	// 제품검색 - zipcode에서 가져온
-	public Vector<RegisterBean> MedicineRead(String mediName) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = null;
-		Vector<RegisterBean> vlist = new Vector<RegisterBean>();
-		try {
-			con = pool.getConnection();
-			sql = "select medicineName, manufactureName, image from medicininfo where medicineName like ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "%" + mediName + "%");
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				RegisterBean bean = new RegisterBean();
-				bean.setMedicineName(rs.getString(1));
-				bean.setManufactureName(rs.getString(2));
-				bean.setImage(rs.getString(3));
-				vlist.addElement(bean);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			pool.freeConnection(con, pstmt, rs);
-		}
-		return vlist;
-	}
 	
 	   //총 게시물수
-	   public int getTotalCount(String keyField, String keyWord) {
+	   public int getTotalCount(String prodName) {
 	      Connection con = null;
 	      PreparedStatement pstmt = null;
 	      ResultSet rs = null;
@@ -105,13 +89,13 @@ public class RegisterMgr {
 	      int totalCount = 0;
 	      try {
 	         con = pool.getConnection();
-	         if (keyWord.equals("null") || keyWord.equals("")) { //검색창에 아무것도 안 써 있을 경우
+	         if (prodName.equals("null") || prodName.equals("")) { //검색창에 아무것도 안 써 있을 경우
 	            sql = "select count(medicine_Idx) from medicininfo";
 	            pstmt = con.prepareStatement(sql);
 	         } else {
-	            sql = "select count(medicine_Idx) from medicininfo where " + keyField + " like ? ";
+	            sql = "select count(medicine_Idx) from medicininfo where medicineName" + " like ? ";
 	            pstmt = con.prepareStatement(sql);
-	            pstmt.setString(1, "%" + keyWord + "%");
+	            pstmt.setString(1, "%" + prodName+ "%");
 	         }
 	         rs = pstmt.executeQuery();
 	         if (rs.next()) {
@@ -124,4 +108,43 @@ public class RegisterMgr {
 	      }
 	      return totalCount;
 	   }
+	   // 게시물 리턴
+	   public RegisterBean getBoard(int num) {
+	      Connection con = null;
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      String sql = null;
+	      RegisterBean bean = new RegisterBean();
+	      try {
+	         con = pool.getConnection();
+	         sql = "select * from medicininfo where medicine_Idx=?";
+	         pstmt = con.prepareStatement(sql);
+	         pstmt.setInt(1, num);
+	         rs = pstmt.executeQuery();
+	         if (rs.next()) {
+		    		bean.setMedicine_Idx(rs.getInt("medicine_Idx"));
+		    		bean.setMedicineName(rs.getString("medicineName"));
+		    		bean.setManufactureName(rs.getString("manufactureName"));
+		    		bean.setIngrediant(rs.getString("ingrediant"));
+		    		bean.setMedicine_Efficacy(rs.getString("medicine_Efficacy"));
+		    		bean.setDosage(rs.getString("dosage"));
+		    		bean.setNtk(rs.getString("ntk"));
+		    		bean.setCaution(rs.getString("caution"));
+		    		bean.setWarningThings(rs.getString("warningThings"));
+		    		bean.setAdverseReaction(rs.getString("adverseReaction"));
+		    		bean.setStorageMethod(rs.getString("storageMethod"));
+		    		bean.setAppearance(rs.getString("appearance"));
+		    		bean.setImage(rs.getString("image"));
+		    		bean.setDosageForm(rs.getString("dosageForm"));
+		    		bean.setEfficacy(rs.getString("efficacy"));
+		    		bean.setSymptom(rs.getString("symptom"));
+	         }
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         pool.freeConnection(con, pstmt, rs);
+	      }
+	      return bean;
+	   }
+	   
 }

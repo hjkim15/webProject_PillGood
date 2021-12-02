@@ -31,11 +31,7 @@ public class RegisterMgrPool {
 	    		regBean.setMedicine_Idx(rs.getInt("medicine_Idx"));
 	    		regBean.setMedicineName(rs.getString("medicineName"));
 	    		regBean.setManufactureName(rs.getString("manufactureName"));
-	    		regBean.setAppearance(rs.getString("appearance"));
-	    		regBean.setImage(rs.getString("image"));
-	    		regBean.setDosageForm(rs.getString("dosageForm"));
-	    		regBean.setEfficacy(rs.getString("efficacy"));
-	    		regBean.setIngredient(rs.getString("ingredient"));
+	    		regBean.setIngrediant(rs.getString("ingrediant"));
 	    		regBean.setMedicine_Efficacy(rs.getString("medicine_Efficacy"));
 	    		regBean.setDosage(rs.getString("dosage"));
 	    		regBean.setNtk(rs.getString("ntk"));
@@ -43,6 +39,11 @@ public class RegisterMgrPool {
 	    		regBean.setWarningThings(rs.getString("warningThings"));
 	    		regBean.setAdverseReaction(rs.getString("adverseReaction"));
 	    		regBean.setStorageMethod(rs.getString("storageMethod"));
+	    		regBean.setAppearance(rs.getString("appearance"));
+	    		regBean.setImage(rs.getString("image"));
+	    		regBean.setDosageForm(rs.getString("dosageForm"));
+	    		regBean.setEfficacy(rs.getString("efficacy"));
+	    		regBean.setSymptom(rs.getString("symptom"));
 	    		vlist.add(regBean);
 	    	}
 	    }catch(Exception ex) {

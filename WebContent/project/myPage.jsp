@@ -295,8 +295,10 @@ h1, h2, h3, h4, h5, h6 {
 						<div class="col-sm-3" id="divId" style="display: none">
 							<form name="frm">
 								약사코드<input id="code" name="pcode" class="form-control"
-									value="<%=chemistCode%>"><br /> 주민번호 <input
-									id="personalNumber" class="form-control"><br /> <input
+									value="<%=chemistCode%>"><br /> 
+									주민번호 <input type="password"
+									id="personalNumber" class="form-control"  placeholder="주민번호 뒷자리"/><br /> 
+									<input
 									type="text" id="showMessage" name="showMessage"> <input
 									type="button" class="w-100 btn btn-primary btn-dark" value="확인"
 									id="confirm"

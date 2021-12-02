@@ -8,7 +8,6 @@
 
 <%	
 	request.setCharacterEncoding("EUC-KR");
-
 	if(id == null){ 		
 %>
 <script>
@@ -26,7 +25,6 @@
 	  
 	  int totalPage=0; //전체 페이지 수 . 게시글 수에 따른 페이지 수
 	  int totalBlock=0;  //전체 블럭수 . 
-
 	  int nowPage=1; // 현재페이지
 	  int nowBlock=1;  //현재블럭
 	  
@@ -34,7 +32,6 @@
 	  int end=10; //시작번호로 부터 가져올 select 갯수
 	  
 	  int listSize=0; //현재 읽어온 게시물의 수
-
 	String keyWord = "", keyField = "";
 	Vector<BoardBean> vlist = null;
 	if (request.getParameter("keyWord") != null) {
@@ -76,7 +73,6 @@
 	text-align: center;
 	width: 5em;
 }
-
 .star-rating label {
 	color: #ccc;
 }
@@ -211,7 +207,7 @@
 						</tr>
 						<%}//for%>
 					</table> <%
- 			}//if
+ 			} //if
  		%>
 				</td>
 			</tr>
@@ -250,7 +246,7 @@
 							<option value="subject">제 목</option>
 							<option value="content">내 용</option>
 					</select> 
-					<input size="16" name="keyWord"> 
+					<input size="16" name="keyWord" > 
 					<input type="button" value="찾기" onClick="javascript:check()"> 
 					<input type="hidden" name="nowPage" value="1">
 					</td>
@@ -271,6 +267,7 @@
 		</form>
 		
 	</div>
+	<script src="javascript.js"></script>
 	<%@include file="footer.jsp"%>
 </body>
 

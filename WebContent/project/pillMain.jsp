@@ -1,15 +1,16 @@
-<%@ page contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" import="java.util.*, java.sql.*, project.*"%>
+<%@ page contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"
+	import="java.util.*, java.sql.*, project.*"%>
 <jsp:useBean id="rMgr" class="project.RegisterMgr" />
 <%@include file="header.jsp"%>
 <%
 	request.setCharacterEncoding("EUC-KR");
 
-	int totalRecord = 0; //전체레코드수
-	int numPerPage = 10; // 페이지당 레코드 수 
-	int pagePerBlock = 15; //블럭당 페이지수 
+	int totalRecord = 0; //전체레코드수 -> db 개수. 게시글 개수
+	int numPerPage = 9; // 페이지당 레코드 수 . 한 페이지 당 보여지는 게시글 수
+	int pagePerBlock = 15; //블럭당 페이지수 . 한 화면에 보여지는 페이지 링크 개수
 
-	int totalPage = 0; //전체 페이지 수
-	int totalBlock = 0; //전체 블럭수 
+	int totalPage = 0; //전체 페이지 수. -> 게시글 개수에 따른 총 페이지 링크 개수
+	int totalBlock = 0; //전체 블럭수  -> 15페이지 링크 개수가 총 몇 개?
 
 	int nowPage = 1; // 현재페이지
 	int nowBlock = 1; //현재블럭
@@ -18,31 +19,30 @@
 	int end = 10; //시작번호로 부터 가져올 select 갯수
 
 	int listSize = 0; //현재 읽어온 게시물의 수
-	
-	String keyWord = "", keyField = "";
+
+	String prodName = "";
 	Vector<RegisterBean> vlist = null;
-	if (request.getParameter("keyWord") != null) {
-		keyWord = request.getParameter("keyWord");
-		keyField = request.getParameter("keyField");
+	
+	if (request.getParameter("prodName") != null) {
+		prodName = request.getParameter("prodName");
 	}
-	if (request.getParameter("reload") != null){
-		if(request.getParameter("reload").equals("true")) {
-			keyWord = "";
-			keyField = "";
+	if (request.getParameter("reload") != null) {
+		if (request.getParameter("reload").equals("true")) {
+			prodName = "";
 		}
 	}
-	
+
 	if (request.getParameter("nowPage") != null) {
 		nowPage = Integer.parseInt(request.getParameter("nowPage"));
 	}
-	 start = (nowPage * numPerPage)-numPerPage;
-	 end = numPerPage;
-	 
-	totalRecord = rMgr.getTotalCount(keyField, keyWord);
-	totalPage = (int)Math.ceil((double)totalRecord / numPerPage);  //전체페이지수
-	nowBlock = (int)Math.ceil((double)nowPage/pagePerBlock); //현재블럭 계산
-	  
-	totalBlock = (int)Math.ceil((double)totalPage / pagePerBlock);  //전체블럭계산
+	start = (nowPage * numPerPage) - numPerPage;
+	end = numPerPage;
+
+	totalRecord = rMgr.getTotalCount(prodName);
+	totalPage = (int) Math.ceil((double) totalRecord / numPerPage); //전체페이지수
+	nowBlock = (int) Math.ceil((double) nowPage / pagePerBlock); //현재블럭 계산
+
+	totalBlock = (int) Math.ceil((double) totalPage / pagePerBlock); //전체블럭계산
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -94,7 +94,14 @@ input.input-search:focus {
 input.input-search.w100 {
 	width: 100%;
 }
+
+.test {
+	float: left !important;
+	width: 33% !important;
+}
 </style>
+
+
 </head>
 
 <body>
@@ -105,19 +112,26 @@ input.input-search.w100 {
 		<section class="section">
 			<div class="container">
 				<div class="search-wrap search-wrap-border">
-					<form id="prdForm" class="search-form" action="" method="get">
-						<input id="searchCategory" name="searchCategory" type="hidden"
-							value="" /> <input id="choYn" name="choYn" type="hidden"
-							value="N" />
-						<div class="search-group pd-lr-20 text-center mg-b-30">
-							<label>
-								<p class="search-tit">제품명 검색</p> <input id="prodName"
-								name="prodName" class="input-search" type="text" value="" />
-							</label>
-							<button class="-100 btn btn-primary btn-success"
-								data-search-category="PROD_NAME" data-cho-yn="N">검색</button>
-							<!--  <button class="btn btn-l btn-222 mg-l-20 btnSearch" data-search-category="PROD_NAME" data-cho-yn="N">검색</button> -->
-						</div>
+					<!-- <form id="prdForm" class="search-form" action="" method="get"> -->
+					
+						<form name="searchFrm" method="get" action="pillMain.jsp">
+							<input id="searchCategory" name="searchCategory" type="hidden"
+								value="" /> 
+							<input id="choYn" name="choYn" type="hidden"
+								value="N" />
+							<div class="search-group pd-lr-20 text-center mg-b-30">
+								<label>
+									<p class="search-tit">제품명 검색</p> 
+									<input id="prodName" name="prodName" class="input-search" type="text" value="" />
+								</label> 
+								<input type="button" class="-100 btn btn-primary btn-success"
+								data-search-category="PROD_NAME" data-cho-yn="N" value="검색"
+									onClick="javascript:check()">
+									<input type="hidden" name="nowPage" value="1">
+								<!--  <button class="btn btn-l btn-222 mg-l-20 btnSearch" data-search-category="PROD_NAME" data-cho-yn="N">검색</button> -->
+							</div>
+						</form>
+						
 						<div class="search-group pd-lr-20 text-center">
 							<p class="search-tit">초성 검색</p>
 							<div class="search-ini-wrap">
@@ -136,9 +150,10 @@ input.input-search.w100 {
 								<button class="search-ini-box">ㅍ</button>
 								<button class="search-ini-box">ㅎ</button>
 							</div>
-							<input id="choSung" name="choSung" type="hidden" value="" />
-							<button class="-100 btn btn-primary btn-success"
-								data-search-category="PROD_NAME" data-cho-yn="Y">검색</button>
+							<input id="choSung" name="choSung" type="hidden" value="" /> <input
+								type="button" class="-100 btn btn-primary btn-success"
+								data-search-category="PROD_NAME" data-cho-yn="Y" value="검색"
+								onClick="javascript:check()">
 						</div>
 						<hr class="hr02 mg-b-40">
 						<input type="hidden" id="kor" value="kor" />
@@ -171,9 +186,8 @@ input.input-search.w100 {
 									<option value="코감기">코감기</option>
 									<option value="피부염">피부염</option>
 
-								</select>
-								<button class="-100 btn btn-primary btn-success"
-									data-search-category="symptom">검색</button>
+								</select> <input type="button" class="-100 btn btn-primary btn-success"
+									data-search-category="symptom" value="검색">
 							</div>
 							<div class="select-group-type01 mg-l-30">
 								<p class="select-tit">
@@ -198,96 +212,152 @@ input.input-search.w100 {
 									<option value="">기타</option>
 
 
-								</select>
-								<button class="-100 btn btn-primary btn-success"
-									data-search-category="PROD_FL">검색</button>
+								</select> <input type="button" class="-100 btn btn-primary btn-success"
+									data-search-category="PROD_FL" value="검색">
 							</div>
 
 						</div>
-					</form>
+					<!-- </form> -->
 				</div>
+
+
 				<div class="row">
-					<div class="prod-list-tit">
-						<div id="grid">
+
+					<div class="prod-list-tit ">
+						<%
+							System.out.println(prodName);
+							vlist = rMgr.getMList( prodName, start, end);
+							listSize = vlist.size();//브라우저 화면에 보여질 게시물갯수
+							if (vlist.isEmpty()) {
+								out.println("등록된 게시물이 없습니다.");
+								out.println("<br/>");
+							} else { //불러올 거 있는 경우
+						%>
+
+						<%
+							for (int i = 0; i < numPerPage; i++) {
+									if (i == listSize)
+										break;
+									RegisterBean bean = vlist.get(i);
+									int num2 = bean.getMedicine_Idx();
+									String medicineName2 = bean.getMedicineName();
+									String manufacture = bean.getManufactureName();
+									String img = bean.getImage();
+						%>
+						<div id="grid test">
 							<div class="prod-list">
 								<div class="col-3" data-prod-code="#">
-									<a href="#none" class="img_area link aStyle"> <img
-										src="HeeJoss.jpg" alt="약 이미지 불러오기" class="pillImg" />
+									<a href="javascript:read('<%=num2%>')"
+										class="img_area link aStyle"> <img src="<%=img%>"
+										alt="약 이미지 불러오기" class="pillImg" />
 									</a>
 									<div class="prod_info">
 										<div class="title_area">
-											<!-- <a href="#none" class="cate">
-                                                전문의약품</a> -->
-											<a href="#none" class="tit link pillTitle">약이름</a>
-
-										</div>
-									</div>
-								</div>
-								<div class="col-3" data-prod-code="#">
-									<a href="#none" class="img_area link aStyle"> <img
-										src="HeeJoss.jpg" alt="약 이미지 불러오기" class="pillImg" />
-									</a>
-									<div class="prod_info">
-										<div class="title_area">
-											<!-- <a href="#none" class="cate">
-                                                전문의약품</a> -->
-											<a href="#none" class="tit link pillTitle">약이름</a>
-
-										</div>
-									</div>
-								</div>
-								<div class="col-3" data-prod-code="#">
-									<a href="#none" class="img_area link aStyle"> <img
-										src="HeeJoss.jpg" alt="약 이미지 불러오기" class="pillImg" />
-									</a>
-									<div class="prod_info">
-										<div class="title_area">
-											<!-- <a href="#none" class="cate">
-                                                전문의약품</a> -->
-											<a href="#none" class="tit link pillTitle">약이름</a>
-
-										</div>
-									</div>
-								</div>
-								<div class="col-3" data-prod-code="#">
-									<a href="#none" class="img_area link aStyle"> <img
-										src="HeeJoss.jpg" alt="약 이미지 불러오기" class="pillImg" />
-									</a>
-									<div class="prod_info">
-										<div class="title_area">
-											<!-- <a href="#none" class="cate">
-                                                전문의약품</a> -->
-											<a href="#none" class="tit link pillTitle">약이름</a>
+											<a href="javascript:read('<%=num2%>')"
+												class="tit link pillTitle"><%=manufacture%></a> <a
+												href="javascript:read('<%=num2%>')"
+												class="tit link pillTitle"><%=medicineName2%></a>
 
 										</div>
 									</div>
 								</div>
 
-								<!-- // 제품 목록 -->
 							</div>
-							<div class="bd-example">
-								<nav aria-label="Standard pagination example">
-									<ul class="pagination">
-										<li class="page-item"><a class="page-link" href="#"
-											aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-										</a></li>
-										<li class="page-item"><a class="page-link" href="#">1</a></li>
-										<li class="page-item"><a class="page-link" href="#">2</a></li>
-										<li class="page-item"><a class="page-link" href="#">3</a></li>
-										<li class="page-item"><a class="page-link" href="#"
-											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-										</a></li>
-									</ul>
-								</nav>
-							</div>
+
 						</div>
 
 					</div>
 				</div>
-				<!--  <script src="TEST.js" charset="utf-8"></script> -->
-				<script src="javascript.js" charset="utf-8"></script>
+
+				<%
+					} //for
+				%>
+				<%
+					} //if
+				%>
+
+				<!-- 페이징 및 블럭 처리 Start-->
+				<%
+					int pageStart = (nowBlock - 1) * pagePerBlock + 1; //하단 페이지 시작번호
+					int pageEnd = ((pageStart + pagePerBlock) <= totalPage) ? (pageStart + pagePerBlock) : totalPage + 1;
+					//하단 페이지 끝번호
+					if (totalPage != 0) {
+						if (nowBlock > 1) {
+				%>
+				<a href="javascript:block('<%=nowBlock - 1%>')">prev...</a>
+				<%
+					}
+				%>&nbsp;
+				<%
+					for (; pageStart < pageEnd; pageStart++) {
+				%>
+				<a href="javascript:pageing('<%=pageStart%>')"> <%
+ 	if (pageStart == nowPage) {
+ %><font color="black"> <%
+ 	}
+ %> [<%=pageStart%>] <%
+ 	if (pageStart == nowPage) {
+ %></font> <%
+ 	}
+ %></a>
+				<%
+					} //for
+				%>&nbsp;
+				<%
+					if (totalBlock > nowBlock) {
+				%>
+				<a href="javascript:block('<%=nowBlock + 1%>')">.....next</a>
+				<%
+					}
+				%>&nbsp;
+				<%
+					}
+				%>
+				<hr width="600" />
+
+				<form name="readFrm" method="get">
+					<input type="hidden" name="num2"> 
+					<input type="hidden"
+						name="nowPage" value="<%=nowPage%>"> 
+					<input
+						type="hidden" name="prodName" value="<%=prodName%>">
+				</form>
+
+			</div>
+			<!--  <script src="TEST.js" charset="utf-8"></script> -->
+			
+<script type="text/javascript">
+
+	function pageing(page) {
+		document.readFrm.nowPage.value = page;
+		document.readFrm.submit();
+	}
+
+	function block(value) {
+		document.readFrm.nowPage.value = <%=pagePerBlock%>	* (value - 1) + 1;
+		document.readFrm.submit();
+	}
+
+	function read(num2) {
+		document.readFrm.num2.value = num2;
+		document.readFrm.action = "pillDetail.jsp";
+		document.readFrm.submit();
+	}
+
+	function check() {
+		var pn = document.getElementById("prodName");
+		if (pn.value == "") {
+			alert("검색어를 입력하세요.");
+			document.searchFrm.prodName.focus();
+			return;
+		}
+		document.searchFrm.submit();
+	}
+</script>
+		
 </body>
 
+	<script src="javascript.js" charset="utf-8"></script>
 <%@include file="footer.jsp"%>
 </html>
 
