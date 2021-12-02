@@ -12,7 +12,7 @@ var app = {
 
         var searchCategory = form.find( '#searchCategory' ).val();
 
-        // �ʼ� �˻�
+        // 초성 검색
         if ( searchCategory === 'PROD_NAME' || searchCategory === 'CHOSUNG' ) {
             var initialSoundsElement = form.find( '#choSung' );
             var initialSounds = ( initialSoundsElement.val() || '' ).trim();
@@ -34,10 +34,10 @@ var app = {
 			$(this).attr("disabled", "disabled");
 
 			if($("#kor").val()=="kor"){
-				$("#effctFl").prepend("<option value=''>��ü</option>");
+				$("#effctFl").prepend("<option value=''>전체</option>");
 				$("#effctFl").append("<option value='420'>Medical Beauty</option>");
-				$("#effctFl").append("<option value='394'>��Ÿ</option>");
-				console.log("Ȯ��",$("#effctFl option:eq(26)").val());
+				$("#effctFl").append("<option value='394'>기타</option>");
+				console.log("확인",$("#effctFl option:eq(26)").val());
 				$("#effctFl option:eq(27)").remove();
 				$("#effctFl option:eq(1)").remove();
 				$("#effctFl option:eq(6)").remove();
@@ -45,11 +45,11 @@ var app = {
 				$("#effctFl").prepend("<option value=''>Select a efficacy</option>");
                 $("#effctFl").append("<option value='394'>Etc</option>");
 
-                console.log("Ȯ��29",$("#effctFl option:eq(29)").val());
+                console.log("확인29",$("#effctFl option:eq(29)").val());
                 $("#effctFl option:eq(29)").remove();
 
-                console.log("Ȯ��15",$("#effctFl option:eq(15)").val());
-                console.log("Ȯ��16",$("#effctFl option:eq(16)").val());
+                console.log("확인15",$("#effctFl option:eq(15)").val());
+                console.log("확인16",$("#effctFl option:eq(16)").val());
                 $("#effctFl option:eq(15)").remove();
 			}
 
@@ -65,8 +65,8 @@ var app = {
 				$(this).attr("disabled", "disabled");
 
 				if($("#kor").val()=="kor"){
-					$("#prodFl").prepend("<option value=''>��ü</option>");
-					$("#prodFl").append("<option value='372'>��Ÿ</option>");
+					$("#prodFl").prepend("<option value=''>전체</option>");
+					$("#prodFl").append("<option value='372'>기타</option>");
 					$("#prodFl option:eq(6)").remove();
 					$("#prodFl option:eq(2)").remove();
 				}
@@ -81,7 +81,7 @@ var app = {
     event: function () {
 
         body
-        // �˻�
+        // 검색
         .on( 'click', '.btnSearch', function ( e ) {
 
             Storm.EventUtil.stopAnchorAction( e );
@@ -102,7 +102,7 @@ var app = {
 
             }
         })
-        // �ʼ� ����
+        // 초성 선택
         .on( 'click', '.search-ini-box', function ( e ) {
 
             Storm.EventUtil.stopAnchorAction( e );
@@ -122,12 +122,12 @@ var app = {
 
             form.find( '#choSung' ).val( initialSounds );
         })
-        // �ܺ� ��ũ
+        // 외부 링크
         .on( 'click', '#externLink', function ( e ) {
 
             Storm.EventUtil.stopAnchorAction( e );
 
-            // ��ǰ������ �˻�(�ּ�: http://www.health.kr/searchIdentity/search.asp)�� ��â����
+            // 제품외형별 검색(주소: http://www.health.kr/searchIdentity/search.asp)은 새창으로
             var url = 'http://www.health.kr/searchIdentity/search.asp';
 
             var drugName = ( form.find( '#prodName' ).val() || '' ).trim();
@@ -137,7 +137,7 @@ var app = {
 
             window.open( url, 'CKD_PRODUCT_LIST_EXTERN_LINK' );
         })
-        // ��� ����
+        // 목록 보기
         .on( 'click', '#btnList', function ( e ) {
 
             Storm.EventUtil.stopAnchorAction( e );
@@ -145,7 +145,7 @@ var app = {
             form.find( '#searchCategory' ).val( '' ).end().submit();
 
         })
-        // �� ��ȸ
+        // 상세 조회
         .on( 'click', '.prod-list a.link', function ( e ) {
 
             Storm.EventUtil.stopAnchorAction( e );

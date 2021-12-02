@@ -51,7 +51,7 @@ blockquote {font-size:13px; color:#aaa; line-height:1.2;}
 .sub-sec-tit:after {clear:both; content:"" ;display:block;}
 
 
-/* search fonm */
+/* search form */
 .search-wrap {background:#fafafa; padding:40px 50px; margin-bottom:80px;}
 .search-group {margin-bottom:40px; margin-left:auto; margin-right:auto; text-align:center;}
 .search-wrap-border {border-top: 1px solid #222; border-bottom: 1px solid #ccc;}
@@ -65,7 +65,7 @@ input.input-search.w100 {width:100%;}
 
 .select-wrap {background: #f8f8f8; padding: 35px 80px; margin-bottom: 90px;}
 .select-wrap-border {border-top: 1px solid #222; border-bottom: 1px solid #ccc;}
-select {-webkit-appearance: none; -moz-appearance: none; appearance: none; background: url(/images/btn_arrow_down.png) no-repeat 95% 50%;}
+select {-webkit-appearance: none; -moz-appearance: none; appearance: none; background: url(btn_arrow_down.png) no-repeat 95% 50%;}
 select::-ms-expand {display: none;}
 .select-tit {min-width:104px; font-size: 20px; vertical-align: middle; color: #222; font-weight: 500;}
 select.select-search {width: 324px; height: 50px; line-height: 50px; border: none; border-bottom: 2px solid #222; font-size: 14px; vertical-align: middle; color:#666; font-size:14px;}

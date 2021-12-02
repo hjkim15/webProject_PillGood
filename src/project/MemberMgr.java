@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
 
+import project.RegisterBean;
+
 public class MemberMgr {
 	private static int number = 50;
 
@@ -104,9 +106,32 @@ public class MemberMgr {
 		}
 		return flag;
 	}
+	//이걸로 써야 함.
+	public boolean loginRegister(String id, String pwd) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		boolean loginCon = false;
+		try {
+			con = pool.getConnection();
+			String query = "select count(*) from userinfo where userId = ? and pw = ?";
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwd);
+			rs = pstmt.executeQuery();
+			if (rs.next() && rs.getInt(1) > 0)
+				loginCon = true;
+		} catch (Exception ex) {
+			System.out.println("Exception" + ex);
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return loginCon;
+	}
+
 	
-	// 로그인
-	public boolean loginMember(String id, String pwd) {
+	// 로그인 쓰는것인감..
+/*	public boolean loginMember(String id, String pwd) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -126,7 +151,7 @@ public class MemberMgr {
 			pool.freeConnection(con, pstmt, rs);
 		}
 		return flag;
-	}
+	}*/
 
 	/*************
 	 * ch17 필요한 메소드
@@ -326,4 +351,5 @@ public boolean updatePharmacist(pharmacistBean bean) {
 	}
 	return flag;
 }
+
 }
