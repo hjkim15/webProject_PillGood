@@ -6,7 +6,7 @@
 	request.setCharacterEncoding("EUC-KR");
 	String message = "";
 
-	String symptom[] = new String[4];
+	String symptom[] = new String[20];
 
 	if (id2 != null) {
 
@@ -15,16 +15,64 @@
 		try {
 			symptom = bean.getSymptom();
 			if (symptom[0].contains("1")) {
-				symptom[0] = "감기";
+				symptom[0] = "구토";
 			}
 			if (symptom[1].contains("1")) {
-				symptom[1] = "두통";
+				symptom[1] = "근육통";
 			}
 			if (symptom[2].contains("1")) {
-				symptom[2] = "생리통";
+				symptom[2] = "기침";
 			}
 			if (symptom[3].contains("1")) {
-				symptom[3] = "소화불량";
+				symptom[3] = "두통";
+			}
+			if (symptom[4].contains("1")) {
+				symptom[4] = "멀미";
+			}
+			if (symptom[5].contains("1")) {
+				symptom[5] = "발열";
+			}
+			if (symptom[6].contains("1")) {
+				symptom[6] = "변비";
+			}
+			if (symptom[7].contains("1")) {
+				symptom[7] = "비염";
+			}
+			if (symptom[8].contains("1")) {
+				symptom[8] = "생리통";
+			}
+			if (symptom[9].contains("1")) {
+				symptom[9] = "소화불량";
+			}
+			if (symptom[10].contains("1")) {
+				symptom[10] = "속쓰림";
+			}
+			if (symptom[11].contains("1")) {
+				symptom[11] = "알레르기";
+			}
+			if (symptom[12].contains("1")) {
+				symptom[12] = "염좌";
+			}
+			if (symptom[13].contains("1")) {
+				symptom[13] = "위산과다";
+			}
+			if (symptom[14].contains("1")) {
+				symptom[14] = "위염";
+			}
+			if (symptom[15].contains("1")) {
+				symptom[15] = "제산작용";
+			}
+			if (symptom[16].contains("1")) {
+				symptom[16] = "치질";
+			}
+			if (symptom[17].contains("1")) {
+				symptom[17] = "치통";
+			}
+			if (symptom[18].contains("1")) {
+				symptom[18] = "코감기";
+			}
+			if (symptom[19].contains("1")) {
+				symptom[19] = "피부염";
 			}
 
 		} catch (NullPointerException e) {
@@ -173,16 +221,18 @@ h1, h2, h3, h4, h5, h6 {
 </head>
 
 <body>
-	<form name="regFrm" method="post" action="memberUpdateProc.jsp">
+	<form name="regFrm" method="post" action="memberUpdateProc.jsp" enctype="multipart/form-data">
 		<div class="container">
 			<div class="row g-5">
 				<div class="col-md-4">
 					<div class="position-sticky" style="top: 2rem;">
-						<div class="p-4 mb-3 bg-light rounded">
+						<div class="p-4 mb-3 bg-light rounded" >
 							<h4 class="fst-italic">사진 수정</h4>
-							<img class=" img-fluid mx-auto" src="main.jpg" width="200"
-								height="200"></img> <input type="file" name="img"
-								class="form-control">
+							<img id="image_container" class=" img-fluid mx-auto" src="<%=bean.getImg()%>"
+								width="200" height="200"></img> <input type="file" id="aa"
+								name="img2" accept="image/*" class="form-control"
+								onChange="setThumbnail(event);"> <input type="hidden"
+								id="ab" name="img" value="<%=bean.getImg()%>">
 						</div>
 
 						<div class="p-4">
@@ -295,11 +345,10 @@ h1, h2, h3, h4, h5, h6 {
 						<div class="col-sm-3" id="divId" style="display: none">
 							<form name="frm">
 								약사코드<input id="code" name="pcode" class="form-control"
-									value="<%=chemistCode%>"><br /> 
-									주민번호 <input type="password"
-									id="personalNumber" class="form-control"  placeholder="주민번호 뒷자리"/><br /> 
-									<input
-									type="text" id="showMessage" name="showMessage"> <input
+									value="<%=chemistCode%>"><br /> 주민번호 <input
+									type="password" id="personalNumber" class="form-control"
+									placeholder="주민번호 뒷자리" /><br /> <input type="text"
+									id="showMessage" name="showMessage"> <input
 									type="button" class="w-100 btn btn-primary btn-dark" value="확인"
 									id="confirm"
 									onClick="codeCheck($( 'input#code' ).val(), $( 'input#personalNumber' ).val());view()">
@@ -374,12 +423,36 @@ h1, h2, h3, h4, h5, h6 {
 							<span class="input-group">새 증상</span>
 
 							<div class="badge bg-info text-dark">
-								<input type="checkbox" name="" class="btn ch" value="감기">
-								<label class="form-check-label">감기</label>
+								<input type="checkbox" name="" class="btn ch" value="구토">
+								<label class="form-check-label">구토</label>
+							</div>
+							<div class="badge bg-info text-dark">
+								<input type="checkbox" name="" class="btn ch" value="근육통">
+								<label class="form-check-label">근육통</label>
+							</div>
+							<div class="badge bg-info text-dark">
+								<input type="checkbox" name="" class="btn ch" value="기침">
+								<label class="form-check-label">기침</label>
 							</div>
 							<div class="badge bg-info text-dark">
 								<input type="checkbox" name="" class="btn ch" value="두통">
 								<label class="form-check-label">두통</label>
+							</div>
+							<div class="badge bg-info text-dark">
+								<input type="checkbox" name="" class="btn ch" value="멀미">
+								<label class="form-check-label">멀미</label>
+							</div>
+							<div class="badge bg-info text-dark">
+								<input type="checkbox" name="" class="btn ch" value="발열">
+								<label class="form-check-label">발열</label>
+							</div>
+							<div class="badge bg-info text-dark">
+								<input type="checkbox" name="" class="btn ch" value="변비">
+								<label class="form-check-label">변비</label>
+							</div>
+							<div class="badge bg-info text-dark">
+								<input type="checkbox" name="" class="btn ch" value="비염">
+								<label class="form-check-label">비염</label>
 							</div>
 							<div class="badge bg-info text-dark">
 								<input type="checkbox" name="" class="btn ch" value="생리통">
@@ -389,6 +462,50 @@ h1, h2, h3, h4, h5, h6 {
 								<input type="checkbox" name="" class="btn ch" value="소화불량">
 								<label class="form-check-label">소화불량</label>
 							</div>
+
+							<div class="badge bg-info text-dark">
+								<input type="checkbox" name="" class="btn ch" value="속쓰림">
+								<label class="form-check-label">속쓰림</label>
+							</div>
+							<div class="badge bg-info text-dark">
+								<input type="checkbox" name="" class="btn ch" value="알레르기">
+								<label class="form-check-label">알레르기</label>
+							</div>
+							<div class="badge bg-info text-dark">
+								<input type="checkbox" name="" class="btn ch" value="염좌">
+								<label class="form-check-label">염좌</label>
+							</div>
+							<div class="badge bg-info text-dark">
+								<input type="checkbox" name="" class="btn ch" value="위산과다">
+								<label class="form-check-label">위산과다</label>
+							</div>
+							<div class="badge bg-info text-dark">
+								<input type="checkbox" name="" class="btn ch" value="위염">
+								<label class="form-check-label">위염</label>
+							</div>
+							<div class="badge bg-info text-dark">
+								<input type="checkbox" name="" class="btn ch" value="제산작용">
+								<label class="form-check-label">제산작용</label>
+							</div>
+							<div class="badge bg-info text-dark">
+								<input type="checkbox" name="" class="btn ch" value="치질">
+								<label class="form-check-label">치질</label>
+							</div>
+							<div class="badge bg-info text-dark">
+								<input type="checkbox" name="" class="btn ch" value="치통">
+								<label class="form-check-label">치통</label>
+							</div>
+							<div class="badge bg-info text-dark">
+								<input type="checkbox" name="" class="btn ch" value="코감기">
+								<label class="form-check-label">코감기</label>
+							</div>
+							<div class="badge bg-info text-dark">
+								<input type="checkbox" name="" class="btn ch" value="피부염">
+								<label class="form-check-label">피부염</label>
+							</div>
+
+
+
 
 						</div>
 						<hr>
@@ -432,8 +549,8 @@ h1, h2, h3, h4, h5, h6 {
 						<!-- <input type="button" class="btn btn-outline-primary" value="수정" onClick="finalCheck()"> -->
 						<!-- <input type="submit" class="btn btn-outline-primary" value="수정" > -->
 						<input type="button" class="btn btn-outline-primary" value="수정"
-							onClick="subMit()"> <a
-							class="btn btn-outline-secondary" href="mainC.jsp">취소</a>
+							onClick="subMit()"> <a class="btn btn-outline-secondary"
+							href="mainC.jsp">취소</a>
 
 					</nav>
 
@@ -470,6 +587,16 @@ h1, h2, h3, h4, h5, h6 {
 			}
 		}
 
+		function setThumbnail(event) {
+			var reader = new FileReader();
+			reader.onload = function(event) {
+				var img = document.getElementById("image_container");
+				img.setAttribute("src", event.target.result);
+			/* 	document.querySelector("div#image_container").appendChild(img); */
+			};
+			reader.readAsDataURL(event.target.files[0]);
+		}
+
 		function view() {
 			if (document.getElementById("showMessage").value == "일치합니다")
 				hiddenInput.style.display = "block";
@@ -499,6 +626,10 @@ h1, h2, h3, h4, h5, h6 {
 		}
 
 		function subMit() {
+			if (document.getElementById("aa").value != null) {
+				document.getElementById("ab").value = document
+						.getElementById("aa").value
+			}
 
 			var symList = document.querySelectorAll(".ck"); //기존 증상
 			var nsymList = document.querySelectorAll(".ch") //새로 선택한 증상
@@ -531,17 +662,17 @@ h1, h2, h3, h4, h5, h6 {
 			var commaPos = str.indexOf(',');
 			var eMailSize = str.length;
 
-			if(str != ""){
-			if (atPos > 1 && atPos == atLastPos && dotPos > 3 && spacePos == -1
-					&& commaPos == -1 && atPos + 1 < dotPos
-					&& dotPos + 1 < eMailSize) {
+			if (str != "") {
+				if (atPos > 1 && atPos == atLastPos && dotPos > 3
+						&& spacePos == -1 && commaPos == -1
+						&& atPos + 1 < dotPos && dotPos + 1 < eMailSize) {
 	<%e = true;%>
 		} else {
-				alert('E-mail주소 형식이 잘못되었습니다.\n\r다시 입력해 주세요!');
-				document.regFrm.chEmail.focus();
+					alert('E-mail주소 형식이 잘못되었습니다.\n\r다시 입력해 주세요!');
+					document.regFrm.chEmail.focus();
 	<%e = false;%>
 		return;
-			}
+				}
 			}
 			document.regFrm.submit();
 		}

@@ -20,7 +20,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 public class BoardMgr {
 
    private DBConnectionMgr pool;
-   private static final String  SAVEFOLDER = "C:/Jsp/myapp/WebContent/ch15/fileupload";
+   private static final String  SAVEFOLDER = "C:/Jsp/webProject_PillGood/WebContent/project/fileupload";
    private static final String ENCTYPE = "EUC-KR";
    private static int MAXSIZE = 5*1024*1024;
 
@@ -214,6 +214,7 @@ public class BoardMgr {
          pool.freeConnection(con, pstmt);
       }
    }
+   
 
    // 게시물 삭제
    public void deleteBoard(int num) {
@@ -348,5 +349,38 @@ public class BoardMgr {
          }
       }
       
+      public Vector<BoardBean> getCountList() {
+    	      Connection con = null;
+    	      PreparedStatement pstmt = null;
+    	      ResultSet rs = null;
+    	      String sql = null;
+    	      Vector<BoardBean> vlist = new Vector<BoardBean>();
+    	      try {
+    	         con = pool.getConnection();
+    	            sql = "select * from tblBoard order by count desc";
+    	            pstmt = con.prepareStatement(sql);
+    	         rs = pstmt.executeQuery();
+    	         while (rs.next()) {
+    	            BoardBean bean = new BoardBean();
+    	            bean.setNum(rs.getInt("num"));
+    	            bean.setNickName(rs.getString("nickname"));
+    	            bean.setFilename(rs.getString("filename"));
+    	            bean.setSubject(rs.getString("subject"));
+    	            bean.setPos(rs.getInt("pos"));
+    	            bean.setRef(rs.getInt("ref"));
+    	            bean.setDepth(rs.getInt("depth"));
+    	            bean.setRegdate(rs.getString("regdate"));
+    	            bean.setCount(rs.getInt("count"));
+    	            bean.setBoardType(rs.getInt("boardType"));
+    	            bean.setGrade(rs.getInt("grade"));
+    	            vlist.add(bean);
+    	         }
+    	      } catch (Exception e) {
+    	         e.printStackTrace();
+    	      } finally {
+    	         pool.freeConnection(con, pstmt, rs);
+    	      }
+    	      return vlist;
+    	   }
 
 }

@@ -1,9 +1,18 @@
 package project;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.PageContext;
+import javax.servlet.http.HttpServletResponse;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import project.RegisterBean;
 
@@ -11,6 +20,9 @@ public class MemberMgr {
 	private static int number = 50;
 
 	private DBConnectionMgr pool;
+	private static final String SAVEFOLDER = "C:/Jsp/webProject_PillGood/WebContent/project/fileupload";
+	private static final String ENCTYPE = "EUC-KR";
+	private static int MAXSIZE = 5 * 1024 * 1024;
 
 	public MemberMgr() {
 		try {
@@ -61,9 +73,11 @@ public class MemberMgr {
 			pstmt.setInt(6, bean.getGender());
 			pstmt.setString(7, bean.getNickname());
 
-			char st[] = { '0', '0', '0', '0' };
+			char st[] = { '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+					'0' };
 			String symptom[] = bean.getSymptom();
-			String lists[] = { "감기", "두통", "생리통", "소화불량" };
+			String lists[] = { "구토", "근육통", "기침", "두통", "멀미", "발열", "변비", "비염", "생리통", "소화불량", "속쓰림", "알레르기", "염좌",
+					"위산과다", "위염", "제산작용", "치질", "치통", "코감기", "피부염" };
 			for (int i = 0; i < symptom.length; i++) {
 				for (int j = 0; j < lists.length; j++) {
 					if (symptom[i].equals(lists[j]))
@@ -83,7 +97,7 @@ public class MemberMgr {
 		}
 		return flag;
 	}
-	
+
 	public boolean insertPharmacist(pharmacistBean bean) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -106,7 +120,8 @@ public class MemberMgr {
 		}
 		return flag;
 	}
-	//이걸로 써야 함.
+
+	// 이걸로 써야 함.
 	public boolean loginRegister(String id, String pwd) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -129,29 +144,17 @@ public class MemberMgr {
 		return loginCon;
 	}
 
-	
 	// 로그인 쓰는것인감..
-/*	public boolean loginMember(String id, String pwd) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = null;
-		boolean flag = false;
-		try {
-			con = pool.getConnection();
-			sql = "select id from userinfo where userId = ? and pw = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, pwd);
-			rs = pstmt.executeQuery();
-			flag = rs.next();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			pool.freeConnection(con, pstmt, rs);
-		}
-		return flag;
-	}*/
+	/*
+	 * public boolean loginMember(String id, String pwd) { Connection con = null;
+	 * PreparedStatement pstmt = null; ResultSet rs = null; String sql = null;
+	 * boolean flag = false; try { con = pool.getConnection(); sql =
+	 * "select id from userinfo where userId = ? and pw = ?"; pstmt =
+	 * con.prepareStatement(sql); pstmt.setString(1, id); pstmt.setString(2, pwd);
+	 * rs = pstmt.executeQuery(); flag = rs.next(); } catch (Exception e) {
+	 * e.printStackTrace(); } finally { pool.freeConnection(con, pstmt, rs); }
+	 * return flag; }
+	 */
 
 	/*************
 	 * ch17 필요한 메소드
@@ -179,7 +182,7 @@ public class MemberMgr {
 				bean.setGender(rs.getInt("gender"));
 				bean.setNickname(rs.getString("nickname"));
 
-				String symptoms[] = new String[4];
+				String symptoms[] = new String[20];
 				String symptom = rs.getString("symptom");// 01001
 				for (int i = 0; i < symptoms.length; i++) {
 					symptoms[i] = symptom.substring(i, i + 1);
@@ -188,6 +191,7 @@ public class MemberMgr {
 
 				bean.setUserType(rs.getInt("userType"));
 				bean.setBirth(rs.getString("birth"));
+				bean.setImg(rs.getString("img"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -221,7 +225,7 @@ public class MemberMgr {
 		}
 		return bean;
 	}
-	
+
 	// 약사코드 확인
 	public boolean checkPharmacist(int code, int personalNumber) {
 		Connection con = null;
@@ -286,12 +290,28 @@ public class MemberMgr {
 	}
 
 	// 회원정보수정
-	public boolean updateMember(MemberBean bean) {
+	public boolean updateMember(MemberBean bean, HttpServletRequest req) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		MultipartRequest multi = null;
+		int filesize = 0;
+		String filename = null;
 		boolean flag = false;
 		try {
 			con = pool.getConnection();
+			File file = new File(SAVEFOLDER);
+			if (!file.exists())
+				file.mkdirs();
+			multi = new MultipartRequest(req, SAVEFOLDER, MAXSIZE, ENCTYPE, new DefaultFileRenamePolicy());
+
+			if (multi.getFilesystemName("filename") != null) {
+				filename = multi.getFilesystemName("filename");
+				filesize = (int) multi.getFile("filename").length();
+			}
+			String content = multi.getParameter("content");
+			if (multi.getParameter("contentType").equalsIgnoreCase("TEXT")) {
+				content = UtilMgr.replace(content, "<", "&lt;");
+			}
 			String sql = "update userinfo set userId=?, pw=?, name=?,"
 					+ "email=?, gender=?, nickname=?, symptom=?, userType=?, birth=?, img=? where userId = ?";
 			pstmt = con.prepareStatement(sql);
@@ -301,11 +321,13 @@ public class MemberMgr {
 			pstmt.setString(4, bean.getEmail());
 			pstmt.setInt(5, bean.getGender());
 			pstmt.setString(6, bean.getNickname());
-			
-			char symptom[] = { '0', '0', '0', '0' };
+
+			char symptom[] = { '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+					'0', '0' };
 			if (bean.getSymptom() != null) {
 				String symptoms[] = bean.getSymptom();
-				String list[] = { "감기", "두통", "생리통", "소화불량" };
+				String list[] = { "구토", "근육통", "기침", "두통", "멀미", "발열", "변비", "비염", "생리통", "소화불량", "속쓰림", "알레르기", "염좌",
+						"위산과다", "위염", "제산작용", "치질", "치통", "코감기", "피부염" };
 				for (int i = 0; i < symptoms.length; i++) {
 					for (int j = 0; j < list.length; j++)
 						if (symptoms[i].equals(list[j]))
@@ -315,7 +337,7 @@ public class MemberMgr {
 			pstmt.setString(7, new String(symptom));
 			pstmt.setInt(8, bean.getUserType());
 			pstmt.setString(9, bean.getBirth());
-			pstmt.setString(10, bean.getImg());
+			pstmt.setString(10, filename);
 			pstmt.setString(11, bean.getUserId());
 			int count = pstmt.executeUpdate();
 			if (count > 0)
@@ -328,28 +350,27 @@ public class MemberMgr {
 		return flag;
 	}
 
-
 //약사정보 수정
-public boolean updatePharmacist(pharmacistBean bean) {
-	Connection con = null;
-	PreparedStatement pstmt = null;
-	boolean flag = false;
-	try {
-		con = pool.getConnection();
-		String sql = "update pharmacistinfo set career=? where userId = ?";
-		pstmt = con.prepareStatement(sql);
-		pstmt.setInt(1, bean.getCareer());
-		pstmt.setString(2, bean.getUserId());
+	public boolean updatePharmacist(pharmacistBean bean) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		boolean flag = false;
+		try {
+			con = pool.getConnection();
+			String sql = "update pharmacistinfo set career=? where userId = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bean.getCareer());
+			pstmt.setString(2, bean.getUserId());
 
-		int count = pstmt.executeUpdate();
-		if (count > 0)
-			flag = true;
-	} catch (Exception e) {
-		e.printStackTrace();
-	} finally {
-		pool.freeConnection(con, pstmt);
+			int count = pstmt.executeUpdate();
+			if (count > 0)
+				flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+		return flag;
 	}
-	return flag;
-}
 
 }

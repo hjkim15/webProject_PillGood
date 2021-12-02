@@ -61,17 +61,9 @@
            <!-- 약 정보 -->
         
            <div class="dropdown">
-            <button class="btn  btn-sm " type="button" id="dropdownMenuButtonSM" data-bs-toggle="dropdown" aria-expanded="false">
-                약 정보
+            <button class="btn  btn-sm " type="button" id="dropdownMenuButtonSM">
+                 <a href="pillMain.jsp">약정보 </a>
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonSM">
-              <li><h6 class="dropdown-header">약 정보</h6></li>
-              <li><a class="dropdown-item" href="#">브랜드</a></li>
-              <li><a class="dropdown-item" href="#">증상</a></li>
-              <li><a class="dropdown-item" href="#">제형</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">약 검색</a></li>
-            </ul>
           </div>
         
            <!-- 게시판 -->

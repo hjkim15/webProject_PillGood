@@ -114,8 +114,8 @@ img {
 			<div class="row g-3 mb-3">
 				<!--옆으로 두는거-->
 				<div class="col-sm-4">
-					<span class="input-group-text input-group-text1">제조사</span> <span
-						class="input-group-text"><%=bean.getManufactureName()%></span>
+					<span class="input-group-text input-group-text1">제조사</span> 
+					<span class="input-group-text"><%=bean.getManufactureName()%></span>
 				</div>
 			</div>
 
