@@ -36,15 +36,20 @@
 		}
 	}
 
-	
-	if(newPassword != null){if (newPassword.equals("일치합니다")) { //newNname = "" 값 비교해보기
-		mBean.setPw(NPswCheck);
-	}}
-
-	if (chEmail != "") {
-		mBean.setEmail(chEmail);
+	if (newPassword != null) {
+		if (newPassword.equals("일치합니다")) { //newNname = "" 값 비교해보기
+			mBean.setPw(NPswCheck);
+		}
 	}
 
+	if (chEmail != null) {
+		if (chEmail != "") {
+			mBean.setEmail(chEmail);
+		}
+	}
+
+	
+	if(mBean.getUserType()!= 0){
 	if ((mBean.getUserType() == 1) && (showMessage.equals("일치합니다"))) {
 		if (mgr.getPharmMember(pBean.getUserId()) == null) {
 			result2 = mgr.insertPharmacist(pBean);
@@ -54,10 +59,10 @@
 
 	} else {
 		mBean.setUserType(0);
-	}
+	}}
 
-	 boolean result = mgr.updateMember(mBean); 
-	
+	boolean result = mgr.updateMember(mBean);
+
 	if ((result == true) && (result2 == true)) {
 %>
 <script type="text/javascript">

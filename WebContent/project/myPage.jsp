@@ -233,7 +233,7 @@ h1, h2, h3, h4, h5, h6 {
 									src="<%=bean.getImg()%>" width="200" height="200"></img> <input
 									type="file" name="filename" id="aa" accept="image/*" class="form-control"
 									onChange="setThumbnail(event);"> 
-									<button type="submit" value="수정"></button>
+									<input type="button" value="수정" onClick="return im(this.from)">
 									<input type="hidden"
 									id="ab" name="img" value="<%=bean.getImg()%>">
 							</form>
@@ -679,8 +679,13 @@ h1, h2, h3, h4, h5, h6 {
 				}
 			}
 			var b = document.getElementById("pf");
-		/* 	b.submit(); */
-		/* 	document.regFrm.submit(); */
+		 	document.regFrm.submit(); 
+		 	/* b.submit(); */ 
+		}
+		
+		function im(frm){
+			document.frm.submit();
+			return true;
 		}
 	</script>
 
