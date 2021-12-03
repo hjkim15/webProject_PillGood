@@ -78,8 +78,166 @@ public class RegisterMgr {
 		}
 		return vlist;
 	}
-
 	
+	public Vector<RegisterBean> getChoList(String choSung, int start, int end) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		Vector<RegisterBean> vlist = new Vector<RegisterBean>();
+		try {
+			con = pool.getConnection();
+			if (choSung.equals("null") || choSung.equals("")) {
+				sql = "select * from medicininfo limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+			} else {
+				sql = "select * from  medicininfo where medicineName between ? and ? limit ? , ?";
+				pstmt = con.prepareStatement(sql);
+				if(choSung.equals("§°")) {pstmt.setString(1, "∞°"); pstmt.setString(2, "Éâ"); }
+				if(choSung.equals("§§")) {pstmt.setString(1, "≥™"); pstmt.setString(2, "à¢"); }
+				if(choSung.equals("§ß")) {pstmt.setString(1, "¥Ÿ"); pstmt.setString(2, "ãL"); }
+				if(choSung.equals("§©")) {pstmt.setString(1, "∂Û"); pstmt.setString(2, "ê°"); }
+				if(choSung.equals("§±")) {pstmt.setString(1, "∏∂"); pstmt.setString(2, "ìJ"); }
+				if(choSung.equals("§≤")) {pstmt.setString(1, "πŸ"); pstmt.setString(2, "ïΩ"); }
+				if(choSung.equals("§µ")) {pstmt.setString(1, "ªÁ"); pstmt.setString(2, "öÔ"); }
+				if(choSung.equals("§∑")) {pstmt.setString(1, "æ∆"); pstmt.setString(2, "üÁ"); }
+				if(choSung.equals("§∏")) {pstmt.setString(1, "¿⁄"); pstmt.setString(2, "£†"); }
+				if(choSung.equals("§∫")) {pstmt.setString(1, "¬˜"); pstmt.setString(2, "ØÜ"); }
+				if(choSung.equals("§ª")) {pstmt.setString(1, "ƒ´"); pstmt.setString(2, "µi"); }
+				if(choSung.equals("§º")) {pstmt.setString(1, "≈∏"); pstmt.setString(2, "ªM"); }
+				if(choSung.equals("§Ω")) {pstmt.setString(1, "∆ƒ"); pstmt.setString(2, "¿ò"); }
+				if(choSung.equals("§æ")) {pstmt.setString(1, "«œ"); pstmt.setString(2, "∆R"); }
+				pstmt.setInt(3, start);
+				pstmt.setInt(4, end);
+			}
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				RegisterBean bean = new RegisterBean();
+	    		bean.setMedicine_Idx(rs.getInt("medicine_Idx"));
+	    		bean.setMedicineName(rs.getString("medicineName"));
+	    		bean.setManufactureName(rs.getString("manufactureName"));
+	    		bean.setIngrediant(rs.getString("ingrediant"));
+	    		bean.setMedicine_Efficacy(rs.getString("medicine_Efficacy"));
+	    		bean.setDosage(rs.getString("dosage"));
+	    		bean.setNtk(rs.getString("ntk"));
+	    		bean.setCaution(rs.getString("caution"));
+	    		bean.setWarningThings(rs.getString("warningThings"));
+	    		bean.setAdverseReaction(rs.getString("adverseReaction"));
+	    		bean.setStorageMethod(rs.getString("storageMethod"));
+	    		bean.setAppearance(rs.getString("appearance"));
+	    		bean.setImage(rs.getString("image"));
+	    		bean.setDosageForm(rs.getString("dosageForm"));
+	    		bean.setEfficacy(rs.getString("efficacy"));
+	    		bean.setSymptom(rs.getString("symptom"));
+				vlist.add(bean);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return vlist;
+	}
+	
+	public Vector<RegisterBean> getSympList(String prodName, int start, int end) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		Vector<RegisterBean> vlist = new Vector<RegisterBean>();
+		try {
+			con = pool.getConnection();
+			if (prodName.equals("null") || prodName.equals("")) {
+				sql = "select * from medicininfo limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+			} else {
+				sql = "select * from  medicininfo where medicineName" + " like ?  limit ? , ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "%" + prodName + "%");
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+			}
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				RegisterBean bean = new RegisterBean();
+	    		bean.setMedicine_Idx(rs.getInt("medicine_Idx"));
+	    		bean.setMedicineName(rs.getString("medicineName"));
+	    		bean.setManufactureName(rs.getString("manufactureName"));
+	    		bean.setIngrediant(rs.getString("ingrediant"));
+	    		bean.setMedicine_Efficacy(rs.getString("medicine_Efficacy"));
+	    		bean.setDosage(rs.getString("dosage"));
+	    		bean.setNtk(rs.getString("ntk"));
+	    		bean.setCaution(rs.getString("caution"));
+	    		bean.setWarningThings(rs.getString("warningThings"));
+	    		bean.setAdverseReaction(rs.getString("adverseReaction"));
+	    		bean.setStorageMethod(rs.getString("storageMethod"));
+	    		bean.setAppearance(rs.getString("appearance"));
+	    		bean.setImage(rs.getString("image"));
+	    		bean.setDosageForm(rs.getString("dosageForm"));
+	    		bean.setEfficacy(rs.getString("efficacy"));
+	    		bean.setSymptom(rs.getString("symptom"));
+				vlist.add(bean);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return vlist;
+	}
+
+	public Vector<RegisterBean> getAppearanceList(String prodName, int start, int end) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		Vector<RegisterBean> vlist = new Vector<RegisterBean>();
+		try {
+			con = pool.getConnection();
+			if (prodName.equals("null") || prodName.equals("")) {
+				sql = "select * from medicininfo limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+			} else {
+				sql = "select * from  medicininfo where medicineName" + " like ?  limit ? , ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "%" + prodName + "%");
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+			}
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				RegisterBean bean = new RegisterBean();
+	    		bean.setMedicine_Idx(rs.getInt("medicine_Idx"));
+	    		bean.setMedicineName(rs.getString("medicineName"));
+	    		bean.setManufactureName(rs.getString("manufactureName"));
+	    		bean.setIngrediant(rs.getString("ingrediant"));
+	    		bean.setMedicine_Efficacy(rs.getString("medicine_Efficacy"));
+	    		bean.setDosage(rs.getString("dosage"));
+	    		bean.setNtk(rs.getString("ntk"));
+	    		bean.setCaution(rs.getString("caution"));
+	    		bean.setWarningThings(rs.getString("warningThings"));
+	    		bean.setAdverseReaction(rs.getString("adverseReaction"));
+	    		bean.setStorageMethod(rs.getString("storageMethod"));
+	    		bean.setAppearance(rs.getString("appearance"));
+	    		bean.setImage(rs.getString("image"));
+	    		bean.setDosageForm(rs.getString("dosageForm"));
+	    		bean.setEfficacy(rs.getString("efficacy"));
+	    		bean.setSymptom(rs.getString("symptom"));
+				vlist.add(bean);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return vlist;
+	}
 	   //√— ∞‘Ω√π∞ºˆ
 	   public int getTotalCount(String prodName) {
 	      Connection con = null;

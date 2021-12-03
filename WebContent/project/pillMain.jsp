@@ -21,15 +21,14 @@
 	int listSize = 0; //현재 읽어온 게시물의 수
 
 	String prodName = "";
+	
 	Vector<RegisterBean> vlist = null;
 	
 	if (request.getParameter("prodName") != null) {
 		prodName = request.getParameter("prodName");
 	}
-	if (request.getParameter("reload") != null) {
-		if (request.getParameter("reload").equals("true")) {
-			prodName = "";
-		}
+	if (request.getParameter("choSung") != null) {
+		prodName = request.getParameter("choSung");
 	}
 
 	if (request.getParameter("nowPage") != null) {
@@ -113,26 +112,24 @@ input.input-search.w100 {
 			<div class="container">
 				<div class="search-wrap search-wrap-border">
 					<!-- <form id="prdForm" class="search-form" action="" method="get"> -->
-					
-						<form name="searchFrm" method="get" action="pillMain.jsp">
-							<input id="searchCategory" name="searchCategory" type="hidden"
-								value="" /> 
-							<input id="choYn" name="choYn" type="hidden"
-								value="N" />
-							<div class="search-group pd-lr-20 text-center mg-b-30">
-								<label>
-									<p class="search-tit">제품명 검색</p> 
-									<input id="prodName" name="prodName" class="input-search" type="text" value="" />
-								</label> 
-								<input type="button" class="-100 btn btn-primary btn-success"
+
+					<form name="searchFrm" method="get" action="pillMain.jsp">
+						<input id="searchCategory" name="searchCategory" type="hidden"
+							value="" /> <input id="choYn" name="choYn" type="hidden"
+							value="N" />
+						<div class="search-group pd-lr-20 text-center mg-b-30">
+							<label>
+								<p class="search-tit">제품명 검색</p> <input id="prodName"
+								name="prodName" class="input-search" type="text" value="" />
+							</label> <input type="button" class="-100 btn btn-primary btn-success"
 								data-search-category="PROD_NAME" data-cho-yn="N" value="검색"
-									onClick="javascript:check()">
-									<input type="hidden" name="nowPage" value="1">
-								<!--  <button class="btn btn-l btn-222 mg-l-20 btnSearch" data-search-category="PROD_NAME" data-cho-yn="N">검색</button> -->
-							</div>
-						</form>
-						
-						<form name="choFrm" method="get" action="pillMain.jsp">
+								onClick="javascript:check()"> <input type="hidden"
+								name="nowPage" value="1">
+							<!--  <button class="btn btn-l btn-222 mg-l-20 btnSearch" data-search-category="PROD_NAME" data-cho-yn="N">검색</button> -->
+						</div>
+					</form>
+
+					<form name="choFrm" method="get" action="pillMain.jsp">
 						<div class="search-group pd-lr-20 text-center">
 							<p class="search-tit">초성 검색</p>
 							<div class="search-ini-wrap">
@@ -151,75 +148,74 @@ input.input-search.w100 {
 								<button class="search-ini-box">ㅍ</button>
 								<button class="search-ini-box">ㅎ</button>
 							</div>
-							<input id="choSung" name="choSung" type="hidden" value="" />
-							 <input
+							<input id="choSung" name="choSung" type="hidden" value="" /> <input
 								type="button" class="-100 btn btn-primary btn-success"
 								data-search-category="PROD_NAME" data-cho-yn="Y" value="검색"
 								onClick="javascript:check1()">
 						</div>
-						</form>
-						<hr class="hr02 mg-b-40">
-						<input type="hidden" id="kor" value="kor" />
-						<div class="seclect-grup-wrap">
-							<div class="select-group-type01">
-								<p class="select-tit" for="test1">
-									<label for="symptom">증상별 검색</label>
-								</p>
-								<!--symptom-->
-								<select id="effctFl" name="effctFl" class="select-search">
-									<option value="" selected>전체</option>
-									<option value="구토">구토</option>
-									<option value="근육통">근육통</option>
-									<option value="기침">기침</option>
-									<option value="두통">두통</option>
-									<option value="멀미">멀미</option>
-									<option value="발열">발열</option>
-									<option value="변비">변비</option>
-									<option value="비염">비염</option>
-									<option value="생리통">생리통</option>
-									<option value="소화불량">소화불량</option>
-									<option value="속쓰림">속쓰림</option>
-									<option value="알레르기">알레르기</option>
-									<option value="염좌">염좌</option>
-									<option value="위산과다">위산과다</option>
-									<option value="위염">위염</option>
-									<option value="제산작용">제산작용</option>
-									<option value="치질">치질</option>
-									<option value="치통">치통</option>
-									<option value="코감기">코감기</option>
-									<option value="피부염">피부염</option>
+					</form>
+					<hr class="hr02 mg-b-40">
+					<input type="hidden" id="kor" value="kor" />
+					<div class="seclect-grup-wrap">
+						<div class="select-group-type01">
+							<p class="select-tit" for="test1">
+								<label for="symptom">증상별 검색</label>
+							</p>
+							<!--symptom-->
+							<select id="effctFl" name="effctFl" class="select-search">
+								<option value="" selected>전체</option>
+								<option value="구토">구토</option>
+								<option value="근육통">근육통</option>
+								<option value="기침">기침</option>
+								<option value="두통">두통</option>
+								<option value="멀미">멀미</option>
+								<option value="발열">발열</option>
+								<option value="변비">변비</option>
+								<option value="비염">비염</option>
+								<option value="생리통">생리통</option>
+								<option value="소화불량">소화불량</option>
+								<option value="속쓰림">속쓰림</option>
+								<option value="알레르기">알레르기</option>
+								<option value="염좌">염좌</option>
+								<option value="위산과다">위산과다</option>
+								<option value="위염">위염</option>
+								<option value="제산작용">제산작용</option>
+								<option value="치질">치질</option>
+								<option value="치통">치통</option>
+								<option value="코감기">코감기</option>
+								<option value="피부염">피부염</option>
 
-								</select> <input type="button" class="-100 btn btn-primary btn-success"
-									data-search-category="symptom" value="검색">
-							</div>
-							<div class="select-group-type01 mg-l-30">
-								<p class="select-tit">
-									<label for="efficacy">제형별 검색</label>
-								</p>
-								<!--efficacy-->
-								<select id="prodFl" name="prodFl" class="select-search">
-									<option value="" selected>전체</option>
-									<option value="건위소화제">건위소화제</option>
-									<option value="골격근이완제">골격근이완제</option>
-									<option value="소화기관용약">소화기관용약</option>
-									<option value="소화성궤양용제">소화성궤양용제</option>
-									<option value="이담제">이담제</option>
-									<option value="정장제">정장제</option>
-									<option value="제산제">제산제</option>
-									<option value="진경제">진경제</option>
-									<option value="진해거담제">진해거담제</option>
-									<option value="진토제">진토제</option>
-									<option value="완장제">완장제</option>
-									<option value="항히스타민제">항히스타민제</option>
-									<option value="해열진통소염제">해열.진통.소염제</option>
-									<option value="">기타</option>
-
-
-								</select> <input type="button" class="-100 btn btn-primary btn-success"
-									data-search-category="PROD_FL" value="검색">
-							</div>
-
+							</select> <input type="button" class="-100 btn btn-primary btn-success"
+								data-search-category="symptom" value="검색">
 						</div>
+						<div class="select-group-type01 mg-l-30">
+							<p class="select-tit">
+								<label for="efficacy">제형별 검색</label>
+							</p>
+							<!--efficacy-->
+							<select id="prodFl" name="prodFl" class="select-search">
+								<option value="" selected>전체</option>
+								<option value="건위소화제">건위소화제</option>
+								<option value="골격근이완제">골격근이완제</option>
+								<option value="소화기관용약">소화기관용약</option>
+								<option value="소화성궤양용제">소화성궤양용제</option>
+								<option value="이담제">이담제</option>
+								<option value="정장제">정장제</option>
+								<option value="제산제">제산제</option>
+								<option value="진경제">진경제</option>
+								<option value="진해거담제">진해거담제</option>
+								<option value="진토제">진토제</option>
+								<option value="완장제">완장제</option>
+								<option value="항히스타민제">항히스타민제</option>
+								<option value="해열진통소염제">해열.진통.소염제</option>
+								<option value="">기타</option>
+
+
+							</select> <input type="button" class="-100 btn btn-primary btn-success"
+								data-search-category="PROD_FL" value="검색">
+						</div>
+
+					</div>
 					<!-- </form> -->
 				</div>
 
@@ -228,7 +224,6 @@ input.input-search.w100 {
 
 					<div class="prod-list-tit ">
 						<%
-							System.out.println(prodName);
 							vlist = rMgr.getMList( prodName, start, end);
 							listSize = vlist.size();//브라우저 화면에 보여질 게시물갯수
 							if (vlist.isEmpty()) {
@@ -319,17 +314,20 @@ input.input-search.w100 {
 				<hr width="600" />
 
 				<form name="readFrm" method="get">
-					<input type="hidden" name="num2"> 
-					<input type="hidden"
-						name="nowPage" value="<%=nowPage%>"> 
-					<input
-						type="hidden" name="prodName" value="<%=prodName%>">
+					<input type="hidden" name="num2"> <input type="hidden"
+						name="nowPage" value="<%=nowPage%>"> <input type="hidden"
+						name="prodName" value="<%=prodName%>"> <input
+						type="hidden" name="choSung" value="<%=choSung%>"> <input
+						type="hidden" name="choSung" value="<%=choSung%>"> <input
+						type="hidden" name="choSung" value="<%=choSung%>"> <input
+						type="hidden" name="choSung" value="<%=choSung%>">
+
 				</form>
 
 			</div>
 			<!--  <script src="TEST.js" charset="utf-8"></script> -->
-			
-<script type="text/javascript">
+
+			<script type="text/javascript">
 
 	function pageing(page) {
 		document.readFrm.nowPage.value = page;
@@ -358,15 +356,11 @@ input.input-search.w100 {
 	}
 	function check1(){
 		var ch = document.getElementById("");
-		if(ch.value ){
-			document.getElementByClass("#")
-		}
 	}
 </script>
-		
 </body>
 
-	<script src="javascript.js" charset="utf-8"></script>
+<script src="javascript.js" charset="utf-8"></script>
 <%@include file="footer.jsp"%>
 </html>
 
