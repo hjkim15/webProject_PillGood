@@ -79,7 +79,7 @@
 									검색</a></li>
 							<li><a class="dropdown-item" href="pillSymptom.jsp">증상별
 									검색 </a></li>
-							<li><a class="dropdown-item" href="pillEfficacy">제형별 검색
+							<li><a class="dropdown-item" href="pillEfficacy.jsp">제형별 검색
 							</a></li>
 						</ul>
 

@@ -33,7 +33,8 @@
 	start = (nowPage * numPerPage) - numPerPage;
 	end = numPerPage;
 
-	totalRecord = rMgr.getTotalCount(choSung);
+	totalRecord = rMgr.getChoTotalCount(choSung);
+	
 	totalPage = (int) Math.ceil((double) totalRecord / numPerPage); //전체페이지수
 	nowBlock = (int) Math.ceil((double) nowPage / pagePerBlock); //현재블럭 계산
 
