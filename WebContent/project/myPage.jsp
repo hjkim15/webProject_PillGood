@@ -83,7 +83,6 @@
 		}
 
 		int gender = bean.getGender();
-
 		int userType = bean.getUserType();
 		int chemistCode = 0;
 		int career = 0;
@@ -221,18 +220,17 @@ h1, h2, h3, h4, h5, h6 {
 </head>
 
 <body>
-	<form name="regFrm" method="post" action="memberUpdateProc.jsp" enctype="multipart/form-data">
+	<form name="regFrm" method="post" action="memberUpdateProc.jsp">
 		<div class="container">
 			<div class="row g-5">
 				<div class="col-md-4">
 					<div class="position-sticky" style="top: 2rem;">
 						<div class="p-4 mb-3 bg-light rounded" >
 							<h4 class="fst-italic">사진 수정</h4>
-							<img id="image_container" class=" img-fluid mx-auto" src="<%=bean.getImg()%>"
-								width="200" height="200"></img> <input type="file" id="aa"
-								name="img2" accept="image/*" class="form-control"
-								onChange="setThumbnail(event);"> <input type="hidden"
-								id="ab" name="img" value="<%=bean.getImg()%>">
+							<img id="image_container" class="img-fluid mx-auto" src="<%=bean.getImg()%>"
+								width="200" height="200"></img> 
+								<input type="file" id="aa" accept="image/*" class="form-control" onChange="setThumbnail(event);"> 
+								<input type="hidden" id="ab" name="img" value="<%=bean.getImg()%>">
 						</div>
 
 						<div class="p-4">
@@ -626,11 +624,11 @@ h1, h2, h3, h4, h5, h6 {
 		}
 
 		function subMit() {
-			if (document.getElementById("aa").value != null) {
+			if (document.getElementById("aa").value != "") {
 				document.getElementById("ab").value = document
 						.getElementById("aa").value
 			}
-
+			alert(document.getElementById("ab").value);
 			var symList = document.querySelectorAll(".ck"); //기존 증상
 			var nsymList = document.querySelectorAll(".ch") //새로 선택한 증상
 			var count = 0;

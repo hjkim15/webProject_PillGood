@@ -58,7 +58,6 @@
 
 	 boolean result = mgr.updateMember(mBean); 
 	
-
 	if ((result == true) && (result2 == true)) {
 %>
 <script type="text/javascript">

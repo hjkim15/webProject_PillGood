@@ -17,7 +17,7 @@ public class myPageServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("EUC-KR");
 		MemberMgr bMgr = new MemberMgr();
-		bMgr.insertBoard(request);
+/*		bMgr.insertBoard(request);*/
 		response.sendRedirect("myPage.jsp");
 	}
 

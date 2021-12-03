@@ -7,9 +7,6 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -20,7 +17,9 @@ public class MemberMgr {
 	private static int number = 50;
 
 	private DBConnectionMgr pool;
-
+	private static final String SAVEFOLDER = "C:/Jsp/webProject_PillGood/WebContent/project/fileupload";
+	private static final String ENCTYPE = "EUC-KR";
+	private static int MAXSIZE = 5 * 1024 * 1024;
 
 	public MemberMgr() {
 		try {
@@ -295,7 +294,7 @@ public class MemberMgr {
 		try {
 			con = pool.getConnection();
 			String sql = "update userinfo set userId=?, pw=?, name=?,"
-					+ "email=?, gender=?, nickname=?, symptom=?, userType=?, birth=? where userId = ?";
+					+ "email=?, gender=?, nickname=?, symptom=?, userType=?, birth=?, img=? where userId = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getUserId());
 			pstmt.setString(2, bean.getPw());
@@ -316,12 +315,11 @@ public class MemberMgr {
 							symptom[j] = '1';
 				}
 			}
-		pstmt.setString(7, new String(symptom));
+			pstmt.setString(7, new String(symptom));
 			pstmt.setInt(8, bean.getUserType());
 			pstmt.setString(9, bean.getBirth());
-/*			pstmt.setString(10, bean.getImg());
-			pstmt.setString(11, bean.getUserId());*/
-			pstmt.setString(10, bean.getUserId());
+			pstmt.setString(10, bean.getImg());
+			pstmt.setString(11, bean.getUserId());
 			int count = pstmt.executeUpdate();
 			if (count > 0)
 				flag = true;
@@ -331,6 +329,36 @@ public class MemberMgr {
 			pool.freeConnection(con, pstmt);
 		}
 		return flag;
+	}
+
+	public void insertImage(HttpServletRequest req) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		MultipartRequest multi = null;
+		int filesize = 0;
+		String filename = null;
+		try {
+			con = pool.getConnection();
+			File file = new File(SAVEFOLDER);
+			if (!file.exists())
+				file.mkdirs();
+			multi = new MultipartRequest(req, SAVEFOLDER, MAXSIZE, ENCTYPE, new DefaultFileRenamePolicy());
+
+			if (multi.getFilesystemName("filename") != null) {
+				filename = multi.getFilesystemName("filename");
+				filesize = (int) multi.getFile("filename").length();
+			}
+			sql = "insert tblBoard(img) values(?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, filename);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
 	}
 
 //약사정보 수정
