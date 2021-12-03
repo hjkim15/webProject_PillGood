@@ -84,6 +84,7 @@ public class RegisterMgr {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
+		System.out.println(choSung);
 		Vector<RegisterBean> vlist = new Vector<RegisterBean>();
 		try {
 			con = pool.getConnection();
