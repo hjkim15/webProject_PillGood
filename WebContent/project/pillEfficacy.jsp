@@ -131,7 +131,7 @@ input.input-search.w100 {
 							<option value="진토제">진토제</option>
 							<option value="완장제">완장제</option>
 							<option value="항히스타민제">항히스타민제</option>
-							<option value="해열진통소염제">해열.진통.소염제</option>
+							<option value="해열.진통.소염제">해열.진통.소염제</option>
 							<option value="">기타</option>
 
 
@@ -243,7 +243,7 @@ input.input-search.w100 {
 				<form name="readFrm" method="get">
 					<input type="hidden" name="num2"> <input type="hidden"
 						name="nowPage" value="<%=nowPage%>"> <input type="hidden"
-						name="prodName" value="<%=efficacy%>">
+						name="efficacy" value="<%=efficacy%>">
 
 				</form>
 

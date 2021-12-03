@@ -244,7 +244,8 @@ input.input-search.w100 {
 				<hr width="600" />
 
 				<form name="readFrm" method="get">
-					<input type="hidden" name="num2"> <input type="hidden"
+					<input type="hidden" name="num2"> 
+					<input type="hidden"
 						name="nowPage" value="<%=nowPage%>"> 
 						<input type="hidden"
 						name="symptom" value="<%=symptom%>">
