@@ -27,9 +27,6 @@
 	if (request.getParameter("prodName") != null) {
 		prodName = request.getParameter("prodName");
 	}
-	if (request.getParameter("choSung") != null) {
-		prodName = request.getParameter("choSung");
-	}
 
 	if (request.getParameter("nowPage") != null) {
 		nowPage = Integer.parseInt(request.getParameter("nowPage"));
@@ -121,16 +118,18 @@ input.input-search.w100 {
 							<label>
 								<p class="search-tit">제품명 검색</p> <input id="prodName"
 								name="prodName" class="input-search" type="text" value="" />
-							</label> <input type="button" class="-100 btn btn-primary btn-success"
+							</label> 
+							<input type="button" class="-100 btn btn-primary btn-success"
 								data-search-category="PROD_NAME" data-cho-yn="N" value="검색"
-								onClick="javascript:check()"> <input type="hidden"
+								onClick="javascript:check()">
+								 <input type="hidden"
 								name="nowPage" value="1">
 							<!--  <button class="btn btn-l btn-222 mg-l-20 btnSearch" data-search-category="PROD_NAME" data-cho-yn="N">검색</button> -->
 						</div>
 					</form>
 				</div>
-
-
+</div>
+</section>
 				<div class="row">
 
 					<div class="prod-list-tit ">

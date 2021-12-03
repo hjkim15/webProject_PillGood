@@ -20,15 +20,12 @@
 
 	int listSize = 0; //현재 읽어온 게시물의 수
 
-	String prodName = "";
+	String symptom = "";
 	
 	Vector<RegisterBean> vlist = null;
 	
-	if (request.getParameter("prodName") != null) {
-		prodName = request.getParameter("prodName");
-	}
-	if (request.getParameter("choSung") != null) {
-		prodName = request.getParameter("choSung");
+	if (request.getParameter("symptom") != null) {
+		symptom = request.getParameter("symptom");
 	}
 
 	if (request.getParameter("nowPage") != null) {
@@ -37,7 +34,7 @@
 	start = (nowPage * numPerPage) - numPerPage;
 	end = numPerPage;
 
-	totalRecord = rMgr.getTotalCount(prodName);
+	totalRecord = rMgr.getTotalCount(symptom);
 	totalPage = (int) Math.ceil((double) totalRecord / numPerPage); //전체페이지수
 	nowBlock = (int) Math.ceil((double) nowPage / pagePerBlock); //현재블럭 계산
 
@@ -110,14 +107,15 @@ input.input-search.w100 {
 		</div>
 			<div class="container">
 				<div class="search-wrap search-wrap-border">
+				<form name="symptomFrm" method="get" action="pillSymptom.jsp">
 					<input type="hidden" id="kor" value="kor" />
 					<div class="seclect-grup-wrap">
 						<div class="select-group-type01">
-							<p class="select-tit" for="test1">
+							<p class="select-tit">
 								<label for="symptom">증상별 검색</label>
 							</p>
 							<!--symptom-->
-							<select id="effctFl" name="effctFl" class="select-search">
+							<select id="effctFl" name="effctFl" class="select-search" onchange="boxChange(this.options[this.selectedIndex].value)">
 								<option value="" selected>전체</option>
 								<option value="구토">구토</option>
 								<option value="근육통">근육통</option>
@@ -142,10 +140,12 @@ input.input-search.w100 {
 
 							</select> 
 							<input type="button" class="-100 btn btn-primary btn-success"
-								data-search-category="symptom" value="검색">
+								data-search-category="symptom" value="검색" onClick="check()">
+							<input type="hidden" name="nowPage" value="1">
+							<input type="hidden" id="st" name="symptom" value="">
 						</div>
-
 					</div>
+					</form>
 				</div>
 				</div>
 
@@ -154,7 +154,7 @@ input.input-search.w100 {
 
 					<div class="prod-list-tit ">
 						<%
-							vlist = rMgr.getMList( prodName, start, end);
+							vlist = rMgr.getSympList(symptom, start, end);
 							listSize = vlist.size();//브라우저 화면에 보여질 게시물갯수
 							if (vlist.isEmpty()) {
 								out.println("등록된 게시물이 없습니다.");
@@ -245,21 +245,24 @@ input.input-search.w100 {
 
 				<form name="readFrm" method="get">
 					<input type="hidden" name="num2"> <input type="hidden"
-						name="nowPage" value="<%=nowPage%>"> <input type="hidden"
-						name="prodName" value="<%=prodName%>">
-		<%-- 				 <input
-						type="hidden" name="choSung" value="<%=choSung%>"> <input
-						type="hidden" name="choSung" value="<%=choSung%>"> <input
-						type="hidden" name="choSung" value="<%=choSung%>"> <input
-						type="hidden" name="choSung" value="<%=choSung%>"> --%>
+						name="nowPage" value="<%=nowPage%>"> 
+						<input type="hidden"
+						name="symptom" value="<%=symptom%>">
 
 				</form>
 
 			</div>
-			<!--  <script src="TEST.js" charset="utf-8"></script> -->
+			<script src="javascript.js" charset="utf-8"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript">
+	
+	function boxChange(value){
+    document.getElementById("st").value = value;
 
-			<script type="text/javascript">
-
+	}		
+			
 	function pageing(page) {
 		document.readFrm.nowPage.value = page;
 		document.readFrm.submit();
@@ -277,21 +280,15 @@ input.input-search.w100 {
 	}
 
 	function check() {
-		var pn = document.getElementById("prodName");
-		if (pn.value == "") {
-			alert("검색어를 입력하세요.");
-			document.searchFrm.prodName.focus();
-			return;
-		}
-		document.searchFrm.submit();
+		
+		document.symptomFrm.submit();
 	}
-	function check1(){
-		var ch = document.getElementById("");
-	}
+
 </script>
+
 </body>
 
-<script src="javascript.js" charset="utf-8"></script>
+
 <%@include file="footer.jsp"%>
 </html>
 

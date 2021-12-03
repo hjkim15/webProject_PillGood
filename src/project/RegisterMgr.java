@@ -79,12 +79,12 @@ public class RegisterMgr {
 		return vlist;
 	}
 	
+	//https://www.clien.net/service/board/kin/8445582 ¬¸∞Ì
 	public Vector<RegisterBean> getChoList(String choSung, int start, int end) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
-		System.out.println(choSung);
 		Vector<RegisterBean> vlist = new Vector<RegisterBean>();
 		try {
 			con = pool.getConnection();
@@ -94,24 +94,62 @@ public class RegisterMgr {
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 			} else {
-				sql = "select * from  medicininfo where medicineName between ? and ? limit ? , ?";
+
+				if(choSung.equals("§°")) {
+					sql = "SELECT * FROM medicininfo WHERE (medicineName RLIKE '^( §° | §¢ )' "
+							+ "OR medicineName  >= '∞°' AND medicineName  < '≥™' ) ORDER BY medicineName limit ?,?";
+				}
+			if(choSung.equals("§§")) {
+				sql = "SELECT * FROM medicininfo WHERE (medicineName RLIKE '^( §§ | §§ )' "
+						+ "OR medicineName  >= '≥™' AND medicineName  < '¥Ÿ' ) ORDER BY medicineName limit ?,?";
+				}
+			if(choSung.equals("§ß")) {
+				sql = "SELECT * FROM medicininfo WHERE (medicineName RLIKE '^( §ß | §® )' "
+						+ "OR medicineName  >= '¥Ÿ' AND medicineName  < '∂Û' ) ORDER BY medicineName limit ?,?";
+				}
+				if(choSung.equals("§©")) {
+					sql = "SELECT * FROM medicininfo WHERE (medicineName RLIKE '^( §© | §© )' "
+							+ "OR medicineName  >= '∂Û' AND medicineName  < '∏∂' ) ORDER BY medicineName limit ?,?";
+					}
+				if(choSung.equals("§±")) {
+					sql = "SELECT * FROM medicininfo WHERE (medicineName RLIKE '^( §± | §± )' "
+							+ "OR medicineName  >= '∏∂' AND medicineName  < 'πŸ' ) ORDER BY medicineName limit ?,?";
+				}
+				if(choSung.equals("§≤")) {
+					sql = "SELECT * FROM medicininfo WHERE (medicineName RLIKE '^( §≤ | §≥ )' "
+							+ "OR medicineName  >= 'πŸ' AND medicineName  < 'ªÁ' ) ORDER BY medicineName limit ?,?";
+					}
+				if(choSung.equals("§µ")) {
+					sql = "SELECT * FROM medicininfo WHERE (medicineName RLIKE '^( §µ | §∂ )' "
+							+ "OR medicineName  >= 'ªÁ' AND medicineName  < 'æ∆' ) ORDER BY medicineName limit ?,?";
+					}
+				if(choSung.equals("§∑")) {		
+					sql = "SELECT * FROM medicininfo WHERE (medicineName RLIKE '^( §∑ | §∑ )' "
+						+ "OR medicineName  >= 'æ∆' AND medicineName  < '¿⁄' ) ORDER BY medicineName limit ?,?";
+					}
+				if(choSung.equals("§∏")) {
+					sql = "SELECT * FROM medicininfo WHERE (medicineName RLIKE '^( §∏ | §π )' "
+							+ "OR medicineName  >= '¿⁄' AND medicineName  < '¬˜' ) ORDER BY medicineName limit ?,?";
+					}
+				if(choSung.equals("§∫")) {
+					sql = "SELECT * FROM medicininfo WHERE (medicineName RLIKE '^( §∫ | §∫ )' "
+							+ "OR medicineName  >= '¬˜' AND medicineName  < 'ƒ´' ) ORDER BY medicineName limit ?,?"; }
+				if(choSung.equals("§ª")) {
+					sql = "SELECT * FROM medicininfo WHERE (medicineName RLIKE '^( §ª | §ª )' "
+							+ "OR medicineName  >= 'ƒ´' AND medicineName  < '≈∏' ) ORDER BY medicineName limit ?,?";}
+				if(choSung.equals("§º")) {
+					sql = "SELECT * FROM medicininfo WHERE (medicineName RLIKE '^( §º | §º )' "
+							+ "OR medicineName  >= '≈∏' AND medicineName  < '∆ƒ' ) ORDER BY medicineName limit ?,?";
+				}
+				if(choSung.equals("§Ω")) {
+					sql = "SELECT * FROM medicininfo WHERE (medicineName RLIKE '^( §Ω | §Ω )' "
+							+ "OR medicineName  >= '∆ƒ' AND medicineName  < '«œ' ) ORDER BY medicineName limit ?,?"; }
+				if(choSung.equals("§æ")) {
+					sql = "SELECT * FROM medicininfo WHERE (medicineName RLIKE '^( §æ | §æ )' "
+							+ "OR medicineName  >= '«œ' ) ORDER BY medicineName limit ? , ?"; }
 				pstmt = con.prepareStatement(sql);
-				if(choSung.equals("§°")) {pstmt.setString(1, "∞°"); pstmt.setString(2, "Éâ"); }
-				if(choSung.equals("§§")) {pstmt.setString(1, "≥™"); pstmt.setString(2, "à¢"); }
-				if(choSung.equals("§ß")) {pstmt.setString(1, "¥Ÿ"); pstmt.setString(2, "ãL"); }
-				if(choSung.equals("§©")) {pstmt.setString(1, "∂Û"); pstmt.setString(2, "ê°"); }
-				if(choSung.equals("§±")) {pstmt.setString(1, "∏∂"); pstmt.setString(2, "ìJ"); }
-				if(choSung.equals("§≤")) {pstmt.setString(1, "πŸ"); pstmt.setString(2, "ïΩ"); }
-				if(choSung.equals("§µ")) {pstmt.setString(1, "ªÁ"); pstmt.setString(2, "öÔ"); }
-				if(choSung.equals("§∑")) {pstmt.setString(1, "æ∆"); pstmt.setString(2, "üÁ"); }
-				if(choSung.equals("§∏")) {pstmt.setString(1, "¿⁄"); pstmt.setString(2, "£†"); }
-				if(choSung.equals("§∫")) {pstmt.setString(1, "¬˜"); pstmt.setString(2, "ØÜ"); }
-				if(choSung.equals("§ª")) {pstmt.setString(1, "ƒ´"); pstmt.setString(2, "µi"); }
-				if(choSung.equals("§º")) {pstmt.setString(1, "≈∏"); pstmt.setString(2, "ªM"); }
-				if(choSung.equals("§Ω")) {pstmt.setString(1, "∆ƒ"); pstmt.setString(2, "¿ò"); }
-				if(choSung.equals("§æ")) {pstmt.setString(1, "«œ"); pstmt.setString(2, "∆R"); }
-				pstmt.setInt(3, start);
-				pstmt.setInt(4, end);
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
 			}
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -142,7 +180,7 @@ public class RegisterMgr {
 		return vlist;
 	}
 	
-	public Vector<RegisterBean> getSympList(String prodName, int start, int end) {
+	public Vector<RegisterBean> getSympList(String symptom, int start, int end) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -150,15 +188,15 @@ public class RegisterMgr {
 		Vector<RegisterBean> vlist = new Vector<RegisterBean>();
 		try {
 			con = pool.getConnection();
-			if (prodName.equals("null") || prodName.equals("")) {
+			if (symptom.equals("null") || symptom.equals("")) {
 				sql = "select * from medicininfo limit ?, ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 			} else {
-				sql = "select * from  medicininfo where medicineName" + " like ?  limit ? , ?";
+				sql = "select * from  medicininfo where symptom" + " like ?  limit ? , ?";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, "%" + prodName + "%");
+				pstmt.setString(1, "%" + symptom + "%");
 				pstmt.setInt(2, start);
 				pstmt.setInt(3, end);
 			}
@@ -191,7 +229,7 @@ public class RegisterMgr {
 		return vlist;
 	}
 
-	public Vector<RegisterBean> getAppearanceList(String prodName, int start, int end) {
+	public Vector<RegisterBean> getEfficacyList(String efficacy, int start, int end) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -199,15 +237,15 @@ public class RegisterMgr {
 		Vector<RegisterBean> vlist = new Vector<RegisterBean>();
 		try {
 			con = pool.getConnection();
-			if (prodName.equals("null") || prodName.equals("")) {
+			if (efficacy.equals("null") || efficacy.equals("")) {
 				sql = "select * from medicininfo limit ?, ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 			} else {
-				sql = "select * from  medicininfo where medicineName" + " like ?  limit ? , ?";
+				sql = "select * from  medicininfo where efficacy" + " like ?  limit ? , ?";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, "%" + prodName + "%");
+				pstmt.setString(1, "%" + efficacy + "%");
 				pstmt.setInt(2, start);
 				pstmt.setInt(3, end);
 			}

@@ -20,16 +20,14 @@
 
 	int listSize = 0; //현재 읽어온 게시물의 수
 
-	String prodName = "";
+	String efficacy = "";
 	
 	Vector<RegisterBean> vlist = null;
 	
-	if (request.getParameter("prodName") != null) {
-		prodName = request.getParameter("prodName");
+	if (request.getParameter("efficacy") != null) {
+		efficacy = request.getParameter("efficacy");
 	}
-	if (request.getParameter("choSung") != null) {
-		prodName = request.getParameter("choSung");
-	}
+
 
 	if (request.getParameter("nowPage") != null) {
 		nowPage = Integer.parseInt(request.getParameter("nowPage"));
@@ -37,7 +35,7 @@
 	start = (nowPage * numPerPage) - numPerPage;
 	end = numPerPage;
 
-	totalRecord = rMgr.getTotalCount(prodName);
+	totalRecord = rMgr.getTotalCount(efficacy);
 	totalPage = (int) Math.ceil((double) totalRecord / numPerPage); //전체페이지수
 	nowBlock = (int) Math.ceil((double) nowPage / pagePerBlock); //현재블럭 계산
 
@@ -111,14 +109,15 @@ input.input-search.w100 {
 
 		<div class="container">
 			<div class="search-wrap search-wrap-border">
+			<form name="efficacyFrm" method="get" action="pillEfficacy.jsp">
 				<input type="hidden" id="kor" value="kor" />
 				<div class="seclect-grup-wrap">
 					<div class="select-group-type01">
-						<p class="select-tit" for="test1">
+						<p class="select-tit">
 							<label for="efficacy">제형별 검색</label>
 						</p>
 						<!--efficacy-->
-						<select id="prodFl" name="prodFl" class="select-search">
+						<select id="prodFl" name="prodFl" class="select-search" onchange="boxChange(this.options[this.selectedIndex].value)">
 							<option value="" selected>전체</option>
 							<option value="건위소화제">건위소화제</option>
 							<option value="골격근이완제">골격근이완제</option>
@@ -136,11 +135,15 @@ input.input-search.w100 {
 							<option value="">기타</option>
 
 
-						</select> <input type="button" class="-100 btn btn-primary btn-success"
-							data-search-category="PROD_FL" value="검색">
+						</select> 
+						<input type="button" class="-100 btn btn-primary btn-success"
+							data-search-category="PROD_FL" value="검색" onClick="check()">
+						<input type="hidden" name="nowPage" value="1">
+							<input type="hidden" id="ef" name="efficacy" value="">
 					</div>
 
 				</div>
+				</form>
 </div>
 </div>
 
@@ -148,7 +151,7 @@ input.input-search.w100 {
 
 					<div class="prod-list-tit ">
 						<%
-							vlist = rMgr.getMList( prodName, start, end);
+							vlist = rMgr.getEfficacyList(efficacy, start, end);
 							listSize = vlist.size();//브라우저 화면에 보여질 게시물갯수
 							if (vlist.isEmpty()) {
 								out.println("등록된 게시물이 없습니다.");
@@ -240,20 +243,18 @@ input.input-search.w100 {
 				<form name="readFrm" method="get">
 					<input type="hidden" name="num2"> <input type="hidden"
 						name="nowPage" value="<%=nowPage%>"> <input type="hidden"
-						name="prodName" value="<%=prodName%>">
-					<%-- 				 <input
-						type="hidden" name="choSung" value="<%=choSung%>"> <input
-						type="hidden" name="choSung" value="<%=choSung%>"> <input
-						type="hidden" name="choSung" value="<%=choSung%>"> <input
-						type="hidden" name="choSung" value="<%=choSung%>"> --%>
+						name="prodName" value="<%=efficacy%>">
 
 				</form>
 
 			</div>
 			<!--  <script src="TEST.js" charset="utf-8"></script> -->
 
-			<script type="text/javascript">
+	<script type="text/javascript">
+			function boxChange(value){
+			    document.getElementById("ef").value = value;
 
+				}	
 	function pageing(page) {
 		document.readFrm.nowPage.value = page;
 		document.readFrm.submit();
@@ -271,16 +272,7 @@ input.input-search.w100 {
 	}
 
 	function check() {
-		var pn = document.getElementById("prodName");
-		if (pn.value == "") {
-			alert("검색어를 입력하세요.");
-			document.searchFrm.prodName.focus();
-			return;
-		}
-		document.searchFrm.submit();
-	}
-	function check1(){
-		var ch = document.getElementById("");
+		document.efficacyFrm.submit();
 	}
 </script>
 </body>
