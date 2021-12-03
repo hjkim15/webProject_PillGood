@@ -38,6 +38,18 @@
 		document.delFrm.submit();
 	}
 </script>
+<style>
+	   @font-face {
+		 font-family: 'RIDIBatang';
+		 src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+		 font-weight: normal;
+		 font-style: normal;
+	   }
+	 
+	   * {
+	   font-family:'RIDIBatang';
+	   }
+	 </style>
 </head>
 <body >
 	<div align="center">
@@ -64,9 +76,9 @@
 							</tr>
 							<tr>
 								<td align="center">
-									<input class = "btn btn-sm btn-outline-secondary" type="button" value="삭제완료" onClick="check()"> 
-									<input class = "btn btn-sm btn-outline-secondary" type="reset" value="다시쓰기">
-									<input class = "btn btn-sm btn-outline-secondary" type="button" value="뒤로" onClick="history.go(-1)">
+									<input class = "btn btn-sm btn-outline-success" type="button" value="삭제완료" onClick="check()"> 
+									<input class = "btn btn-sm btn-outline-success" type="reset" value="다시쓰기">
+									<input class = "btn btn-sm btn-outline-success" type="button" value="뒤로" onClick="history.go(-1)">
 								</td>
 							</tr>
 						</table>

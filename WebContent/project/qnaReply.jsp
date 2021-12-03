@@ -1,17 +1,36 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=EUC-KR" import="project.*"%>
 <jsp:useBean id="bean" class="project.qnaBoardBean" scope="session"/>
+<jsp:useBean id="mMgr" class="project.MemberMgr" />
+<%@page import="project.MemberBean"%>
+<%@include file="header.jsp" %>
 <%
 	  String nowPage = request.getParameter("nowPage");
-	  String nickname = bean.getNickname();
 	  String subject = bean.getSubject();
 	  String content = bean.getContent(); 
+	 	
+	  MemberBean mBean = mMgr.getMember(id2);
 %>
 <html>
 <head>
 <title>QnA 답변하기</title>
 <link href="script.css" rel="stylesheet">
 <link href="notice.css" rel="stylesheet">
-
+<style>
+    .container {
+ display: inline-block;
+ text-align: center;
+     }
+   @font-face {
+     font-family: 'RIDIBatang';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+   }
+ 
+   * {
+   font-family:'RIDIBatang';
+   }
+ </style>
 </head>
 <body>
 <div align="center">
@@ -29,12 +48,12 @@
     <tr>
      <td>닉네임</td>
      <td width="80%">
-      <input class="form-control tblcontent" name="name" value="<%=nickname%>"  maxlength="20">
+      <input class="form-control tblcontent" name="nickname" value="<%=mBean.getNickname()%>"  maxlength="20" readonly/>
     </tr>
     <tr>
      <td>제 목</td>
      <td class="mb-3">
-      <input class="form-control tblcontent" name="subject" value="<%=subject%>" maxlength="50">
+      <input class="form-control tblcontent" name="subject" value="re:<%=subject%>" maxlength="50">
      </td>
 	<tr>
      <td>내 용</td>
@@ -55,9 +74,12 @@
     </tr>
 	<tr> 
     <td colspan="2" >
-      <input type="button" class = "btn btn-sm btn-outline-secondary" value="수정완료" onClick="check()">
-        <input type="reset" class = "btn btn-sm btn-outline-secondary" value="다시수정"> 
-        <input type="button" class = "btn btn-sm btn-outline-secondary" value="뒤로" onClick="history.go(-1)">
+          <div class="container">
+    
+      <input type="submit" class = "btn btn-sm btn-outline-success" value="수정완료">
+        <input type="reset" class = "btn btn-sm btn-outline-success" value="다시수정"> 
+        <input type="button" class = "btn btn-sm btn-outline-success" value="뒤로" onClick="history.go(-1)">
+    </div>
      </td>
    </table>
   </td>
@@ -70,5 +92,6 @@
  <input type="hidden" name="depth" value="<%=bean.getDepth()%>">
 </form> 
 </div>
+<%@include file="footer.jsp" %>
 </body>
 </html>

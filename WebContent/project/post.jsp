@@ -25,11 +25,24 @@
 
     <link href="script.css" rel="stylesheet">
     <link href="notice.css" rel="stylesheet">
-    <style>
+     <style>
+    .container {
+ display: inline-block;
+ text-align: center;
+     }
+   @font-face {
+     font-family: 'RIDIBatang';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+   }
+ 
+   * {
+   font-family:'RIDIBatang';
+   }
         .container-md {
             background-color: beige;
         }
-
         .star-rating {
             /* border: solid 1px #ccc; */
             display: flex;
@@ -40,16 +53,13 @@
             text-align: center;
             width: 5em;
         }
-
         .star-rating input {
             display: none;
         }
-
         .star-rating label {
             color: #ccc;
             cursor: pointer;
         }
-
         .star-rating :checked~label {
             color: #fc0;
         }
@@ -133,9 +143,11 @@
          </tr>
          <tr>
             <td colspan="2">
-                <input class = "btn btn-sm btn-outline-secondary" type="submit" value="등록">
-                <input class = "btn btn-sm btn-outline-secondary" type="reset" value="다시쓰기">
-                <input class = "btn btn-sm btn-outline-secondary" type="button" value="리스트" onClick="javascript:location.href='list.jsp'">
+            <div class="container">
+                <input class = "btn btn-sm btn-outline-success" type="submit" value="등록">
+                <input class = "btn btn-sm btn-outline-success" type="reset" value="다시쓰기">
+                <input class = "btn btn-sm btn-outline-success" type="button" value="리스트" onClick="javascript:location.href='list.jsp'">
+            </div>
             </td>
          </tr>
       </table>

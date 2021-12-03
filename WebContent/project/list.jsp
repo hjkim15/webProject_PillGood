@@ -60,22 +60,54 @@
 
 <html>
 <head>
-<title>JSP Board</title>
+<title>게시판</title>
 <link href="script.css" rel="stylesheet">
 <style type="text/css">
 .star-rating {
-	/* border: solid 1px #ccc; */
-	display: flex;
-	flex-direction: row-reverse;
-	font-size: 1.5em;
-	justify-content: space-around;
-	padding: 0 .2em;
-	text-align: center;
-	width: 5em;
+    /* border: solid 1px #ccc; */
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 1.5em;
+    justify-content: space-around;
+    padding: 0 .2em;
+    text-align: center;
+    width: 5em;
 }
 .star-rating label {
-	color: #ccc;
+    color: #ccc;
 }
+ h2 {
+    color: #405b34;
+    font-size: 2em;
+  }
+	@font-face {
+	  font-family: 'RIDIBatang';
+	  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+	  font-weight: normal;
+	  font-style: normal;
+	}
+  
+	* {
+	font-family:'RIDIBatang';
+	}
+	.button {
+ width:80px;
+ background-color: #ccddc5;
+ border: none;
+ color:#172013;
+ border-radius: 5px;
+ padding: 10px 0;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 14px;
+ margin: 2px;
+ cursor: pointer;
+}
+  .button:hover{
+	  background: #405b34;
+	  color: white;
+  }
 </style>
 
 <script type="text/javascript">
@@ -112,7 +144,7 @@
 
 </head>
 
-<body bgcolor="#FFFFCC">
+<body >
 	<div align="center">
 		<br />
 		<h2>게시판입니다.</h2>
@@ -125,9 +157,9 @@
 				</td>
 			</tr>
 		</table>
-		<table align="center" width="1000" cellpadding="3">
+		<table align="center" width="1200" cellpadding="3">
 			<tr>
-				<td align="center" colspan="2">
+				<td align="center" colspan="10">
 					<%
 				  vlist = bMgr.getBoardList(keyField, keyWord, start, end);
 				  listSize = vlist.size();//브라우저 화면에 보여질 게시물갯수
@@ -135,8 +167,8 @@
 					out.println("등록된 게시물이 없습니다.");
 				  } else {
 			%>
-					<table width="100%" cellpadding="2" cellspacing="0">
-						<tr align="center" bgcolor="#D0D0D0" height="120%">
+					<table width="100%" cellpadding="10" cellspacing="4">
+						<tr align="center" bgcolor="#ccddc5" height="150%">
 							<td>번 호</td>
 							<td>제 목</td>
 							<td>닉네임</td>
@@ -247,7 +279,7 @@
 							<option value="content">내 용</option>
 					</select> 
 					<input size="16" name="keyWord" > 
-					<input type="button" value="찾기" onClick="javascript:check()"> 
+					<input type="button" class="button" value="찾기" onClick="javascript:check()"> 
 					<input type="hidden" name="nowPage" value="1">
 					</td>
 				</tr>

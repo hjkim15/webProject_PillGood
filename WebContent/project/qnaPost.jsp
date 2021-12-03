@@ -20,6 +20,22 @@
 <title>QnA 작성하기</title>
 <link href="script.css" rel="stylesheet">
 <link href="notice.css" rel="stylesheet">
+<style>
+		.container {
+	 display: inline-block;
+	 text-align: center;
+		 }
+	   @font-face {
+		 font-family: 'RIDIBatang';
+		 src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+		 font-weight: normal;
+		 font-style: normal;
+	   }
+	 
+	   * {
+	   font-family:'RIDIBatang';
+	   }
+	 </style>
 </head>
 <body >
 	<div align="center">
@@ -64,13 +80,16 @@
   			 	</td>
  			</tr>
 			<tr>
-				<td colspan="2"><hr/></td>
+				<td colspan="4"><hr/></td>
 			</tr>
 			<tr>
-				<td colspan="2">
-					 <input class = "btn btn-sm btn-outline-secondary"  type="submit" value="등록">
-					 <input class = "btn btn-sm btn-outline-secondary"  type="reset" value="다시쓰기">
-					 <input class = "btn btn-sm btn-outline-secondary"  type="button" value="리스트" onClick="javascript:location.href='qnaList.jsp'">
+				<td colspan="4">
+							       <div class="container">
+				
+					 <input class = "btn btn-sm btn-outline-success"  type="submit" value="등록">
+					 <input class = "btn btn-sm btn-outline-success"  type="reset" value="다시쓰기">
+					 <input class = "btn btn-sm btn-outline-success"  type="button" value="리스트" onClick="javascript:location.href='qnaList.jsp'">
+					 </div>
 				</td>
 			</tr>
 		</table>

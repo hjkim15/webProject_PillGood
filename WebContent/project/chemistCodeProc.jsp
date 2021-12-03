@@ -27,7 +27,6 @@ MemberBean mBean = memMgr.getMember(id);
       code = 0;
       personalNumber=0;
    }  
-
    if(memMgr.checkPharmacist(code, personalNumber)) {
 	   c = true;
 	   userType = 1;
@@ -39,7 +38,38 @@ MemberBean mBean = memMgr.getMember(id);
 	   userType=0;
    }
 %>
-
+<style>
+   @font-face {
+        font-family: 'RIDIBatang';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+    
+      * {
+      font-family:'RIDIBatang';
+      }
+   
+                 .submit {
+       width:80px;
+       background-color: #ccddc5;
+       border: none;
+      color:#172013;
+      border-radius: 5px;
+       padding: 2px 0;
+       text-align: center;
+       text-decoration: none;
+       display: inline-block;
+       font-size: 14px;
+       margin: 2px;
+       cursor: pointer;
+   }
+        .submit:hover{
+          background: #405b34;
+          color: white;
+   
+       }
+       </style>
 </head>
 <body >
 
@@ -55,7 +85,7 @@ MemberBean mBean = memMgr.getMember(id);
          }
       %>
 
-     	   <button type="submit" name="number" onClick = "insert();">´Ý±â</button> 
+     	   <button type="submit"  class="submit" name="number" onClick = "insert();">´Ý±â</button> 
 
    </div>
    
@@ -66,7 +96,6 @@ MemberBean mBean = memMgr.getMember(id);
 	   
 		self.close();
 	   window.opener.view();
-
 	 }
    </script>
 </body>

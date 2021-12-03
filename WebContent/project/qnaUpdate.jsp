@@ -13,7 +13,22 @@
 <title>QnA 수정하기</title>
 <link href="script.css" rel="stylesheet">
 <link href="notice.css" rel="stylesheet">
-
+	<style>
+		 .container {
+  display: inline-block;
+  text-align: center;
+      }
+		@font-face {
+			font-family: 'RIDIBatang';
+			src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+			font-weight: normal;
+			font-style: normal;
+		}
+	
+	  * {
+		font-family:'RIDIBatang';
+	  }
+	</style>
 <script>
 	function check() {
 	   if (document.updateFrm.pass.value == "") {
@@ -65,9 +80,11 @@
 	   </tr>
 	   <tr >
 		<td colspan="2" >
+		<div class="container">
 		 <input type="button" class = "btn btn-sm btn-outline-secondary" value="수정완료" onClick="check()">
 		 <input type="reset" class = "btn btn-sm btn-outline-secondary" value="다시수정"> 
 		 <input type="button" class = "btn btn-sm btn-outline-secondary" value="뒤로" onClick="history.go(-1)">
+		</div>
 		</td>
 	   </tr> 
 	  </table>

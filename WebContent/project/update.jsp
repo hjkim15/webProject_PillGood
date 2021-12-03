@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=EUC-KR" %>
  <%@ page import="project.BoardBean"%>
  <%@include file="header.jsp" %>
@@ -26,7 +25,21 @@
 
 <link href="script.css" rel="stylesheet">
 <link href="notice.css" rel="stylesheet">
-
+<style>
+	@font-face {
+	  font-family: 'RIDIBatang';
+	  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+	  font-weight: normal;
+	  font-style: normal;
+  }
+* {
+  font-family:'RIDIBatang';
+}
+.container {
+display: inline-block;
+text-align: center;
+	}
+</style>
 
 </head>
 <body >
@@ -68,9 +81,9 @@
     </tr>
 	<tr >
      <td colspan="2" >
-	  <input type="button" class = "btn btn-sm btn-outline-secondary" value="수정완료" onClick="check()">
-      <input type="reset" class = "btn btn-sm btn-outline-secondary" value="다시수정"> 
-      <input type="button" class = "btn btn-sm btn-outline-secondary" value="뒤로" onClick="history.go(-1)">
+	  <input type="button"class = "btn btn-sm btn-outline-success" value="수정완료" onClick="check()">
+      <input type="reset" class = "btn btn-sm btn-outline-success" value="다시수정"> 
+      <input type="button" class = "btn btn-sm btn-outline-success" value="뒤로" onClick="history.go(-1)">
 	 </td>
     </tr> 
    </table>

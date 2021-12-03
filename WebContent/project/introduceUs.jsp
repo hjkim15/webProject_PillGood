@@ -17,70 +17,53 @@
 <link href="header_footer.css" rel="stylesheet">
 
 <style>
-@font-face {
-	font-family: 'RIDIBatang';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-/*carousel.css에서 가져온 부분*/
-body {
-	font-family: 'RIDIBatang';
-	padding-top: 3rem;
-	padding-bottom: 3rem;
-	color: #5a5a5a;
-}
-
-.h1 {
-	line-height: 150%;
-}
-
-.featurette-divider {
-	margin: 5rem 0;
-	/* Space out the Bootstrap <hr> more */
-}
-
-/* Thin out the marketing headings */
-.featurette-heading {
-	font-weight: 300;
-	line-height: 1;
-	/* rtl:remove */
-	letter-spacing: -.05rem;
-}
-
-/*간격*/
-.col-md-7 {
-	margin-top: 60px;
-}
-
-@media ( min-width : 40em) {
-	.featurette-heading {
-		font-size: 50px;
-	}
-}
-
-@media ( min-width : 62em) {
-	.featurette-heading {
-		margin-top: 7rem;
-	}
-}
-
-.b-example-divider {
-	height: 3rem;
-	background-color: rgba(199, 214, 189, 1);
-	border: solid rgba(199, 214, 189, 1);
-	border-width: 1px 0;
-	box-shadow: inset 0 .5em 1.5em rgba(199, 214, 189, 1), inset 0 .125em
-		.5em rgba(199, 214, 189, 1);
-}
-
-.img-fluid {
-	max-width: 70%;
-	height: auto
-}
-</style>
+         @font-face {
+        font-family: 'RIDIBatang';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+        /*carousel.css에서 가져온 부분*/
+        body {
+            font-family: 'RIDIBatang';
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+            color: #5a5a5a;
+        }
+        .h1{line-height:150%;}
+        .featurette-divider {
+            margin: 5rem 0;
+            /* Space out the Bootstrap <hr> more */
+        }
+        /* Thin out the marketing headings */
+        .featurette-heading {
+            font-weight: 300;
+            line-height: 1;
+            /* rtl:remove */
+            letter-spacing: -.05rem;
+        }
+        /*간격*/
+        .col-md-7{margin-top : 60px; }
+        @media (min-width: 40em) {
+            .featurette-heading {
+                font-size: 50px;
+            } 
+        }
+        @media (min-width: 62em) {
+            .featurette-heading {
+                margin-top: 7rem;
+            }
+        }
+        .b-example-divider {
+            height: 3rem;
+            background-color: rgba(199, 214, 189, 1);
+            border: solid rgba(199, 214, 189, 1);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(199, 214, 189, 1), inset 0 .125em .5em rgba(199, 214, 189, 1);
+        }
+        .img-fluid{max-width:70%;height:auto}
+        /*script.css에서 이 페이지에 사용하는 부분 일부 찾아서 script1.css에 복사해둠. */
+    </style>
 
 </head>
 

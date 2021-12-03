@@ -225,12 +225,18 @@ h1, h2, h3, h4, h5, h6 {
 			<div class="row g-5">
 				<div class="col-md-4">
 					<div class="position-sticky" style="top: 2rem;">
-						<div class="p-4 mb-3 bg-light rounded" >
-							<h4 class="fst-italic">사진 수정</h4>
-							<img id="image_container" class="img-fluid mx-auto" src="<%=bean.getImg()%>"
-								width="200" height="200"></img> 
-								<input type="file" id="aa" accept="image/*" class="form-control" onChange="setThumbnail(event);"> 
-								<input type="hidden" id="ab" name="img" value="<%=bean.getImg()%>">
+						<div class="p-4 mb-3 bg-light rounded">
+							<form name="postFrm" id="pf" method="post" action="myPageServlet"
+								enctype="multipart/form-data">
+								<h4 class="fst-italic">사진 수정</h4>
+								<img id="image_container" class="img-fluid mx-auto"
+									src="<%=bean.getImg()%>" width="200" height="200"></img> <input
+									type="file" name="filename" id="aa" accept="image/*" class="form-control"
+									onChange="setThumbnail(event);"> 
+									<button type="submit" value="수정"></button>
+									<input type="hidden"
+									id="ab" name="img" value="<%=bean.getImg()%>">
+							</form>
 						</div>
 
 						<div class="p-4">
@@ -590,7 +596,7 @@ h1, h2, h3, h4, h5, h6 {
 			reader.onload = function(event) {
 				var img = document.getElementById("image_container");
 				img.setAttribute("src", event.target.result);
-			/* 	document.querySelector("div#image_container").appendChild(img); */
+				/* 	document.querySelector("div#image_container").appendChild(img); */
 			};
 			reader.readAsDataURL(event.target.files[0]);
 		}
@@ -672,7 +678,9 @@ h1, h2, h3, h4, h5, h6 {
 		return;
 				}
 			}
-			document.regFrm.submit();
+			var b = document.getElementById("pf");
+		/* 	b.submit(); */
+		/* 	document.regFrm.submit(); */
 		}
 	</script>
 

@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
 <%@page import="project.qnaBoardBean"%>
 <%@page import="java.util.Vector"%>
-<%@include file="header.jsp"%>
 <jsp:useBean id="qMgr" class="project.qnaBoardMgr" />
+<%@include file="header.jsp"%>
 <%	
 	  request.setCharacterEncoding("EUC-KR");
 	  
@@ -12,7 +12,6 @@
 	  
 	  int totalPage=0; //전체 페이지 수
 	  int totalBlock=0;  //전체 블럭수 
-
 	  int nowPage=1; // 현재페이지
 	  int nowBlock=1;  //현재블럭
 	  
@@ -20,7 +19,6 @@
 	  int end=10; //시작번호로 부터 가져올 select 갯수
 	  
 	  int listSize=0; //현재 읽어온 게시물의 수
-
 	String keyWord = "", keyField = "";
 	Vector<qnaBoardBean> vlist = null;
 	if (request.getParameter("keyWord") != null) {
@@ -80,6 +78,36 @@
 	  document.searchFrm.submit();
 	 }
 </script>
+<style>
+	   @font-face {
+		 font-family: 'RIDIBatang';
+		 src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+		 font-weight: normal;
+		 font-style: normal;
+	   }
+	 
+	   * {
+	   font-family:'RIDIBatang';
+	   }
+	   .button {
+    width:90px;
+    background-color: #ccddc5;
+    border: none;
+	color:#172013;
+	border-radius: 5px;
+    padding: 12px 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px;
+    cursor: pointer;
+}
+     .button:hover{
+		 background: #405b34;
+		 color: white;
+	 }
+	 </style>
 </head>
 <body>
 <div align="center">
@@ -102,7 +130,7 @@
 				  } else {
 			%>
 				  <table width="100%" cellpadding="2" cellspacing="0">
-					<tr align="center" bgcolor="#D0D0D0" height="120%">
+					<tr align="center" bgcolor="#ccddc5" height="120%">
 						<td>번 호</td>
 						<td>제목</td>
 						<td>닉네임</td>
@@ -186,7 +214,7 @@
     				<option value="content"> 내 용</option>
    				</select>
    				<input size="16" name="keyWord">
-   				<input type="button"  value="찾기" onClick="javascript:check()">
+   				<input type="button" class="button"  value="찾기" onClick="javascript:check()">
    				<input type="hidden" name="nowPage" value="1">
   			</td>
  		</tr>

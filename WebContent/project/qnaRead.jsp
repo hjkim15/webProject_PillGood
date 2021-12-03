@@ -20,7 +20,7 @@
 	  String ip = bean.getIp();
 	  int count = bean.getCount();
 	  session.setAttribute("bean", bean);//게시물을 세션에 저장
-	  
+	  System.out.println(filename);
 	  String id = (String)session.getAttribute("idKey");
 	  MemberBean mBean = memMgr.getMember(id);
 %>
@@ -39,6 +39,22 @@
 		 document.downFrm.submit();
 	}
 </script>
+<style>
+		.container {
+	 display: inline-block;
+	 text-align: center;
+		 }
+	   @font-face {
+		 font-family: 'RIDIBatang';
+		 src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+		 font-weight: normal;
+		 font-style: normal;
+	   }
+	 
+	   * {
+	   font-family:'RIDIBatang';
+	   }
+	</style>
 </head>
 <body >
 <br/><br/>
@@ -50,18 +66,18 @@
   <td colspan="2">
    <table cellpadding="3" cellspacing="0" width="100%"> 
     <tr> 
-  <td align="center" bgcolor="#DDDDDD" width="10%"> 닉네임 </td>
-  <td bgcolor="#FFFFE8"><%=name%></td>
-  <td align="center" bgcolor="#DDDDDD" width="10%"> 등록날짜 </td>
-  <td bgcolor="#FFFFE8"><%=regdate%></td>
+  <td align="center" bgcolor="#ccddc5" width="10%"> 닉네임 </td>
+  <td bgcolor="#FFFFFF"><%=name%></td>
+  <td align="center" bgcolor="#ccddc5" width="10%"> 등록날짜 </td>
+  <td bgcolor="#FFFFFF"><%=regdate%></td>
  </tr>
  <tr> 
-    <td align="center" bgcolor="#DDDDDD"> 제 목</td>
-    <td bgcolor="#FFFFE8" colspan="3"><%=subject%></td>
+    <td align="center" bgcolor="#ccddc5"> 제 목</td>
+    <td bgcolor="#FFFFFF" colspan="3"><%=subject%></td>
    </tr>
    <tr> 
-     <td align="center" bgcolor="#DDDDDD">첨부파일</td>
-     <td bgcolor="#FFFFE8" colspan="3">
+     <td align="center" bgcolor="#ccddc5">첨부파일</td>
+     <td bgcolor="#FFFFFF" colspan="3">
      <% if( filename !=null && !filename.equals("")) {%>
   		<a href="javascript:down('<%=filename%>')"><%=filename%></a>
   		 &nbsp;&nbsp;<font color="blue">(<%=filesize%>KBytes)</font>  
@@ -70,8 +86,11 @@
    </tr>
    <tr> 
     <td colspan="4"><br/><pre><%=content%>
+    <%
+    	if(filename != null){
+    %>
          <img class=" img-fluid mx-auto" src="<%=filename%>" width="300" height="500"></img>
-    
+    <%} %>
     </pre><br/></td>
    </tr>
    <tr>

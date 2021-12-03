@@ -13,18 +13,16 @@
 
 <style>
 body {
-	background-color: rgba(199, 214, 189, 1);
-	color: white;
-	text-align: center;
+    background-color: #ccddc5;
+    color: #405b34;
+    text-align: center;
 }
-
 a {
-	color: white !important;
-	text-decoration: none;
+    color: #405b34 !important;
+    text-decoration: none;
 }
-
 a:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 </style>
 </head>
