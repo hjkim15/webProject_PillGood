@@ -60,8 +60,8 @@
 	} else {
 		mBean.setUserType(0);
 	}}
-
 	boolean result = mgr.updateMember(mBean);
+	System.out.println(result);
 
 	if ((result == true) && (result2 == true)) {
 %>

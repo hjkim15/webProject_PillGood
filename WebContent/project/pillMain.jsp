@@ -132,6 +132,7 @@ input.input-search.w100 {
 							</div>
 						</form>
 						
+						<form name="choFrm" method="get" action="pillMain.jsp">
 						<div class="search-group pd-lr-20 text-center">
 							<p class="search-tit">段失 伊事</p>
 							<div class="search-ini-wrap">
@@ -150,11 +151,13 @@ input.input-search.w100 {
 								<button class="search-ini-box">そ</button>
 								<button class="search-ini-box">ぞ</button>
 							</div>
-							<input id="choSung" name="choSung" type="hidden" value="" /> <input
+							<input id="choSung" name="choSung" type="hidden" value="" />
+							 <input
 								type="button" class="-100 btn btn-primary btn-success"
 								data-search-category="PROD_NAME" data-cho-yn="Y" value="伊事"
-								onClick="javascript:check()">
+								onClick="javascript:check1()">
 						</div>
+						</form>
 						<hr class="hr02 mg-b-40">
 						<input type="hidden" id="kor" value="kor" />
 						<div class="seclect-grup-wrap">
@@ -352,6 +355,12 @@ input.input-search.w100 {
 			return;
 		}
 		document.searchFrm.submit();
+	}
+	function check1(){
+		var ch = document.getElementById("");
+		if(ch.value ){
+			document.getElementByClass("#")
+		}
 	}
 </script>
 		

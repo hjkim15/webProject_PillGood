@@ -350,6 +350,7 @@ public class MemberMgr {
 				filename = multi.getFilesystemName("filename");
 				filesize = (int) multi.getFile("filename").length();
 			}
+			System.out.println("1");
 			sql = "update userinfo(img) values(?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, filename);

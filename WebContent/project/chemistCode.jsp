@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=EUC-KR"%>
 <jsp:useBean id="regMgr" class="project.MemberMgr" />
+
 <!DOCTYPE html>
 <html>
 <head>

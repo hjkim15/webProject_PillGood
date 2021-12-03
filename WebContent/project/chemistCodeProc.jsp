@@ -10,6 +10,7 @@ MemberBean mBean = memMgr.getMember(id);
 
 <%
    request.setCharacterEncoding("EUC-KR");
+	
    int userType = 0;
    int code = 0;
    int personalNumber = 0;
@@ -37,6 +38,8 @@ MemberBean mBean = memMgr.getMember(id);
 	   c = false;
 	   userType=0;
    }
+   
+
 %>
 <style>
    @font-face {
