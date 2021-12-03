@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"
 	import="java.util.*, java.sql.*, project.*"%>
 <jsp:useBean id="rMgr" class="project.RegisterMgr" />
+<%@include file="header.jsp"%>
 <%
 	request.setCharacterEncoding("EUC-KR");
 
@@ -112,7 +113,7 @@ input.input-search.w100 {
 				<div class="search-wrap search-wrap-border">
 					<!-- <form id="prdForm" class="search-form" action="" method="get"> -->
 
-					<form name="searchFrm" method="get" action="pillMain.jsp">
+					<form name="searchFrm" method="get" action="pillProduct.jsp">
 						<input id="searchCategory" name="searchCategory" type="hidden"
 							value="" /> <input id="choYn" name="choYn" type="hidden"
 							value="N" />
@@ -127,95 +128,6 @@ input.input-search.w100 {
 							<!--  <button class="btn btn-l btn-222 mg-l-20 btnSearch" data-search-category="PROD_NAME" data-cho-yn="N">검색</button> -->
 						</div>
 					</form>
-
-					<form name="choFrm" method="get" action="pillMain.jsp">
-						<div class="search-group pd-lr-20 text-center">
-							<p class="search-tit">초성 검색</p>
-							<div class="search-ini-wrap">
-								<button class="search-ini-box">ㄱ</button>
-								<button class="search-ini-box">ㄴ</button>
-								<button class="search-ini-box">ㄷ</button>
-								<button class="search-ini-box">ㄹ</button>
-								<button class="search-ini-box">ㅁ</button>
-								<button class="search-ini-box">ㅂ</button>
-								<button class="search-ini-box">ㅅ</button>
-								<button class="search-ini-box">ㅇ</button>
-								<button class="search-ini-box">ㅈ</button>
-								<button class="search-ini-box">ㅊ</button>
-								<button class="search-ini-box">ㅋ</button>
-								<button class="search-ini-box">ㅌ</button>
-								<button class="search-ini-box">ㅍ</button>
-								<button class="search-ini-box">ㅎ</button>
-							</div>
-							<input id="choSung" name="choSung" type="hidden" value="" /> <input
-								type="button" class="-100 btn btn-primary btn-success"
-								data-search-category="PROD_NAME" data-cho-yn="Y" value="검색"
-								onClick="javascript:check1()">
-						</div>
-					</form>
-					<hr class="hr02 mg-b-40">
-					<input type="hidden" id="kor" value="kor" />
-					<div class="seclect-grup-wrap">
-						<div class="select-group-type01">
-							<p class="select-tit" for="test1">
-								<label for="symptom">증상별 검색</label>
-							</p>
-							<!--symptom-->
-							<select id="effctFl" name="effctFl" class="select-search">
-								<option value="" selected>전체</option>
-								<option value="구토">구토</option>
-								<option value="근육통">근육통</option>
-								<option value="기침">기침</option>
-								<option value="두통">두통</option>
-								<option value="멀미">멀미</option>
-								<option value="발열">발열</option>
-								<option value="변비">변비</option>
-								<option value="비염">비염</option>
-								<option value="생리통">생리통</option>
-								<option value="소화불량">소화불량</option>
-								<option value="속쓰림">속쓰림</option>
-								<option value="알레르기">알레르기</option>
-								<option value="염좌">염좌</option>
-								<option value="위산과다">위산과다</option>
-								<option value="위염">위염</option>
-								<option value="제산작용">제산작용</option>
-								<option value="치질">치질</option>
-								<option value="치통">치통</option>
-								<option value="코감기">코감기</option>
-								<option value="피부염">피부염</option>
-
-							</select> <input type="button" class="-100 btn btn-primary btn-success"
-								data-search-category="symptom" value="검색">
-						</div>
-						<div class="select-group-type01 mg-l-30">
-							<p class="select-tit">
-								<label for="efficacy">제형별 검색</label>
-							</p>
-							<!--efficacy-->
-							<select id="prodFl" name="prodFl" class="select-search">
-								<option value="" selected>전체</option>
-								<option value="건위소화제">건위소화제</option>
-								<option value="골격근이완제">골격근이완제</option>
-								<option value="소화기관용약">소화기관용약</option>
-								<option value="소화성궤양용제">소화성궤양용제</option>
-								<option value="이담제">이담제</option>
-								<option value="정장제">정장제</option>
-								<option value="제산제">제산제</option>
-								<option value="진경제">진경제</option>
-								<option value="진해거담제">진해거담제</option>
-								<option value="진토제">진토제</option>
-								<option value="완장제">완장제</option>
-								<option value="항히스타민제">항히스타민제</option>
-								<option value="해열진통소염제">해열.진통.소염제</option>
-								<option value="">기타</option>
-
-
-							</select> <input type="button" class="-100 btn btn-primary btn-success"
-								data-search-category="PROD_FL" value="검색">
-						</div>
-
-					</div>
-					<!-- </form> -->
 				</div>
 
 
@@ -359,7 +271,7 @@ input.input-search.w100 {
 	}
 </script>
 </body>
-
+<%@include file="footer.jsp"%>
 <script src="javascript.js" charset="utf-8"></script>
 
 </html>

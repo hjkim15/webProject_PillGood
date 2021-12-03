@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=EUC-KR"%>
 
 <!DOCTYPE html>
@@ -18,11 +17,7 @@
 <body>
 	<%@include file="header.jsp"%>
 	<div class="container">
-
-
 		<div>
-
-
 			<div class="bd-example">
 				<nav>
 					<div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">

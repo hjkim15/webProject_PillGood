@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"
 	import="java.util.*, java.sql.*, project.*"%>
 <jsp:useBean id="rMgr" class="project.RegisterMgr" />
+<%@include file="header.jsp"%>
 <%
 	request.setCharacterEncoding("EUC-KR");
 
@@ -285,5 +286,5 @@ input.input-search.w100 {
 </body>
 
 <script src="javascript.js" charset="utf-8"></script>
-
+<%@include file="footer.jsp"%>
 </html>
