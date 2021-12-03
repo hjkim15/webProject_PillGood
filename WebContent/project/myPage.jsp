@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR" import="java.util.*, java.sql.*, project.*"%>
-<jsp:useBean id="mgr" class="project.MemberMgr" />
+	
+<jsp:useBean id="mr" class="project.MemberMgr" />
 <%@include file="header.jsp"%>
 <%
 	request.setCharacterEncoding("EUC-KR");
@@ -10,7 +11,7 @@
 
 	if (id2 != null) {
 
-		MemberBean bean = mgr.getMember(id2);
+		MemberBean bean = mr.getMember(id2);
 
 		try {
 			symptom = bean.getSymptom();
@@ -205,18 +206,6 @@ h1, h2, h3, h4, h5, h6 {
 </style>
 <link href="script.css" rel="stylesheet">
 
-<!-- jQuery -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<!-- 부트 스트랩 CDN -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-
-
-
-
 </head>
 
 <body>
@@ -225,20 +214,16 @@ h1, h2, h3, h4, h5, h6 {
 			<div class="row g-5">
 				<div class="col-md-4">
 					<div class="position-sticky" style="top: 2rem;">
-						<div class="p-4 mb-3 bg-light rounded">
-							<form name="postFrm" id="pf" method="post" action="myPageServlet"
-								enctype="multipart/form-data">
+<%-- 						<div class="p-4 mb-3 bg-light rounded">
+						
 								<h4 class="fst-italic">사진 수정</h4>
-								<img id="image_container" class="img-fluid mx-auto"
-									src="<%=bean.getImg()%>" width="200" height="200"></img> <input
-									type="file" name="filename" id="aa" accept="image/*" class="form-control"
-									onChange="setThumbnail(event);"> 
-									<input type="button" value="수정" onClick="im()">
-									<input type="hidden"
-									id="ab" name="img" value="<%=bean.getImg()%>">
-							</form>
-						</div>
-
+								<img id="image_container" class="img-fluid mx-auto" src="<%=bean.getImg()%>" width="200" height="200"></img> 
+								<input type="file" name="file" id="aa" accept="image/*" class="form-control" onChange="setThumbnail(event);">
+								<!-- <input type="button" value="수정" onClick="javascript:im();">  -->
+								<input type="hidden" id="ab" name="filename" value="<%=bean.getImg()%>">
+							
+						</div> --%>
+						<%-- <%@include file="picture.jsp"%> --%>
 						<div class="p-4">
 							<h4 class="fst-italic">Archives</h4>
 							<ol class="list-unstyled mb-0">
@@ -553,7 +538,7 @@ h1, h2, h3, h4, h5, h6 {
 						<!-- <input type="button" class="btn btn-outline-primary" value="수정" onClick="finalCheck()"> -->
 						<!-- <input type="submit" class="btn btn-outline-primary" value="수정" > -->
 						<input type="button" class="btn btn-outline-primary" value="수정"
-							onClick="subMit()"> <a class="btn btn-outline-secondary"
+							onClick="sb()"> <a class="btn btn-outline-secondary"
 							href="mainC.jsp">취소</a>
 
 					</nav>
@@ -564,7 +549,19 @@ h1, h2, h3, h4, h5, h6 {
 			</div>
 		</div>
 	</form>
+	<!-- jQuery -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+<!-- 부트 스트랩 CDN -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript" src="script.js" charset="utf-8"></script>
+	
 	<script type="text/javascript">
 		text1.oninput = function() {
 			document.getElementById("newNickname").value = "";
@@ -629,10 +626,9 @@ h1, h2, h3, h4, h5, h6 {
 			}
 		}
 
-		function subMit() {
+		function sb() {
 			if (document.getElementById("aa").value != "") {
-				document.getElementById("ab").value = document
-						.getElementById("aa").value
+				document.getElementById("ab").value = document.getElementById("aa").value
 			}
 			alert(document.getElementById("ab").value);
 			var symList = document.querySelectorAll(".ck"); //기존 증상
@@ -679,20 +675,12 @@ h1, h2, h3, h4, h5, h6 {
 				}
 			}
 			
-		 /* 	 document.regFrm.submit(); */  
+		 	 document.regFrm.submit(); 
 		 	/* b.submit(); */ 
 		}
 		
-		function im(){
-			$("#pf").action = "myPageServlet";
-			alert($("#pf").action.value);
-			$("#pf").submit();
-/* 			frm.submit(); */
-			return true;
-		}
 	</script>
 
-	<script type="text/javascript" src="script.js" charset="utf-8"></script>
 </body>
 
 </html>

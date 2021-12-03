@@ -17,11 +17,11 @@ public class myPageServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		System.out.println("?????");
 		request.setCharacterEncoding("EUC-KR");
 		MemberMgr bMgr = new MemberMgr();
-		bMgr.insertImage(request);
-		response.sendRedirect("myPage.jsp");
+		System.out.println("???");
+		bMgr.insertImg(request);
+		response.sendRedirect("picture.jsp");
 	}
 	
 

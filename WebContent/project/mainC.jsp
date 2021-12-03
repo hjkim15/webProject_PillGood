@@ -155,38 +155,38 @@ body {
 
 
 
-	<div class="row" data-masonry='{"percentPosition": true }'>
-		<div>
-			<h1>조회수 높은 게시글</h1>
-		</div>
-		<hr>
-		<div class="col-sm-6 col-lg-4 mb-4">
-			<div class="col">
-				<%
-          	Vector<BoardBean> vlist = null;
+<div class="row" data-masonry='{"percentPosition": true }'>
+      <div>
+         <h1>조회수 높은 게시글</h1>
+      </div>
+      <hr>
+      <div  >
+            <%
+             Vector<BoardBean> vlist = null;
             vlist = bMgr.getCountList();
-          	for(int i = 0; i < 6; i++){
-          		BoardBean bean = vlist.get(i);
-          		int num = bean.getNum();
-          %>
-				<div class="card shadow-sm">
-					<img class="  card-img-top" src="<%=bean.getFilename() %>"
-						width="100%" height="225"></img>
-					<div class="card-body">
-						<p class="card-text"><%=bean.getSubject() %></p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary"><%=bean.getNickName() %></button>
-								<button type="button" class="btn btn-sm btn-outline-secondary" onClick="javascript:read('<%=num%>')">게시글
-									보기</button>
-							</div>
-							<small class="text-muted"><%=bean.getRegdate() %></small>
-						</div>
-					</div>
-				</div>
-				<%} %>
-			</div>
-		</div>
+             for(int i = 0; i < 6; i++){
+                BoardBean bean = vlist.get(i);
+                int num = bean.getNum();
+          %><div>
+            <div class="card shadow-sm" style="float:left;width:32%; padding: 10px; height:500px;  margin-left:10px; margin-bottom:20px;  "  >
+               <img class="  card-img-top" src="<%=bean.getFilename() %>"
+                  width="250px"></img>
+               <div class="card-body">
+                  <p class="card-text"><%=bean.getSubject() %></p>
+                  <div class="d-flex justify-content-between align-items-center">
+                     <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary"><%=bean.getNickName() %></button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" onClick="javascript:read('<%=num%>')">게시글
+                           보기</button>
+                     </div>
+                     <small class="text-muted"><%=bean.getRegdate() %></small>
+                  </div>
+               </div>
+               
+            </div>
+            </div>
+            <%} %>
+      </div>
 
 		<form name="readFrm" method="get">
 			 <input type="hidden" name="num">

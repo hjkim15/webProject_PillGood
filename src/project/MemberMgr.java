@@ -28,7 +28,39 @@ public class MemberMgr {
 			e.printStackTrace();
 		}
 	}
+	  public void insertImg(HttpServletRequest req) {
+	      Connection con = null;
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      String sql = null;
+	      MultipartRequest multi = null;
+	      int filesize = 0;
+	      String filename = null;
+	      try {
+	         con = pool.getConnection();
+	         File file = new File(SAVEFOLDER);
+	         if (!file.exists())
+	            file.mkdirs();
+	         multi = new MultipartRequest(req, SAVEFOLDER,MAXSIZE, ENCTYPE,
+	               new DefaultFileRenamePolicy());
 
+	         if (multi.getFilesystemName("filename") != null) {
+	            filename = multi.getFilesystemName("filename");
+	            filesize = (int) multi.getFile("filename").length();
+	         }
+	         System.out.println(multi.getParameter("userId"));
+	         
+	         sql = "update userinfo set img = ? where userId = ?";
+	         pstmt = con.prepareStatement(sql);
+	         pstmt.setString(1, filename);
+	         pstmt.setString(2, multi.getParameter("userId"));
+	         pstmt.executeUpdate();
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         pool.freeConnection(con, pstmt, rs);
+	      }
+	   }
 	// 닉네임 중복 확인
 	public boolean checkNickname(String nickname) {
 		Connection con = null;
@@ -331,36 +363,6 @@ public class MemberMgr {
 		return flag;
 	}
 
-	public void insertImage(HttpServletRequest req) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = null;
-		MultipartRequest multi = null;
-		int filesize = 0;
-		String filename = null;
-		try {
-			con = pool.getConnection();
-			File file = new File(SAVEFOLDER);
-			if (!file.exists())
-				file.mkdirs();
-			multi = new MultipartRequest(req, SAVEFOLDER, MAXSIZE, ENCTYPE, new DefaultFileRenamePolicy());
-
-			if (multi.getFilesystemName("filename") != null) {
-				filename = multi.getFilesystemName("filename");
-				filesize = (int) multi.getFile("filename").length();
-			}
-			System.out.println("1");
-			sql = "update userinfo(img) values(?)";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, filename);
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			pool.freeConnection(con, pstmt, rs);
-		}
-	}
 
 //약사정보 수정
 	public boolean updatePharmacist(pharmacistBean bean) {
