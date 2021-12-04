@@ -149,10 +149,6 @@ input.input-search.w100 {
 				</div>
 				</div>
 
-
-				<div class="row">
-
-					<div class="prod-list-tit ">
 						<%
 							vlist = rMgr.getSympList(symptom, start, end);
 							listSize = vlist.size();//브라우저 화면에 보여질 게시물갯수
@@ -172,7 +168,7 @@ input.input-search.w100 {
 									String manufacture = bean.getManufactureName();
 									String img = bean.getImage();
 						%>
-						<div id="grid test">
+						<div id="grid test" style=" float: left; width: 33%; border:solid 1px black;  margin-bottom: 30px;" >
 							<div class="prod-list">
 								<div class="col-3" data-prod-code="#">
 									<a href="javascript:read('<%=num2%>')"
@@ -194,8 +190,6 @@ input.input-search.w100 {
 
 						</div>
 
-					</div>
-				</div>
 
 				<%
 					} //for

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR" import="java.util.*, java.sql.*, project.*"%>
 	
-<jsp:useBean id="mr" class="project.MemberMgr" />
+<jsp:useBean id="mgr" class="project.MemberMgr" />
 <%@include file="header.jsp"%>
 <%
 	request.setCharacterEncoding("EUC-KR");
@@ -11,7 +11,7 @@
 
 	if (id2 != null) {
 
-		MemberBean bean = mr.getMember(id2);
+		MemberBean bean = mgr.getMember(id2);
 
 		try {
 			symptom = bean.getSymptom();
