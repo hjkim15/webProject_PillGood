@@ -326,7 +326,7 @@ public class MemberMgr {
 		try {
 			con = pool.getConnection();
 			String sql = "update userinfo set userId=?, pw=?, name=?,"
-					+ "email=?, gender=?, nickname=?, symptom=?, userType=?, birth=?, img=? where userId = ?";
+					+ "email=?, gender=?, nickname=?, symptom=?, userType=?, birth=? where userId = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getUserId());
 			pstmt.setString(2, bean.getPw());
@@ -350,8 +350,7 @@ public class MemberMgr {
 			pstmt.setString(7, new String(symptom));
 			pstmt.setInt(8, bean.getUserType());
 			pstmt.setString(9, bean.getBirth());
-			pstmt.setString(10, bean.getImg());
-			pstmt.setString(11, bean.getUserId());
+			pstmt.setString(10, bean.getUserId());
 			int count = pstmt.executeUpdate();
 			if (count > 0)
 				flag = true;

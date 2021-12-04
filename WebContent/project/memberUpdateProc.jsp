@@ -24,9 +24,7 @@
 	String newPassword = request.getParameter("newPassword");
 	String chEmail = request.getParameter("chEmail");
 	String career = request.getParameter("career");
-	String img = request.getParameter("filename");
-	mBean.setImg(img);
-	System.out.println(img);
+
 	boolean result2 = true;
 	if (newNickname != null) {
 		if (newNickname.equals("가능합니다")) { //newNname = "" 값 비교해보기

@@ -8,6 +8,7 @@
 %>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>nickname 중복체크</title>
 <link href="script.css" rel="stylesheet" type="text/css">
 

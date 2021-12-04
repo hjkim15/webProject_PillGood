@@ -21,7 +21,7 @@ public class myPageServlet extends HttpServlet {
 		MemberMgr bMgr = new MemberMgr();
 		System.out.println("???");
 		bMgr.insertImg(request);
-		response.sendRedirect("picture.jsp");
+		response.sendRedirect("myPage.jsp");
 	}
 	
 

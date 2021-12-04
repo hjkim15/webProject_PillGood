@@ -4,96 +4,96 @@
 <jsp:useBean id="mgr" class="project.MemberMgr" />
 <%@include file="header.jsp"%>
 <%
-	request.setCharacterEncoding("EUC-KR");
-	String message = "";
+   request.setCharacterEncoding("EUC-KR");
+   String message = "";
 
-	String symptom[] = new String[20];
+   String symptom[] = new String[20];
 
-	if (id2 != null) {
+   if(id2 != null){
 
-		MemberBean bean = mgr.getMember(id2);
+      MemberBean bean = mgr.getMember(id2);
 
-		try {
-			symptom = bean.getSymptom();
-			if (symptom[0].contains("1")) {
-				symptom[0] = "구토";
-			}
-			if (symptom[1].contains("1")) {
-				symptom[1] = "근육통";
-			}
-			if (symptom[2].contains("1")) {
-				symptom[2] = "기침";
-			}
-			if (symptom[3].contains("1")) {
-				symptom[3] = "두통";
-			}
-			if (symptom[4].contains("1")) {
-				symptom[4] = "멀미";
-			}
-			if (symptom[5].contains("1")) {
-				symptom[5] = "발열";
-			}
-			if (symptom[6].contains("1")) {
-				symptom[6] = "변비";
-			}
-			if (symptom[7].contains("1")) {
-				symptom[7] = "비염";
-			}
-			if (symptom[8].contains("1")) {
-				symptom[8] = "생리통";
-			}
-			if (symptom[9].contains("1")) {
-				symptom[9] = "소화불량";
-			}
-			if (symptom[10].contains("1")) {
-				symptom[10] = "속쓰림";
-			}
-			if (symptom[11].contains("1")) {
-				symptom[11] = "알레르기";
-			}
-			if (symptom[12].contains("1")) {
-				symptom[12] = "염좌";
-			}
-			if (symptom[13].contains("1")) {
-				symptom[13] = "위산과다";
-			}
-			if (symptom[14].contains("1")) {
-				symptom[14] = "위염";
-			}
-			if (symptom[15].contains("1")) {
-				symptom[15] = "제산작용";
-			}
-			if (symptom[16].contains("1")) {
-				symptom[16] = "치질";
-			}
-			if (symptom[17].contains("1")) {
-				symptom[17] = "치통";
-			}
-			if (symptom[18].contains("1")) {
-				symptom[18] = "코감기";
-			}
-			if (symptom[19].contains("1")) {
-				symptom[19] = "피부염";
-			}
+      try {
+         symptom = bean.getSymptom();
+         if (symptom[0].contains("1")) {
+            symptom[0] = "구토";
+         }
+         if (symptom[1].contains("1")) {
+            symptom[1] = "근육통";
+         }
+         if (symptom[2].contains("1")) {
+            symptom[2] = "기침";
+         }
+         if (symptom[3].contains("1")) {
+            symptom[3] = "두통";
+         }
+         if (symptom[4].contains("1")) {
+            symptom[4] = "멀미";
+         }
+         if (symptom[5].contains("1")) {
+            symptom[5] = "발열";
+         }
+         if (symptom[6].contains("1")) {
+            symptom[6] = "변비";
+         }
+         if (symptom[7].contains("1")) {
+            symptom[7] = "비염";
+         }
+         if (symptom[8].contains("1")) {
+            symptom[8] = "생리통";
+         }
+         if (symptom[9].contains("1")) {
+            symptom[9] = "소화불량";
+         }
+         if (symptom[10].contains("1")) {
+            symptom[10] = "속쓰림";
+         }
+         if (symptom[11].contains("1")) {
+            symptom[11] = "알레르기";
+         }
+         if (symptom[12].contains("1")) {
+            symptom[12] = "염좌";
+         }
+         if (symptom[13].contains("1")) {
+            symptom[13] = "위산과다";
+         }
+         if (symptom[14].contains("1")) {
+            symptom[14] = "위염";
+         }
+         if (symptom[15].contains("1")) {
+            symptom[15] = "제산작용";
+         }
+         if (symptom[16].contains("1")) {
+            symptom[16] = "치질";
+         }
+         if (symptom[17].contains("1")) {
+            symptom[17] = "치통";
+         }
+         if (symptom[18].contains("1")) {
+            symptom[18] = "코감기";
+         }
+         if (symptom[19].contains("1")) {
+            symptom[19] = "피부염";
+         }
 
-		} catch (NullPointerException e) {
-			System.out.println("--NullPointerException 발생--");
-			System.out.println("기존 코드를 체크해 주세요!!");
-		} finally {
-			/* System.out.println("예외처리 코드가 오류없이 진행되었습니다.");  */
-		}
+      } catch (NullPointerException e) {
+         System.out.println("--NullPointerException 발생--");
+         System.out.println("기존 코드를 체크해 주세요!!");
+      } finally {
+         /* System.out.println("예외처리 코드가 오류없이 진행되었습니다.");  */
+      }
 
-		int gender = bean.getGender();
-		int userType = bean.getUserType();
-		int chemistCode = 0;
-		int career = 0;
-		if (userType == 1) {
-			pharmacistBean pBean = mgr.getPharmMember(id2);
-			chemistCode = pBean.getPcode();
-			career = pBean.getCareer();
-		}
+      int gender = bean.getGender();
+      int userType = bean.getUserType();
+      int chemistCode = 0;
+      int career = 0;
+      if (userType == 1) {
+         pharmacistBean pBean = mgr.getPharmMember(id2);
+         chemistCode = pBean.getPcode();
+         career = pBean.getCareer();
+      }
 
-		boolean e = true;
+      boolean e = true;
 %>
 
 
@@ -107,6 +107,34 @@
 <title>mypage</title>
 
 <style>
+h4 {
+	color: #405b34;
+	font-size: 2em;
+}
+
+h2 {
+	color: #405b34;
+	font-size: 2em;
+}
+
+h3 {
+	color: #405b34;
+	font-size: 2em;
+}
+
+@font-face {
+	font-family: 'RIDIBatang';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'RIDIBatang';
+}
+
 .input-group-text {
 	display: inline;
 }
@@ -125,10 +153,6 @@
 	text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-}
-
 .display-4 {
 	font-size: 2.5rem;
 }
@@ -144,6 +168,18 @@ h1, h2, h3, h4, h5, h6 {
 	z-index: 2;
 	height: 2.75rem;
 	overflow-y: hidden;
+}
+
+a:link {
+	color: #405b34;
+}
+
+a:visited {
+	color: black;
+}
+
+a:active {
+	color: green
 }
 
 .nav-scroller .nav {
@@ -186,6 +222,11 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 4rem;
 }
 
+.cbtn {
+	display: inline-block;
+	text-align: center;
+}
+
 .blog-pagination>.btn {
 	border-radius: 2rem;
 }
@@ -203,53 +244,59 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 1.25rem;
 	color: #727272;
 }
+
+.span.input-group-text {
+	margin-top: 60px;
+}
 </style>
 <link href="script.css" rel="stylesheet">
 
 </head>
 
 <body>
-	<form name="regFrm" method="post" action="memberUpdateProc.jsp">
-		<div class="container">
-			<div class="row g-5">
-				<div class="col-md-4">
-					<div class="position-sticky" style="top: 2rem;">
-						<%-- 						<div class="p-4 mb-3 bg-light rounded">
-						
-								<h4 class="fst-italic">사진 수정</h4>
-								<img id="image_container" class="img-fluid mx-auto" src="<%=bean.getImg()%>" width="200" height="200"></img> 
-								<input type="file" name="file" id="aa" accept="image/*" class="form-control" onChange="setThumbnail(event);">
-								<!-- <input type="button" value="수정" onClick="javascript:im();">  -->
-								<input type="hidden" id="ab" name="filename" value="<%=bean.getImg()%>">
-							
-						</div> --%>
-						<%-- <%@include file="picture.jsp"%> --%>
-						<div class="p-4">
-							<h4 class="fst-italic">Archives</h4>
-							<ol class="list-unstyled mb-0">
-								<li><a href="#name">이름</a></li>
-								<li><a href="#id">아이디</a></li>
-								<li><a href="#birth">생년월일</a></li>
-								<li><a href="#nickname">닉네임</a></li>
-								<li><a href="#gender">성별</a></li>
-								<li><a href="#memberType">회원 타입</a></li>
-								<li><a href="#password">비밀번호</a></li>
-								<li><a href="#email">이메일</a></li>
-								<li><a href="#symptom">즐겨찾는 증상</a></li>
-							</ol>
-						</div>
 
+
+
+	<div class="container">
+	
+		<div class="row g-5">
+			<div class="col-md-4">
+				<div class="position-sticky" style="top: 2rem;">
+				
+					<div class="p-4 mb-3 bg-light rounded">
+						<jsp:include page="picture.jsp">
+							<jsp:param name="id" value="<%=id2 %>" />
+							<jsp:param name="filename" value="<%=bean.getImg() %>" />
+						</jsp:include>
 					</div>
-				</div>
+					
+					<div class="p-4">
+						<h4 class="fst-italic">Archives</h4>
+						<ol class="list-unstyled mb-0">
+							<li><a href="#name">이름</a></li>
+							<li><a href="#id">아이디</a></li>
+							<li><a href="#birth">생년월일</a></li>
+							<li><a href="#nickname">닉네임</a></li>
+							<li><a href="#gender">성별</a></li>
+							<li><a href="#memberType">회원 타입</a></li>
+							<li><a href="#password">비밀번호</a></li>
+							<li><a href="#email">이메일</a></li>
+							<li><a href="#symptom">즐겨찾는 증상</a></li>
+						</ol>
+					</div>
 
+				</div>
+			</div>
+			<form name="regFrm" method="post" action="memberUpdateProc.jsp">
 				<div class="col-md-8">
-					<h3 class="pb-4 mb-4 fst-italic border-bottom">회원정보</h3>
+					<h3 class="pb-4 mb-4 order-bottom">회원정보</h3>
 
 
 					<article class="blog-post">
 
 						<h2 class="blog-post-title" id="name">이름</h2>
-						<div class=" col-sm-6">
+						<div class=" col-sm-10">
+							<!-- <div class=" col-sm-6"> -->
 
 							<input type="text" name="name" class="input-group-text col-sm-5"
 								value="<%=bean.getName()%>" readonly />
@@ -258,7 +305,8 @@ h1, h2, h3, h4, h5, h6 {
 						<hr>
 
 						<h2 class="blog-post-title" id="id">아이디</h2>
-						<div class=" col-sm-6">
+						<div class=" col-sm-10">
+							<!-- <div class=" col-sm-6"> -->
 
 							<input type="text" name="userId"
 								class="input-group-text col-sm-5" value="<%=bean.getUserId()%>"
@@ -267,7 +315,7 @@ h1, h2, h3, h4, h5, h6 {
 						</div>
 						<hr>
 						<h2 class="blog-post-title" id="birth">생년월일</h2>
-						<div class=" col-sm-6">
+						<div class=" col-sm-10">
 							<input type="text" name="birth" class="input-group-text col-sm-5"
 								value="<%=bean.getBirth()%>" readonly />
 							<p>생년월일은 수정이 불가합니다.</p>
@@ -277,7 +325,7 @@ h1, h2, h3, h4, h5, h6 {
 
 						<!--회원가입 페이지처럼 중복확인 테스트 등 해야함.-->
 						<h2 class="blog-post-title" id="nickname">닉네임</h2>
-						<div class=" col-sm-3">
+						<div class=" col-sm-10">
 							<span class="input-group">기존 닉네임</span> <input type="text"
 								name="nickname" class="input-group-text"
 								value="<%=bean.getNickname()%>" readonly />
@@ -292,7 +340,7 @@ h1, h2, h3, h4, h5, h6 {
 
 						<div class="col-sm-2">
 							<br> <input type="button" id="newN"
-								class="w-100 btn btn-primary btn-dark" value="중복 확인"
+								class="w-100 btn btn-success btn-success" value="중복 확인"
 								onClick="nicknameCheck(this.form.newNname.value)">
 						</div>
 						<hr>
@@ -300,16 +348,18 @@ h1, h2, h3, h4, h5, h6 {
 						<h2 class="blog-post-title" id="gender">성별</h2>
 						<div class="col-sm-4">
 
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light text-dark">
 								<input name="gender" type="radio" class="form-check-input"
-									value="0" <%if (gender == 0)
-					out.println("checked ");%>
+									value="0"
+									<%if (gender == 0)
+               out.println("checked ");%>
 									required> <label class="form-check-label" for="gender">male</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light text-dark">
 								<input name="gender" type="radio" class="form-check-input"
-									value="1" <%if (gender == 1)
-					out.println("checked ");%>
+									value="1"
+									<%if (gender == 1)
+               out.println("checked ");%>
 									required> <label class="form-check-label" for="gender">female</label>
 							</div>
 
@@ -321,10 +371,10 @@ h1, h2, h3, h4, h5, h6 {
 							<input type="radio" id="normal" name="userType" value="0"
 								onchange="setDisplay()"
 								<%if (userType == 0)
-					out.println("checked ");%>>
+               out.println("checked ");%>>
 							일반 <input type="radio" id="chemist" name="userType" value="1"
 								<%if (userType == 1)
-					out.println("checked ");%>
+               out.println("checked ");%>
 								onchange="setDisplay()"> 약사
 						</div>
 						<br />
@@ -335,7 +385,7 @@ h1, h2, h3, h4, h5, h6 {
 									type="password" id="personalNumber" class="form-control"
 									placeholder="주민번호 뒷자리" /><br /> <input type="text"
 									id="showMessage" name="showMessage"> <input
-									type="button" class="w-100 btn btn-primary btn-dark" value="확인"
+									type="button" class="btn btn-outline-success" value="확인"
 									id="confirm"
 									onClick="codeCheck($( 'input#code' ).val(), $( 'input#personalNumber' ).val());view()">
 							</form>
@@ -363,9 +413,9 @@ h1, h2, h3, h4, h5, h6 {
 								name="newPassword">
 						</div>
 
-						<div class="col-sm-4">
+						<div class="col-sm-2">
 							<br> <input type="button" id="newP"
-								class="w-100 btn btn-primary btn-dark" value="변경 확인"
+								class="w-100 btn btn-success btn-success" value="변경 확인"
 								onClick="pwd()">
 						</div>
 
@@ -391,101 +441,101 @@ h1, h2, h3, h4, h5, h6 {
 						<div>
 							<span class="input-group">기존 증상</span>
 							<%
-								for (int i = 0; i < symptom.length; i++) {
-										if (symptom[i].equals("0")) {
-											;
-										} else {
-							%>
+                        for (int i = 0; i < symptom.length; i++) {
+                              if (symptom[i].equals("0")) {
+                                 ;
+                              } else {
+                     %>
 							<input type="text" class="ck" name="" value="<%=symptom[i]%>"
 								style="display: none"> <span
-								class="badge bg-info text-dark"><%=symptom[i]%></span>
+								class="badge bg-light text-dark"><%=symptom[i]%></span>
 							<%
-								}
-									}
-							%>
+                        }
+                           }
+                     %>
 
 						</div>
 						<div>
 							<span class="input-group">새 증상</span>
 
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light  text-dark">
 								<input type="checkbox" name="" class="btn ch" value="구토">
 								<label class="form-check-label">구토</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light  text-dark">
 								<input type="checkbox" name="" class="btn ch" value="근육통">
 								<label class="form-check-label">근육통</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light  text-dark">
 								<input type="checkbox" name="" class="btn ch" value="기침">
 								<label class="form-check-label">기침</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light text-dark">
 								<input type="checkbox" name="" class="btn ch" value="두통">
 								<label class="form-check-label">두통</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light  text-dark">
 								<input type="checkbox" name="" class="btn ch" value="멀미">
 								<label class="form-check-label">멀미</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light  text-dark">
 								<input type="checkbox" name="" class="btn ch" value="발열">
 								<label class="form-check-label">발열</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light text-dark">
 								<input type="checkbox" name="" class="btn ch" value="변비">
 								<label class="form-check-label">변비</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light  text-dark">
 								<input type="checkbox" name="" class="btn ch" value="비염">
 								<label class="form-check-label">비염</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light  text-dark">
 								<input type="checkbox" name="" class="btn ch" value="생리통">
 								<label class="form-check-label">생리통</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light  text-dark">
 								<input type="checkbox" name="" class="btn ch" value="소화불량">
 								<label class="form-check-label">소화불량</label>
 							</div>
 
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light  text-dark">
 								<input type="checkbox" name="" class="btn ch" value="속쓰림">
 								<label class="form-check-label">속쓰림</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light  text-dark">
 								<input type="checkbox" name="" class="btn ch" value="알레르기">
 								<label class="form-check-label">알레르기</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light  text-dark">
 								<input type="checkbox" name="" class="btn ch" value="염좌">
 								<label class="form-check-label">염좌</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light  text-dark">
 								<input type="checkbox" name="" class="btn ch" value="위산과다">
 								<label class="form-check-label">위산과다</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light  text-dark">
 								<input type="checkbox" name="" class="btn ch" value="위염">
 								<label class="form-check-label">위염</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light  text-dark">
 								<input type="checkbox" name="" class="btn ch" value="제산작용">
 								<label class="form-check-label">제산작용</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light  text-dark">
 								<input type="checkbox" name="" class="btn ch" value="치질">
 								<label class="form-check-label">치질</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light  text-dark">
 								<input type="checkbox" name="" class="btn ch" value="치통">
 								<label class="form-check-label">치통</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light  text-dark">
 								<input type="checkbox" name="" class="btn ch" value="코감기">
 								<label class="form-check-label">코감기</label>
 							</div>
-							<div class="badge bg-info text-dark">
+							<div class="badge bg-light  text-dark">
 								<input type="checkbox" name="" class="btn ch" value="피부염">
 								<label class="form-check-label">피부염</label>
 							</div>
@@ -495,35 +545,35 @@ h1, h2, h3, h4, h5, h6 {
 
 						</div>
 						<hr>
-						<!-- 						<h2 class="blog-post-title" id="brand">즐겨찾는 브랜드</h2>
-						<div>
-							<span class="input-group">기존 브랜드</span> <span
-								class="badge bg-info text-dark">녹십자</span> <span
-								class="badge bg-info text-dark">종근당</span> <span
-								class="badge bg-info text-dark">휴베스트제약</span>
+						<!--                   <h2 class="blog-post-title" id="brand">즐겨찾는 브랜드</h2>
+                  <div>
+                     <span class="input-group">기존 브랜드</span> <span
+                        class="badge bg-info text-dark">녹십자</span> <span
+                        class="badge bg-info text-dark">종근당</span> <span
+                        class="badge bg-info text-dark">휴베스트제약</span>
 
-						</div>
-						<div>
-							<span class="input-group">새 브랜드</span>
-							<div class="badge bg-info text-dark">
-								<input type="checkbox" class="btn"> <label
-									class="form-check-label">브랜드들</label>
-							</div>
-							<div class="badge bg-info text-dark">
-								<input type="checkbox" class="btn "> <label
-									class="form-check-label">다 적으면</label>
-							</div>
-							<div class="badge bg-info text-dark">
-								<input type="checkbox" class="btn"> <label
-									class="form-check-label">이거</label>
-							</div>
-							<div class="badge bg-info text-dark">
-								<input type="checkbox" class="btn "> <label
-									class="form-check-label">개많음</label>
-							</div>
+                  </div>
+                  <div>
+                     <span class="input-group">새 브랜드</span>
+                     <div class="badge bg-info text-dark">
+                        <input type="checkbox" class="btn"> <label
+                           class="form-check-label">브랜드들</label>
+                     </div>
+                     <div class="badge bg-info text-dark">
+                        <input type="checkbox" class="btn "> <label
+                           class="form-check-label">다 적으면</label>
+                     </div>
+                     <div class="badge bg-info text-dark">
+                        <input type="checkbox" class="btn"> <label
+                           class="form-check-label">이거</label>
+                     </div>
+                     <div class="badge bg-info text-dark">
+                        <input type="checkbox" class="btn "> <label
+                           class="form-check-label">개많음</label>
+                     </div>
 
-						</div>
-						<hr> -->
+                  </div>
+                  <hr> -->
 
 
 
@@ -531,21 +581,30 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
+					<!--                <nav class="blog-pagination" aria-label="Pagination">
+                  <input type="button" class="btn btn-outline-primary" value="수정" onClick="finalCheck()">
+                  <input type="submit" class="btn btn-outline-primary" value="수정" >
+                  <input type="button" class="btn btn-outline-primary" value="수정"
+                     onClick="sb()"> <a class="btn btn-outline-secondary"
+                     href="mainC.jsp">취소</a>
+
+               </nav> -->
 					<nav class="blog-pagination" aria-label="Pagination">
 						<!-- <input type="button" class="btn btn-outline-primary" value="수정" onClick="finalCheck()"> -->
 						<!-- <input type="submit" class="btn btn-outline-primary" value="수정" > -->
-						<input type="button" class="btn btn-outline-primary" value="수정"
-							onClick="sb()"> <a class="btn btn-outline-secondary"
-							href="mainC.jsp">취소</a>
+						<div class="cbtn">
+							<button type="sumbmit" class="btn btn-outline-success" value="">수정</button>
+							<a class="btn btn-outline-secondary" href="mainC.jsp">취소</a>
+						</div>
 
 					</nav>
 
 				</div>
 
-
-			</div>
+			</form>
 		</div>
-	</form>
+	</div>
+
 	<!-- jQuery -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -561,137 +620,135 @@ h1, h2, h3, h4, h5, h6 {
 	<script type="text/javascript" src="script.js" charset="utf-8"></script>
 
 	<script type="text/javascript">
-		text1.oninput = function() {
-			document.getElementById("newNickname").value = "";
-		}
+      text1.oninput = function() {
+         document.getElementById("newNickname").value = "";
+      }
 
-		text2.oninput = function() {//새 비밀번호
-			document.getElementById("newPassword").value = "";
-		}
+      text2.oninput = function() {//새 비밀번호
+         document.getElementById("newPassword").value = "";
+      }
 
-		text3.oninput = function() {
-			document.getElementById("newPassword").value = "";
-		}
+      text3.oninput = function() {
+         document.getElementById("newPassword").value = "";
+      }
 
-		document.getElementById("divId").style.display = "none";
-		function setDisplay() {
-			if ($('input:radio[id=normal]').is(':checked')) {
-				$('#divId').hide();
-			}
-			if ($('input:radio[id=chemist]').is(':checked')) {
-				$('#divId').show();
-			}
-			if ($('input:button[id=confirm]').is(':checked')) {
-				$('#divId').show();
-			}
-		}
+      document.getElementById("divId").style.display = "none";
+      function setDisplay() {
+         if ($('input:radio[id=normal]').is(':checked')) {
+            $('#divId').hide();
+         }
+         if ($('input:radio[id=chemist]').is(':checked')) {
+            $('#divId').show();
+         }
+         if ($('input:button[id=confirm]').is(':checked')) {
+            $('#divId').show();
+         }
+      }
 
-		function setThumbnail(event) {
-			var reader = new FileReader();
-			reader.onload = function(event) {
-				var img = document.getElementById("image_container");
-				img.setAttribute("src", event.target.result);
-				/* 	document.querySelector("div#image_container").appendChild(img); */
-			};
-			reader.readAsDataURL(event.target.files[0]);
-		}
+      function setThumbnail(event) {
+         var reader = new FileReader();
+         reader.onload = function(event) {
+            var img = document.getElementById("image_container");
+            img.setAttribute("src", event.target.result);
+            /*    document.querySelector("div#image_container").appendChild(img); */
+         };
+         reader.readAsDataURL(event.target.files[0]);
+      }
 
-		function view() {
-			if (document.getElementById("showMessage").value == "일치합니다")
-				hiddenInput.style.display = "block";
-			else
-				hiddenInput.style.display = "none";
+      function view() {
+         if (document.getElementById("showMessage").value == "일치합니다")
+            hiddenInput.style.display = "block";
+         else
+            hiddenInput.style.display = "none";
 
-			document.getElementById('hiddenInput').reload();
-		}
+         document.getElementById('hiddenInput').reload();
+      }
 
-		function pwd() {
-			if (document.regFrm.newPa.value == "") {
-				alert("입력해라");
-				document.regFrm.newPa.focus();
-			} else if (document.regFrm.NPswCheck.value == "") {
-				alert("입력해라");
-				document.regFrm.NPswCheck.focus();
-			} else if (document.regFrm.newPa.value != document.regFrm.NPswCheck.value) {
-				document.regFrm.NPswCheck.value = "";
-				document.regFrm.NPswCheck.focus();
-				document.regFrm.newPassword.value = "불일치합니다";
-				return;
-			} else {
-				alert("비밀번호 일치한다");
-				document.regFrm.newPassword.value = "일치합니다";
+      function pwd() {
+         if (document.regFrm.newPa.value == "") {
+            alert("입력하세요.");
+            document.regFrm.newPa.focus();
+         } else if (document.regFrm.NPswCheck.value == "") {
+            alert("입력하세요.");
+            document.regFrm.NPswCheck.focus();
+         } else if (document.regFrm.newPa.value != document.regFrm.NPswCheck.value) {
+            document.regFrm.NPswCheck.value = "";
+            document.regFrm.NPswCheck.focus();
+            document.regFrm.newPassword.value = "불일치합니다";
+            return;
+         } else {
+            alert("비밀번호가 일치합니다.");
+            document.regFrm.newPassword.value = "일치합니다";
 
-			}
-		}
+         }
+      }
 
-		function sb() {
-			if (document.getElementById("aa").value != "") {
-				document.getElementById("ab").value = document
-						.getElementById("aa").value
-			}
-			alert(document.getElementById("ab").value);
-			var symList = document.querySelectorAll(".ck"); //기존 증상
-			var nsymList = document.querySelectorAll(".ch") //새로 선택한 증상
-			var count = 0;
+      function sb() {
+         if (document.getElementById("aa").value != "") {
+            document.getElementById("ab").value = document
+                  .getElementById("aa").value
+         }
+         alert(document.getElementById("ab").value);
+         var symList = document.querySelectorAll(".ck"); //기존 증상
+         var nsymList = document.querySelectorAll(".ch") //새로 선택한 증상
+         var count = 0;
 
-			//새로운 증상 선택하는가 확인
-			for (var i = 0; i < nsymList.length; i++) {
-				if (nsymList[i].checked == true)
-					count++;
-			}
+         //새로운 증상 선택하는가 확인
+         for (var i = 0; i < nsymList.length; i++) {
+            if (nsymList[i].checked == true)
+               count++;
+         }
 
-			//새로운 증상 선택한게 없다면
-			if (count == 0) {
-				for (var i = 0; i < symList.length; i++) {
-					symList[i].setAttribute("name", "symptom");
-				}
+         //새로운 증상 선택한게 없다면
+         if (count == 0) {
+            for (var i = 0; i < symList.length; i++) {
+               symList[i].setAttribute("name", "symptom");
+            }
 
-			} else {
-				for (var i = 0; i < nsymList.length; i++) {
-					nsymList[i].setAttribute("name", "symptom");
-				}
-			}
+         } else {
+            for (var i = 0; i < nsymList.length; i++) {
+               nsymList[i].setAttribute("name", "symptom");
+            }
+         }
 
-			//email체크
-			var str = document.regFrm.chEmail.value;
-			var atPos = str.indexOf('@');
-			var atLastPos = str.lastIndexOf('@');
-			var dotPos = str.indexOf('.');
-			var spacePos = str.indexOf(' ');
-			var commaPos = str.indexOf(',');
-			var eMailSize = str.length;
+         //email체크
+         var str = document.regFrm.chEmail.value;
+         var atPos = str.indexOf('@');
+         var atLastPos = str.lastIndexOf('@');
+         var dotPos = str.indexOf('.');
+         var spacePos = str.indexOf(' ');
+         var commaPos = str.indexOf(',');
+         var eMailSize = str.length;
 
-			if (str != "") {
-				if (atPos > 1 && atPos == atLastPos && dotPos > 3
-						&& spacePos == -1 && commaPos == -1
-						&& atPos + 1 < dotPos && dotPos + 1 < eMailSize) {
-	<%e = true;%>
-		} else {
-					alert('E-mail주소 형식이 잘못되었습니다.\n\r다시 입력해 주세요!');
-					document.regFrm.chEmail.focus();
-	<%e = false;%>
-		return;
-				}
-			}
+         if (str != "") {
+            if (atPos > 1 && atPos == atLastPos && dotPos > 3
+                  && spacePos == -1 && commaPos == -1
+                  && atPos + 1 < dotPos && dotPos + 1 < eMailSize) {
+   <%e = true;%>
+      } else {
+               alert('E-mail주소 형식이 잘못되었습니다.\n\r다시 입력해 주세요!');
+               document.regFrm.chEmail.focus();
+   <%e = false;%>
+      return;
+            }
+         }
 
-			document.regFrm.submit();
-			/* b.submit(); */
-		}
-	</script>
+         document.regFrm.submit();
+      }
+   </script>
 
 </body>
 
 </html>
 
 <%
-	} else {
+   } else {
 %>
 <script>
-	alert("로그인이 필요합니다.");
-	location.href = "sessionLogin.jsp";
+   alert("로그인이 필요합니다.");
+   location.href = "sessionLogin.jsp";
 </script>
 
 <%
-	}
+   }
 %>
-
