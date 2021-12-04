@@ -135,9 +135,15 @@ a {
                      <label>
                         <p class="search-tit">제품명 검색</p> <input id="prodName"
                         name="prodName" class="input-search" type="text" value="" />
-                     </label> <input type="button" class="-100 btn btn-primary btn-success"
+                     </label> <!-- <input type="button" class="-100 btn btn-primary btn-success"
                         data-search-category="PROD_NAME" data-cho-yn="N" value="검색"
-                        onClick="javascript:check()"> <input type="hidden"
+                        onClick="javascript:check()"> -->
+                        
+                        <button type="submit" class="-100 btn btn-primary btn-success"
+                        data-search-category="PROD_NAME" data-cho-yn="N" value="검색" 
+                        onClick="javascript:check()">검색</button>
+                        
+                         <input type="hidden"
                         name="nowPage" value="1">
                      <!--  <button class="btn btn-l btn-222 mg-l-20 btnSearch" data-search-category="PROD_NAME" data-cho-yn="N">검색</button> -->
                   </div>
@@ -145,6 +151,11 @@ a {
             </div>
          </div>
       </section>
+      
+      
+      
+      
+      <div class="row">
       <%
                      vlist = rMgr.getMList( prodName, start, end);
                      listSize = vlist.size();//브라우저 화면에 보여질 게시물갯수
@@ -164,6 +175,8 @@ a {
                            String manufacture = bean.getManufactureName();
                            String img = bean.getImage();
                   %>
+                  
+                  
       <div class="card shadow-sm" id="grid test"
          style="float: left; width: 32%; margin-left: 15px; margin-bottom: 30px;">
          <div class="prod-list">
@@ -187,10 +200,10 @@ a {
 
 
       <%
-               } //for
-            %>
+               } //for //데이터 있는 경우 for문 돌면서 검색한 약 다 불러옴 %>
+           </div>
       <%
-               } //if
+               } //if //약 있냐 없냐 조건문 끝
             %>
 
       <!-- 페이징 및 블럭 처리 Start-->
@@ -274,9 +287,8 @@ a {
       }
       document.searchFrm.submit();
    }
-   function check1(){
-      var ch = document.getElementById("");
-   }
+   
+   
 </script>
 </body>
 <%@include file="footer.jsp"%>

@@ -40,7 +40,7 @@
    <td class="td-col">답변하기</td>
   </tr>
 </table>
-<form method="post" action="qnaBoardReply" >
+<form method="post" name="replyFrm" action="qnaBoardReply" >
 <table width="600" cellpadding="7">
  <tr>
   <td>
@@ -76,7 +76,7 @@
     <td colspan="2" >
           <div class="container">
     
-      <input type="submit" class = "btn btn-sm btn-outline-success" value="수정완료">
+      <input type="button" class = "btn btn-sm btn-outline-success" value="답변완료" onClick="check()">
         <input type="reset" class = "btn btn-sm btn-outline-success" value="다시수정"> 
         <input type="button" class = "btn btn-sm btn-outline-success" value="뒤로" onClick="history.go(-1)">
     </div>
@@ -92,6 +92,17 @@
  <input type="hidden" name="depth" value="<%=bean.getDepth()%>">
 </form> 
 </div>
+<script>
+function check() {
+	   if (document.replyFrm.pass.value == "") {
+		 alert("수정을 위해 패스워드를 입력하세요.");
+		 document.updateFrm.pass.focus();
+		 return false;
+		 }
+	   document.replyFrm.submit();
+	}
+
+</script>
 <%@include file="footer.jsp" %>
 </body>
 </html>

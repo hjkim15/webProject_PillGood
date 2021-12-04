@@ -3,6 +3,7 @@
 <%@ page import = "project.MemberBean" %>
 <jsp:useBean id="qMgr" class="project.qnaBoardMgr" />
 <jsp:useBean id="memMgr" class="project.MemberMgr" />
+<%@include file="header.jsp" %>
 <%
 	  request.setCharacterEncoding("EUC-KR");
 	  int num = Integer.parseInt(request.getParameter("num"));
@@ -21,8 +22,8 @@
 	  int count = bean.getCount();
 	  session.setAttribute("bean", bean);//게시물을 세션에 저장
 	  System.out.println(filename);
-	  String id = (String)session.getAttribute("idKey");
-	  MemberBean mBean = memMgr.getMember(id);
+/* 	  String id = (String)session.getAttribute("idKey"); */
+	  MemberBean mBean = memMgr.getMember(id2);
 %>
 <html>
 <head>
@@ -124,5 +125,6 @@
 	<input type="hidden" name="keyWord" value="<%=keyWord%>">
 	<%}%>
 </form>
+<%@include file="footer.jsp" %>
 </body>
 </html>

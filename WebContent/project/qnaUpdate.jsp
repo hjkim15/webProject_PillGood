@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
  <%@ page import="project.qnaBoardBean"%>
+ <%@include file="header.jsp" %>
 <% 
 	  int num = Integer.parseInt(request.getParameter("num"));
 	  String nowPage = request.getParameter("nowPage");
@@ -94,6 +95,7 @@
  <input type="hidden" name="nowPage" value="<%=nowPage %>">
  <input type='hidden' name="num" value="<%=num%>">
 </form> 
+<%@include file="footer.jsp" %>
 </div>
 </body>
 </html>

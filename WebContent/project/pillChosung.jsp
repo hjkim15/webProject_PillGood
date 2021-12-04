@@ -164,7 +164,7 @@ a {
             <!-- </form> -->
          </div>
       </section>
-
+<div class="row">
       <%
          vlist = rMgr.getChoList(choSung, start, end);
          listSize = vlist.size();//브라우저 화면에 보여질 게시물갯수
@@ -209,6 +209,7 @@ a {
       <%
          } //for
       %>
+      </div>
       <%
          } //if
       %>
@@ -287,7 +288,7 @@ a {
          document.readFrm.submit();
       }
       function bu(choSung) {
-         alert(choSung);
+        alert(choSung);
          document.getElementById("choSung").value = choSung;
       }
 

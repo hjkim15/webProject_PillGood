@@ -163,7 +163,7 @@ a {
             </form>
 </div>
 </div>
-
+<div class="row">
                   <%
                      vlist = rMgr.getEfficacyList(efficacy, start, end);
                      listSize = vlist.size();//브라우저 화면에 보여질 게시물갯수
@@ -207,6 +207,7 @@ a {
             <%
                } //for
             %>
+            </div>
             <%
                } //if
             %>

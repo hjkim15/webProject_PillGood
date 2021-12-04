@@ -166,7 +166,7 @@ a {
             </div>
             </div>
 
-
+<div class="row">
          
                   <%
                      vlist = rMgr.getSympList(symptom, start, end);
@@ -211,6 +211,7 @@ a {
             <%
                } //for
             %>
+            </div>
             <%
                } //if
             %>

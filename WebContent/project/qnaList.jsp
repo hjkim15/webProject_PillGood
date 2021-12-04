@@ -48,7 +48,7 @@
 <head>
 	<link href="script.css" rel="stylesheet">
 <script type="text/javascript">
-	function list() {
+	function qnaList() {
 		document.listFrm.action = "qnaList.jsp";
 		document.listFrm.submit();
 	}
@@ -209,7 +209,7 @@
  		<tr>
   			<td align="center" valign="bottom">
    				<select name="keyField" size="1" >
-    				<option value="name"> 닉네임</option>
+    				<option value="nickname"> 닉네임</option>
     				<option value="subject"> 제 목</option>
     				<option value="content"> 내 용</option>
    				</select>
