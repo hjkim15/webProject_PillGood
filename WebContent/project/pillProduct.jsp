@@ -51,49 +51,49 @@
 <link href="script.css" rel="stylesheet">
 <style>
 .pillImg {
-	position: absolute;
-	bottom: 0;
-	width: auto;
-	height: auto;
-	max-width: 275px;
-	max-height: 275px;
+   position: absolute;
+   bottom: 0;
+   width: auto;
+   height: auto;
+   max-width: 275px;
+   max-height: 275px;
 }
 
 .aStyle {
-	position: relative;
-	width: 280px;
-	height: 280px;
+   position: relative;
+   width: 280px;
+   height: 280px;
 }
 
 .pillTitle {
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   overflow: hidden;
 }
 
 input.input-search {
-	width: 400px;
-	height: 50px;
-	line-height: 50px;
-	border: none;
-	border-bottom: 2px solid #222;
-	font-size: 14px;
-	background: none;
-	vertical-align: middle;
+   width: 400px;
+   height: 50px;
+   line-height: 50px;
+   border: none;
+   border-bottom: 2px solid #222;
+   font-size: 14px;
+   background: none;
+   vertical-align: middle;
 }
 
 input.input-search:focus {
-	border: none;
-	border-bottom: 2px solid #222;
+   border: none;
+   border-bottom: 2px solid #222;
 }
 
 input.input-search.w100 {
-	width: 100%;
+   width: 100%;
 }
 
 .test {
-	float: left !important;
-	width: 33% !important;
+   float: left !important;
+   width: 33% !important;
 }
 </style>
 
@@ -118,19 +118,17 @@ input.input-search.w100 {
 							<label>
 								<p class="search-tit">제품명 검색</p> <input id="prodName"
 								name="prodName" class="input-search" type="text" value="" />
-							</label> 
-							<input type="button" class="-100 btn btn-primary btn-success"
+							</label> <input type="button" class="-100 btn btn-primary btn-success"
 								data-search-category="PROD_NAME" data-cho-yn="N" value="검색"
-								onClick="javascript:check()">
-								 <input type="hidden"
+								onClick="javascript:check()"> <input type="hidden"
 								name="nowPage" value="1">
 							<!--  <button class="btn btn-l btn-222 mg-l-20 btnSearch" data-search-category="PROD_NAME" data-cho-yn="N">검색</button> -->
 						</div>
 					</form>
 				</div>
-</div>
-</section>
-						<%
+			</div>
+		</section>
+		<%
 							vlist = rMgr.getMList( prodName, start, end);
 							listSize = vlist.size();//브라우저 화면에 보여질 게시물갯수
 							if (vlist.isEmpty()) {
@@ -139,7 +137,7 @@ input.input-search.w100 {
 							} else { //불러올 거 있는 경우
 						%>
 
-						<%
+		<%
 							for (int i = 0; i < numPerPage; i++) {
 									if (i == listSize)
 										break;
@@ -149,52 +147,51 @@ input.input-search.w100 {
 									String manufacture = bean.getManufactureName();
 									String img = bean.getImage();
 						%>
-					<div id="grid test" style=" float: left; width: 33%; border:solid 1px black;  margin-bottom: 30px;" >
-							<div class="prod-list">
-								<div class="col-3" data-prod-code="#">
-									<a href="javascript:read('<%=num2%>')"
-										class="img_area link aStyle"> <img src="<%=img%>"
-										alt="약 이미지 불러오기" class="pillImg" />
-									</a>
-									<div class="prod_info">
-										<div class="title_area">
-											<a href="javascript:read('<%=num2%>')"
-												class="tit link pillTitle"><%=manufacture%></a> <a
-												href="javascript:read('<%=num2%>')"
-												class="tit link pillTitle"><%=medicineName2%></a>
-
-										</div>
-									</div>
-								</div>
-
-							</div>
+		<div class="card shadow-sm" id="grid test"
+			style="float: left; width: 32%; margin-left: 15px; margin-bottom: 30px;">
+			<div class="prod-list">
+				<div class="col-3" data-prod-code="#">
+					<a href="javascript:read('<%=num2%>')" class="img_area link aStyle">
+						<img class=" pillImg card-img-top" src="<%=img%>" alt="약 이미지 불러오기" />
+					</a>
+					<div class="prod_info">
+						<div class="title_area">
+							<a href="javascript:read('<%=num2%>')"
+								class="card-text pillTitle"><%=manufacture%></a> <a
+								href="javascript:read('<%=num2%>')" class="card-text pillTitle"><%=medicineName2%></a>
 
 						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
 
 
-				<%
+		<%
 					} //for
 				%>
-				<%
+		<%
 					} //if
 				%>
 
-				<!-- 페이징 및 블럭 처리 Start-->
-				<%
+		<!-- 페이징 및 블럭 처리 Start-->
+		<%
 					int pageStart = (nowBlock - 1) * pagePerBlock + 1; //하단 페이지 시작번호
 					int pageEnd = ((pageStart + pagePerBlock) <= totalPage) ? (pageStart + pagePerBlock) : totalPage + 1;
 					//하단 페이지 끝번호
 					if (totalPage != 0) {
 						if (nowBlock > 1) {
 				%>
-				<a href="javascript:block('<%=nowBlock - 1%>')">prev...</a>
-				<%
+		<a href="javascript:block('<%=nowBlock - 1%>')">prev...</a>
+		<%
 					}
 				%>&nbsp;
-				<%
+		<%
 					for (; pageStart < pageEnd; pageStart++) {
 				%>
-				<a href="javascript:pageing('<%=pageStart%>')"> <%
+		<a href="javascript:pageing('<%=pageStart%>')"> <%
  	if (pageStart == nowPage) {
  %><font color="black"> <%
  	}
@@ -203,37 +200,37 @@ input.input-search.w100 {
  %></font> <%
  	}
  %></a>
-				<%
+		<%
 					} //for
 				%>&nbsp;
-				<%
+		<%
 					if (totalBlock > nowBlock) {
 				%>
-				<a href="javascript:block('<%=nowBlock + 1%>')">.....next</a>
-				<%
+		<a href="javascript:block('<%=nowBlock + 1%>')">.....next</a>
+		<%
 					}
 				%>&nbsp;
-				<%
+		<%
 					}
 				%>
-				<hr width="600" />
+		<hr width="600" />
 
-				<form name="readFrm" method="get">
-					<input type="hidden" name="num2"> <input type="hidden"
-						name="nowPage" value="<%=nowPage%>"> <input type="hidden"
-						name="prodName" value="<%=prodName%>">
-		<%-- 				 <input
+		<form name="readFrm" method="get">
+			<input type="hidden" name="num2"> <input type="hidden"
+				name="nowPage" value="<%=nowPage%>"> <input type="hidden"
+				name="prodName" value="<%=prodName%>">
+			<%-- 				 <input
 						type="hidden" name="choSung" value="<%=choSung%>"> <input
 						type="hidden" name="choSung" value="<%=choSung%>"> <input
 						type="hidden" name="choSung" value="<%=choSung%>"> <input
 						type="hidden" name="choSung" value="<%=choSung%>"> --%>
 
-				</form>
+		</form>
 
-			</div>
-			<!--  <script src="TEST.js" charset="utf-8"></script> -->
+	</div>
+	<!--  <script src="TEST.js" charset="utf-8"></script> -->
 
-			<script type="text/javascript">
+	<script type="text/javascript">
 
 	function pageing(page) {
 		document.readFrm.nowPage.value = page;

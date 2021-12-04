@@ -3,8 +3,11 @@
 <jsp:useBean id="rMgr" class="project.RegisterMgr" />
 <jsp:useBean id="regMgr" class="project.RegisterMgrPool" scope="page" />
 <%@include file="header.jsp"%>
+
 <%
    request.setCharacterEncoding("EUC-KR");
+   pageContext.setAttribute("br", "<br/>");
+   pageContext.setAttribute("cn", "\n");
    int num = 0;
    if (request.getParameter("num2") != null) {
       num = Integer.parseInt(request.getParameter("num2"));
@@ -15,8 +18,10 @@
    String keyWord = request.getParameter("keyWord");
    RegisterBean bean = rMgr.getBoard(num);//게시물 가져오기
 
-   System.out.println(num);
    session.setAttribute("bean", bean);//게시물을 세션에 저장
+   
+   String addr = rMgr.getAddr(bean.getManufactureName());
+   System.out.println(addr + "옹");
 %>
 
 <html>
@@ -38,13 +43,12 @@
       font-family:'RIDIBatang';
        }
 
-    .input-group-text {
-        word-break:break-all;
-}
+ 
 
 a {
  /*    background-color: cornsilk; */
     color: 405b34;
+    text-decoration: none !important;
 }
 
 a:hover {
@@ -71,7 +75,36 @@ img {
     border-color: whitesmoke;
     border-width: 0.2em;
     border-style: dotted;
-} */
+    
+    
+    
+} 
+
+.alignCenter{
+      word-break:break-all;
+         align-items: left !important; 
+         padding: .375rem .75rem;
+         font-size: 1rem;
+         font-weight: 400;
+         line-height: 1.5;
+         text-align: left;
+         white-space: nowrap;
+         border-radius: .25rem;}
+
+.box {
+    inline-size: min-content;
+    overflow-wrap: break-word;
+
+}
+.areaTitle{
+   background-color: rgba(199, 214, 189, 1);
+   border: 1px solid #d0ddcb;
+}
+
+.areaText{
+   background-color: fefffd;
+   border: 1px solid #d0ddcb; 
+}
 </style>
 </head>
 
@@ -121,6 +154,7 @@ img {
          a[19] = "#피부염";
    %>
    <div class="container mb-2">
+   <br/><br/>
       <h1>약 이름</h1>
       <div class="mb-2">
          <div class="mb-3">
@@ -131,62 +165,67 @@ img {
 
          <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
-            <div class="col-sm-4">
-               <span class="input-group-text input-group-text1">제품명</span> <span
-                  class="input-group-text"><%=bean.getMedicineName()%></span>
+            <div class="col-sm-6">
+               <span class="alignCenter box areaTitle" >제품명</span> <span
+                  class="alignCenter box areaText"><%=bean.getMedicineName()%></span>
             </div>
          </div>
 
-         <div class="row g-3 mb-3">
+        <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
-            <div class="col-sm-4">
-               <span class="input-group-text input-group-text1">제조사</span> <span
-                  class="input-group-text"><%=bean.getManufactureName()%></span>
+            <div class="col-sm-6">
+               <span class="alignCenter box areaTitle">제조사</span> 
+               <span
+                  class="alignCenter box areaText">
+                  <a href="<%=addr%>" >
+                  <%=bean.getManufactureName()%>
+                  </a>
+                  </span>
             </div>
          </div>
 
-         <div class="row g-3 mb-3">
+        <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
-            <div class="col-sm-10">
-               <span class="input-group-text input-group-text1">성상</span> <span
-                  class="input-group-text"><%=bean.getAppearance()%></span>
+            <div class="col-sm-6">
+               <span class="alignCenter box areaTitle">성상</span> <span
+                  class="alignCenter box areaText"><%=bean.getAppearance()%></span>
             </div>
          </div>
 
          <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
             <div class="col-sm-6">
-               <span class="input-group-text input-group-text1">제형</span> <span
-                  class="input-group-text"><%=bean.getDosageForm()%></span>
+               <span class="alignCenter box areaTitle">제형</span> <span
+                  class="alignCenter box areaText"><%=bean.getDosageForm()%></span>
             </div>
          </div>
 
          <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
             <div class="col-sm-6">
-               <span class="input-group-text input-group-text1">효능</span> <span
-                  class="input-group-text"><%=bean.getEfficacy()%></span>
+               <span class="alignCenter box areaTitle">효능</span> <span
+                  class="alignCenter box areaText"><%=bean.getEfficacy()%></span>
             </div>
          </div>
 
-         <div class="row g-3 mb-3">
+        <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
             <div class="col-sm-6">
-               <span class="input-group-text input-group-text1">성분</span> <span
-                  class="input-group-text"><%=bean.getIngrediant()%></span>
+               <span class="alignCenter box areaTitle">성분</span> <span
+                  class="alignCenter box areaText"><%=bean.getIngrediant()%></span>
             </div>
          </div>
 
-         <div class="row g-3 mb-3">
+        <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
             <div class="col-sm-6">
-               <span class="input-group-text input-group-text1">증상</span>
+               <span class="alignCenter box areaTitle">증상</span>
                <!--증상 개수만큼 아래 a 생성되도록 코드짜기-->
                <%
                   for (int j = 0; j < a.length; j++) {
                      if (a[j] != null) {
                %>
-               <a class="input-group-text input-group-text3" href="#"><%=a[j]%></a>
+               <a class="alignCenter box areaText" href="#"><%=a[j]%></a>
 
                <%
                   }
@@ -198,39 +237,79 @@ img {
          <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
             <div class="col-sm-6">
-               <span class="input-group-text input-group-text1">효과</span>
+               <span class="alignCenter box areaTitle">효과</span>
             </div>
          </div>
-         <div class="row g-3 col-sm-30">
-            <p class="input-group-text">
-               <%=bean.getMedicine_Efficacy()%>
+         <div class="row g-3 col-sm-30 box">
+            <p class=" alignCenter box areaText" >
+            <%
+            String eF = bean.getMedicine_Efficacy();
+            
+            for(int i = 0; i < eF.length(); i++){
+               
+               out.print(eF.charAt(i));
+               
+            if((i!=0 )&&((i % 50) == 0)){
+               out.print("<br/>");
+            }
+            }
+            
+            
+            %>
             </p>
          </div>
 
          <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
             <div class="col-sm-6">
-               <span class="input-group-text input-group-text1">복용법</span>
+               <span class="alignCenter box areaTitle">복용법</span>
             </div>
          </div>
-         <div class="row g-3 col-sm-30">
-            <p class="input-group-text">
-               <%=bean.getDosage()%>
-            </p>
+         <div class="row g-3 col-sm-30 box ">
+            <p class="alignCenter box areaText">
+            <%
+            String ds = bean.getDosage();
+            
+            for(int i = 0; i < ds.length(); i++){
+               
+               out.print(ds.charAt(i));
+               
+            if((i!=0 )&&((i % 50) == 0)){
+               out.print("<br/>");
+            }
+            }
+            %> 
+
+            
+            </p> 
          </div>
 
          <%
             if (bean.getNtk().length() > 3) {
          %>
-         <div class="row g-3 mb-3">
+        <div class="row g-3 mb-3">
+            <!--옆으로 두는거-->
             <div class="col-sm-6">
-               <span class="input-group-text input-group-text1">알아야 할 점</span>
+               <span class="alignCenter box areaTitle">알아야 할 점</span>
             </div>
          </div>
-         <div class="row g-3 col-sm-30">
-            <p class="input-group-text">
-               <%=bean.getNtk()%>
-            </p>
+         <div class="row g-3 col-sm-30 box">
+            <p class="alignCenter box areaText">
+            <%
+            String nt = bean.getNtk();
+            
+            for(int i = 0; i < nt.length(); i++){
+               
+               out.print(nt.charAt(i));
+               
+            if((i!=0 )&&((i % 50) == 0)){
+               out.print("<br/>");
+            }
+            }
+            %> 
+
+            
+            </p> 
          </div>
 
          <%
@@ -243,27 +322,54 @@ img {
          <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
             <div class="col-sm-6">
-               <span class="input-group-text input-group-text1">주의사항</span>
+               <span class="alignCenter box areaTitle">주의사항</span>
             </div>
          </div>
-         <div class="row g-3 col-sm-30">
-            <p class="input-group-text">
-               <%=bean.getCaution()%>
-            </p>
+         <div class="row g-3 col-sm-30 box">
+            <p class="alignCenter box areaText">
+            <%
+            String ct = bean.getCaution();
+            
+            for(int i = 0; i < ct.length(); i++){
+               
+               out.print(ct.charAt(i));
+               
+            if((i!=0 )&&((i % 50) == 0)){
+               out.print("<br/>");
+            }
+            }
+            %> 
+
+            
+            </p> 
          </div>
 
          <%
             if (bean.getWarningThings() != "") {
          %>
          <div class="row g-3 mb-3">
+            <!--옆으로 두는거-->
             <div class="col-sm-6">
-               <span class="input-group-text input-group-text1">복용주의사항</span>
+               <span class="alignCenter box areaTitle">복용주의사항</span>
             </div>
          </div>
-         <div class="row g-3 col-sm-30">
-            <p class="input-group-text">
-               <%=bean.getWarningThings()%>
-            </p>
+         <div class="row g-3 col-sm-30 box">
+            <p class="alignCenter box areaText">
+            <%
+            String wt = bean.getWarningThings();
+            
+            for(int i = 0; i < wt.length(); i++){
+               
+               out.print(wt.charAt(i));
+               
+            if((i!=0 )&&((i % 50) == 0)){
+               out.print("<br/>");
+            }
+            }
+            %> 
+
+            
+            </p> 
          </div>
 
          <%
@@ -276,13 +382,26 @@ img {
          <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
             <div class="col-sm-6">
-               <span class="input-group-text input-group-text1">약 부작용</span>
+               <span class="alignCenter box areaTitle">약 부작용</span>
             </div>
          </div>
-         <div class="row g-3 col-sm-30">
-            <p class="input-group-text">
-               <%=bean.getAdverseReaction()%>
-            </p>
+         <div class="row g-3 col-sm-30 box">
+            <p class="alignCenter box areaText">
+            <%
+            String ar = bean.getAdverseReaction();
+            
+            for(int i = 0; i < ar.length(); i++){
+               
+               out.print(ar.charAt(i));
+               
+            if((i!=0 )&&((i % 50) == 0)){
+               out.print("<br/>");
+            }
+            }
+            %> 
+
+            
+            </p> 
          </div>
          <%
             }
@@ -290,13 +409,26 @@ img {
          <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
             <div class="col-sm-6">
-               <span class="input-group-text input-group-text1">보관법</span>
+               <span class="alignCenter box areaTitle">보관법</span>
             </div>
          </div>
-         <div class="row g-3 col-sm-30">
-            <p class="input-group-text">
-               <%=bean.getStorageMethod()%>
-            </p>
+         <div class="row g-3 col-sm-30 box">
+            <p class="alignCenter box areaText">
+            <%
+            String sm = bean.getStorageMethod();
+            
+            for(int i = 0; i < sm.length(); i++){
+               
+               out.print(sm.charAt(i));
+               
+            if((i!=0 )&&((i % 50) == 0)){
+               out.print("<br/>");
+            }
+            }
+            %> 
+
+            
+            </p> 
          </div>
 
 

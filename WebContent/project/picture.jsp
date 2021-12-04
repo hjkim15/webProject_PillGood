@@ -23,7 +23,7 @@
 			<%=application.getRealPath("/project/fileupload")%><br>
 		
 			<img id="image_container" class="img-fluid mx-auto"
-				src="<%= application.getRealPath("/project/fileupload")%>/<%=img%>" width="200" height="200"></img> 
+				src="C:\Jsp\webProject_PillGood\WebContent\project\fileupload\<%=img%>" width="200" height="200"></img> 
 				<input type="text" name="userId" value="<%=bean2.getUserId() %>">
 				<input
 				type="file" name="filename" id="aa" accept="image/*"

@@ -87,6 +87,11 @@ input.input-search.w100 {
    float: left !important;
    width: 33% !important;
 }
+a {
+ /*    background-color: cornsilk; */
+    color: black !important;
+    text-decoration: none !important;
+}
 </style>
 
 
@@ -167,17 +172,17 @@ input.input-search.w100 {
                String manufacture = bean.getManufactureName();
                String img = bean.getImage();
       %>
-      <div id="grid test"
-         style=" float: left; width: 33%; border:solid 1px black;  margin-bottom: 30px;">
+      <div class="card shadow-sm" id="grid test"
+         style=" float: left; width: 32%;  margin-left: 15px; margin-bottom: 30px;">
          <div class="prod-list">
             <div class="col-3" data-prod-code="#">
                <a href="javascript:read('<%=num2%>')" class="img_area link aStyle">
-                  <img src="<%=img%>" alt="약 이미지 불러오기" class="pillImg" />
+                  <img class=" pillImg card-img-top" src="<%=img%>" alt="약 이미지 불러오기" />
                </a>
                <div class="prod_info">
                   <div class="title_area">
-                     <a href="javascript:read('<%=num2%>')" class="tit link pillTitle"><%=manufacture%></a>
-                     <a href="javascript:read('<%=num2%>')" class="tit link pillTitle"><%=medicineName2%></a>
+                     <a href="javascript:read('<%=num2%>')"  class="card-text pillTitle"><%=manufacture%></a>
+                     <a href="javascript:read('<%=num2%>')"  class="card-text pillTitle"><%=medicineName2%></a>
 
                   </div>
                </div>

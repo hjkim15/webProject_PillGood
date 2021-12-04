@@ -443,7 +443,6 @@ public class RegisterMgr {
 		   }
 	   
 	
-	   // 게시물 리턴
 	   public RegisterBean getBoard(int num) {
 	      Connection con = null;
 	      PreparedStatement pstmt = null;
@@ -481,5 +480,30 @@ public class RegisterMgr {
 	      }
 	      return bean;
 	   }
+	   
+	   
+	   public String getAddr(String manu) {
+		      Connection con = null;
+		      PreparedStatement pstmt = null;
+		      ResultSet rs = null;
+		      String sql = null;
+		      String addr = "";
+		      try {
+		         con = pool.getConnection();
+		            sql = "select url from brand where brandName= ? ";
+		            pstmt = con.prepareStatement(sql);
+		            pstmt.setString(1,   manu );
+		         
+		         rs = pstmt.executeQuery();
+		         if (rs.next()) {
+		         addr = rs.getString(1);
+		         }
+		      } catch (Exception e) {
+		         e.printStackTrace();
+		      } finally {
+		         pool.freeConnection(con, pstmt, rs);
+		      }
+		      return addr;
+		   }
 	   
 }

@@ -236,9 +236,6 @@ h1, h2, h3, h4, h5, h6 {
 								<li><a href="#password">비밀번호</a></li>
 								<li><a href="#email">이메일</a></li>
 								<li><a href="#symptom">즐겨찾는 증상</a></li>
-								<li><a href="#brand">즐겨찾는 브랜드</a></li>
-								<li><a href="#">빼먹은거</a></li>
-								<li><a href="#">여기에</a></li>
 							</ol>
 						</div>
 

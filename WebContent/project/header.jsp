@@ -28,27 +28,34 @@
 <body>
 	<div class="container">
 		<header class="blog-header py-3">
+		<form name="searchFrm" method="post" action="pillProduct.jsp">
 			<div
 				class="row flex-nowrap justify-content-between align-items-center">
 
 				<div class="col-4 text-center">
 					<a class="blog-header-logo text-success" disabled href="mainC.jsp">PillGood</a>
 				</div>
+					
 				<div class="col-4 d-flex justify-content-end align-items-center">
-					<input type="searchMed" id="searchMed" placeholder=""> <a
-						class="link-success" href="#" aria-label="Search"> <svg
+					<input type="text" id="searchMed" name="prodName" placeholder="제품명을 검색하세요."> 
+					<a
+						class="link-success" href="javascript:search()" aria-label="Search"> <svg
 							xmlns="http://www.w3.org/2000/svg" width="20" height="20"
 							fill="none" stroke="currentColor" stroke-linecap="round"
 							stroke-linejoin="round" stroke-width="2" class="mx-3" role="img"
 							viewBox="0 0 24 24">
 							<title>Search</title><circle cx="10.5" cy="10.5" r="7.5" />
 							<path d="M21 21l-5.2-5.2" /></svg>
-					</a>
+					</a >
+					
 					<!--여기에 위 input에서 입력한 값을 검색하도록 코드 수정. 로그인 한 상태라면 logout으로 버튼 바뀌기-->
 					<input type="button" class="btn btn-sm btn-outline-success"
 						name="change" value="<%=log%>" onClick="loginCheck()">
+						
 				</div>
+				
 			</div>
+			</form>
 			<hr>
 			<div class="   py-1 mb-2">
 				<nav class="nav d-flex justify-content-between">
@@ -125,9 +132,21 @@
 </body>
 <script src="javascript.js"></script>
 <script type="text/javascript">
-		function loginCheck() {
-			if( "<%=log%>
-	" == "LogOut") {
+	function search(){
+		var pn = document.getElementById("searchMed");
+		if (pn.value == "") {
+			alert("검색어를 입력하세요.");
+			document.searchFrm.prodName.focus();
+			return;
+		}
+		document.searchFrm.submit();
+		
+		
+		
+	}
+
+	function loginCheck() {
+			if( "<%=log%>" == "LogOut") {
 			location.href = "sessionLogout.jsp"; //여기서 걍 로그아웃 바로?
 		} else {
 			location.href = "sessionLogin.jsp";

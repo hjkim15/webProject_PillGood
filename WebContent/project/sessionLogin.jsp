@@ -169,12 +169,7 @@
             <h4>Password</h4>
             <input type="password" name="pwd" placeholder="Password">
           </div>
-          <div class="login_etc">
-            <div class="checkbox">
-              <input type="checkbox" name="rememberID"> Remember Me?
-            </div>
 
-          </div>
           <div class="login_etc">
             <div class="checkbox">
               <!-- <p> 아직 회원이 아니신가요?<br/><a href="member.html">회원가입</a></p> -->
