@@ -21,7 +21,6 @@
    session.setAttribute("bean", bean);//게시물을 세션에 저장
    
    String addr = rMgr.getAddr(bean.getManufactureName());
-   System.out.println(addr + "옹");
 %>
 
 <html>
@@ -165,7 +164,7 @@ img {
 
          <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                <span class="alignCenter box areaTitle" >제품명</span> <span
                   class="alignCenter box areaText"><%=bean.getMedicineName()%></span>
             </div>
@@ -173,7 +172,7 @@ img {
 
         <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                <span class="alignCenter box areaTitle">제조사</span> 
                <span
                   class="alignCenter box areaText">
@@ -186,7 +185,7 @@ img {
 
         <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                <span class="alignCenter box areaTitle">성상</span> <span
                   class="alignCenter box areaText"><%=bean.getAppearance()%></span>
             </div>
@@ -194,7 +193,7 @@ img {
 
          <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                <span class="alignCenter box areaTitle">제형</span> <span
                   class="alignCenter box areaText"><%=bean.getDosageForm()%></span>
             </div>
@@ -202,7 +201,7 @@ img {
 
          <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                <span class="alignCenter box areaTitle">효능</span> <span
                   class="alignCenter box areaText"><%=bean.getEfficacy()%></span>
             </div>
@@ -210,7 +209,7 @@ img {
 
         <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                <span class="alignCenter box areaTitle">성분</span> <span
                   class="alignCenter box areaText"><%=bean.getIngrediant()%></span>
             </div>
@@ -218,7 +217,7 @@ img {
 
         <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                <span class="alignCenter box areaTitle">증상</span>
                <!--증상 개수만큼 아래 a 생성되도록 코드짜기-->
                <%
@@ -236,7 +235,7 @@ img {
 
          <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                <span class="alignCenter box areaTitle">효과</span>
             </div>
          </div>
@@ -261,7 +260,7 @@ img {
 
          <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                <span class="alignCenter box areaTitle">복용법</span>
             </div>
          </div>
@@ -289,7 +288,7 @@ img {
          %>
         <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                <span class="alignCenter box areaTitle">알아야 할 점</span>
             </div>
          </div>
@@ -321,7 +320,7 @@ img {
 
          <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                <span class="alignCenter box areaTitle">주의사항</span>
             </div>
          </div>
@@ -345,11 +344,11 @@ img {
          </div>
 
          <%
-            if (bean.getWarningThings() != "") {
+            if (bean.getWarningThings().length()>3) {
          %>
          <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                <span class="alignCenter box areaTitle">복용주의사항</span>
             </div>
          </div>
@@ -381,7 +380,7 @@ img {
          %>
          <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                <span class="alignCenter box areaTitle">약 부작용</span>
             </div>
          </div>
@@ -408,7 +407,7 @@ img {
          %>
          <div class="row g-3 mb-3">
             <!--옆으로 두는거-->
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                <span class="alignCenter box areaTitle">보관법</span>
             </div>
          </div>

@@ -231,6 +231,7 @@
 		<input type="hidden" name="keyWord" value="<%=keyWord%>">
 	</form>
 </div>
+<script src="javascript.js" charset="utf-8"></script>
  <%@include file="footer.jsp" %>
 </body>
 </html>

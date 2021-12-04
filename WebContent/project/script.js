@@ -12,10 +12,10 @@ function nicknameCheck(nickname) {
 
 function pwdCheck() {
 	if (document.regFrm.pw.value == "") {
-		alert("입력해라~!");
+		alert("입력해주세요.");
 		document.regFrm.pw.focus();
 	} else if (document.regFrm.repwd.value == "") {
-		alert("입력해라~!");
+		alert("입력해주세요");
 		document.regFrm.repwd.focus();
 	} else if (document.regFrm.pw.value != document.regFrm.repwd.value) {
 		alert("비밀번호가 일치하지 않습니다.");
@@ -23,7 +23,7 @@ function pwdCheck() {
 		document.regFrm.repwd.focus();
 		return;
 	} else
-		alert("비밀번호 일치한다");
+		alert("비밀번호가 일치합니다.");
 }
 
 
@@ -41,7 +41,7 @@ function codeCheck(code, personalNumber){
 		return;
 	}
 	url = "chemistCodeProc.jsp?code=" + encodeURI(code) + "&personalNumber=" + encodeURI(personalNumber);
-	window.open(url, "codeCheck", "width=500, height=350");
+	window.open(url, "codeCheck", "width=300, height=150");
 	
 }
 

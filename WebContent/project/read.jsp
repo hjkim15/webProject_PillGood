@@ -78,10 +78,16 @@
      </td>
    </tr>
    <tr> 
-    <td colspan="4"><br/><pre><%=content%>
-
-    
-    </pre><br/></td>
+    <td colspan="4"><br/><pre>
+    <%=content%>
+	
+    </pre><br/>
+    	    <%
+    	if(filename != null){
+    %>
+         <img class=" img-fluid mx-auto" src="fileupload/<%=filename%>" width="300" height="500"></img>
+    <%} %>
+    </td>
    </tr>
    <tr>
     <td colspan="4" align="right">

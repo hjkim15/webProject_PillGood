@@ -77,14 +77,14 @@ MemberBean mBean = memMgr.getMember(id);
 <body >
 
    <div >
-      <br/><b><%=code%> <%=personalNumber%></b>
+      <br/><%-- <b><%=code%> <%=personalNumber%></b> --%>
       <%
          if (c) {
             memMgr.changeUserType(id, userType);
-            out.println("가 일치합니다.<p/>");
+            out.println("정보가 확인되었습니다.<p/>");
             } else {
         	memMgr.changeUserType(id, userType);
-            out.println("는 일치하지 않습니다.<p/>");
+            out.println("입력하신 정보는 존재하지 않습니다.<p/>");
          }
       %>
 

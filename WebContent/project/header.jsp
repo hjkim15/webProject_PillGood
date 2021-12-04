@@ -3,15 +3,15 @@
 <!--디자인 수정될 예정. 바뀌면 aboutOurPg, introduceUs html은 코드 내 header 부분 수정해줘야 함. 정적 페이지라 여기서 수정한 내용 반영 안됨-->
 <%@ page contentType="text/html; charset=EUC-KR"%>
 <%
-	request.setCharacterEncoding("EUC-KR");
-	String id = (String) session.getAttribute("idKey");
-	String id2 = id;
-	String log = null;
-	if (id != null) { //로그인 상태 
-		log = "LogOut";
-	} else {
-		log = "Login";
-	}
+   request.setCharacterEncoding("EUC-KR");
+   String id = (String) session.getAttribute("idKey");
+   String id2 = id;
+   String log = null;
+   if (id != null) { //로그인 상태 
+      log = "LogOut";
+   } else {
+      log = "Login";
+   }
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,38 +23,57 @@
 <link href="script.css" rel="stylesheet">
 <link href="header_footer.css" rel="stylesheet">
 <!--header, footer에 해당하는 style 별도 css로 생성.-->
+<style>
+.noBlue {
+	color: black !important;
+	text-decoration: none !important;
+}
 
+@font-face {
+	font-family: 'RIDIBatang';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'RIDIBatang';
+}
+</style>
 </head>
 <body>
 	<div class="container">
 		<header class="blog-header py-3">
-		<form name="searchFrm" method="post" action="pillProduct.jsp">
-			<div
-				class="row flex-nowrap justify-content-between align-items-center">
+			<form name="searchFrm" method="post" action="pillProduct.jsp">
+				<div
+					class="row flex-nowrap justify-content-between align-items-center">
 
-				<div class="col-4 text-center">
-					<a class="blog-header-logo text-success" disabled href="mainC.jsp">PillGood</a>
+					<div class="col-4 text-center">
+						<a class="blog-header-logo text-success" disabled href="mainC.jsp">PillGood</a>
+					</div>
+
+					<div class="col-4 d-flex justify-content-end align-items-center">
+						<input type="text" id="searchMed" name="prodName"
+							placeholder="제품명을 검색하세요."> <a class="link-success"
+							href="javascript:search()" aria-label="Search"> <svg
+								xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+								fill="none" stroke="currentColor" stroke-linecap="round"
+								stroke-linejoin="round" stroke-width="2" class="mx-3" role="img"
+								viewBox="0 0 24 24">
+                     <title>Search</title><circle cx="10.5" cy="10.5"
+									r="7.5" />
+                     <path d="M21 21l-5.2-5.2" /></svg>
+						</a>
+
+						<!--여기에 위 input에서 입력한 값을 검색하도록 코드 수정. 로그인 한 상태라면 logout으로 버튼 바뀌기-->
+						<input type="button" class="btn btn-sm btn-outline-success"
+							name="change" value="<%=log%>" onClick="loginCheck()">
+
+					</div>
+
 				</div>
-					
-				<div class="col-4 d-flex justify-content-end align-items-center">
-					<input type="text" id="searchMed" name="prodName" placeholder="제품명을 검색하세요."> 
-					<a
-						class="link-success" href="javascript:search()" aria-label="Search"> <svg
-							xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-							fill="none" stroke="currentColor" stroke-linecap="round"
-							stroke-linejoin="round" stroke-width="2" class="mx-3" role="img"
-							viewBox="0 0 24 24">
-							<title>Search</title><circle cx="10.5" cy="10.5" r="7.5" />
-							<path d="M21 21l-5.2-5.2" /></svg>
-					</a >
-					
-					<!--여기에 위 input에서 입력한 값을 검색하도록 코드 수정. 로그인 한 상태라면 logout으로 버튼 바뀌기-->
-					<input type="button" class="btn btn-sm btn-outline-success"
-						name="change" value="<%=log%>" onClick="loginCheck()">
-						
-				</div>
-				
-			</div>
 			</form>
 			<hr>
 			<div class="   py-1 mb-2">
@@ -86,14 +105,14 @@
 									검색</a></li>
 							<li><a class="dropdown-item" href="pillSymptom.jsp">증상별
 									검색 </a></li>
-							<li><a class="dropdown-item" href="pillEfficacy.jsp">제형별 검색
-							</a></li>
+							<li><a class="dropdown-item" href="pillEfficacy.jsp">제형별
+									검색 </a></li>
 						</ul>
 
-						<!-- 						<button class="btn  btn-sm " type="button"
-							id="dropdownMenuButtonSM">
-							<a href="pillMain.jsp">약정보 </a>
-						</button> -->
+						<!--                   <button class="btn  btn-sm " type="button"
+                     id="dropdownMenuButtonSM">
+                     <a href="pillMain.jsp">약정보 </a>
+                  </button> -->
 					</div>
 
 					<!-- 게시판 -->
@@ -102,14 +121,14 @@
 						<button class="btn btn-sm " type="button"
 							id="dropdownMenuButtonSM">
 							<!--  <button class="btn  btn-sm " type="button" id="dropdownMenuButtonSM" data-bs-toggle="dropdown" aria-expanded="false"> -->
-							<a href="list.jsp">게시판 </a>
+							<a class="noBlue" href="list.jsp">게시판 </a>
 						</button>
 					</div>
 
 					<div class="dropdown">
 						<button class="btn btn-sm " type="button"
 							id="dropdownMenuButtonSM">
-							<a href="qnaList.jsp">QnA </a>
+							<a class="noBlue" href="qnaList.jsp">QnA </a>
 						</button>
 
 					</div>
@@ -120,7 +139,7 @@
 						<button class="btn btn-sm " type="button"
 							id="dropdownMenuButtonSM">
 							<!-- <a href="myPage.html">마이페이지 </a>   -->
-							<a href="myPage.jsp">마이페이지 </a>
+							<a class="noBlue" href="myPage.jsp">마이페이지 </a>
 						</button>
 
 					</div>
@@ -132,26 +151,26 @@
 </body>
 <script src="javascript.js"></script>
 <script type="text/javascript">
-	function search(){
-		var pn = document.getElementById("searchMed");
-		if (pn.value == "") {
-			alert("검색어를 입력하세요.");
-			document.searchFrm.prodName.focus();
-			return;
-		}
-		document.searchFrm.submit();
-		
-		
-		
-	}
+   function search(){
+      var pn = document.getElementById("searchMed");
+      if (pn.value == "") {
+         alert("검색어를 입력하세요.");
+         document.searchFrm.prodName.focus();
+         return;
+      }
+      document.searchFrm.submit();
+      
+      
+      
+   }
 
-	function loginCheck() {
-			if( "<%=log%>" == "LogOut") {
-			location.href = "sessionLogout.jsp"; //여기서 걍 로그아웃 바로?
-		} else {
-			location.href = "sessionLogin.jsp";
-		}
-	}
+   function loginCheck() {
+         if( "<%=log%>" == "LogOut") {
+         location.href = "sessionLogout.jsp"; //여기서 걍 로그아웃 바로?
+      } else {
+         location.href = "sessionLogin.jsp";
+      }
+   }
 </script>
 
 </html>

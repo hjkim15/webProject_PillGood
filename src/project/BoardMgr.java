@@ -151,6 +151,7 @@ public class BoardMgr {
          pstmt.setInt(8, filesize);
          pstmt.setString(9, multi.getParameter("boardType"));
          pstmt.setString(10, multi.getParameter("grade"));
+         System.out.println(filename);
          pstmt.executeUpdate();
       } catch (Exception e) {
          e.printStackTrace();

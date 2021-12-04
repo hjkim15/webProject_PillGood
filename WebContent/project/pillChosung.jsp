@@ -42,6 +42,17 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style>
+ @font-face {
+       font-family: 'RIDIBatang';
+       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+       font-weight: normal;
+       font-style: normal;
+      }
+    
+      * {
+      font-family:'RIDIBatang';
+       }
+
 .pillImg {
    position: absolute;
    bottom: 0;
@@ -100,11 +111,12 @@ a {
 <body>
    <div class="contents">
       <div class="tit-sub-wrap">
-         <h1>제품 검색</h1>
+        
       </div>
       <!-- <div style="background-color:red;"> -->
       <section class="section">
          <div class="container">
+          <h1>초성 검색</h1> <br/>
             <div class="search-wrap search-wrap-border">
 
                <form name="choFrm" method="get" action="pillChosung.jsp">

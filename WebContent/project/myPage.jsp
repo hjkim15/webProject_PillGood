@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR" import="java.util.*, java.sql.*, project.*"%>
-	
+
 <jsp:useBean id="mgr" class="project.MemberMgr" />
 <%@include file="header.jsp"%>
 <%
@@ -214,7 +214,7 @@ h1, h2, h3, h4, h5, h6 {
 			<div class="row g-5">
 				<div class="col-md-4">
 					<div class="position-sticky" style="top: 2rem;">
-<%-- 						<div class="p-4 mb-3 bg-light rounded">
+						<%-- 						<div class="p-4 mb-3 bg-light rounded">
 						
 								<h4 class="fst-italic">사진 수정</h4>
 								<img id="image_container" class="img-fluid mx-auto" src="<%=bean.getImg()%>" width="200" height="200"></img> 
@@ -547,18 +547,19 @@ h1, h2, h3, h4, h5, h6 {
 		</div>
 	</form>
 	<!-- jQuery -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<!-- 부트 스트랩 CDN -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<!-- 부트 스트랩 CDN -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript" src="script.js" charset="utf-8"></script>
-	
+
 	<script type="text/javascript">
 		text1.oninput = function() {
 			document.getElementById("newNickname").value = "";
@@ -625,7 +626,8 @@ h1, h2, h3, h4, h5, h6 {
 
 		function sb() {
 			if (document.getElementById("aa").value != "") {
-				document.getElementById("ab").value = document.getElementById("aa").value
+				document.getElementById("ab").value = document
+						.getElementById("aa").value
 			}
 			alert(document.getElementById("ab").value);
 			var symList = document.querySelectorAll(".ck"); //기존 증상
@@ -671,11 +673,10 @@ h1, h2, h3, h4, h5, h6 {
 		return;
 				}
 			}
-			
-		 	 document.regFrm.submit(); 
-		 	/* b.submit(); */ 
+
+			document.regFrm.submit();
+			/* b.submit(); */
 		}
-		
 	</script>
 
 </body>
