@@ -19,26 +19,24 @@
 </head>
 <body>
 	<div class="p-4 mb-3 bg-light rounded">
-		<form name="frmName" method="post" enctype="multipart/form-data" action="myPageServlet">
+		<form name="frmName" method="post" enctype="multipart/form-data"
+			action="myPageServlet">
 			<h4 class="fst-italic">사진 수정</h4>
-<%-- 			<%=application.getContextPath()%><br>
-			<%=request.getSession().getServletContext().getRealPath("/")%><br>
-			<%=application.getRealPath("/project/fileupload")%><br> --%>
-		
+			<%	if(img != null){	%>
 			<img id="image_container" class="img-fluid mx-auto"
-				src="fileupload/<%=img%>" width="200" height="200">
-			</img> 
-				<input type="text" name="userId" value="<%=bean2.getUserId() %>">
-				<input type="file" name="filename" id="aa" accept="image/*"
-				class="form-control" onChange="setThumbnail(event);" value="<%=img%>">
-				
-		<%	if(img != null){	%>		
-			<img class=" img-fluid mx-auto" src="fileupload/<%=img%>" width="300" height="500"></img> 
-			
+				src="fileupload/<%=img%>" width="200" >
+				 </img>
 			<%} %>
-		
-			 <button type="submit" value="">수정</button>  
-		<%-- 	<input type="hidden" id="ab" name="filename" value="<%=bean.getImg()%>"> --%>
+			<input type="text" name="userId" value="<%=bean2.getUserId() %>">
+			<input type="file" name="filename" id="aa" accept="image/*"
+				class="form-control" onChange="setThumbnail(event);"
+				value="<%=img%>">
+
+
+
+
+			<button type="submit" value="">수정</button>
+			<%-- 	<input type="hidden" id="ab" name="filename" value="<%=bean.getImg()%>"> --%>
 		</form>
 	</div>
 	<script>
