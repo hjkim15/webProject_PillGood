@@ -384,5 +384,27 @@ public class MemberMgr {
 		}
 		return flag;
 	}
+	
+	public boolean deletePharmacist(String userid) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		boolean flag = false;
+		try {
+			con = pool.getConnection();
+			sql = "delete from pharmacistinfo where userId = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			int count = pstmt.executeUpdate();
+			if (count > 0)
+				flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return flag;
+	}
 
 }

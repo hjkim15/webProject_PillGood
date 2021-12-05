@@ -17,6 +17,7 @@
 	//기존비번(pw), 새비번(id가 text2), 새비번확인(NPswCheck), 새비번일치확인칸(newPassword)
 	//새 이메일칸(id="chmEmail")
 	request.setCharacterEncoding("EUC-KR");
+	String userid = request.getParameter("userId");
 	String newNname = request.getParameter("newNname");
 	String newNickname = request.getParameter("newNickname");
 	String showMessage = request.getParameter("showMessage");
@@ -51,8 +52,14 @@
 			}
 		} else {
 			mBean.setUserType(0);
+			mgr.deletePharmacist(userid);
 		}
+	}else{
+		mgr.deletePharmacist(userid);
 	}
+	
+	
+	
 	boolean result = mgr.updateMember(mBean);
 	/* 	System.out.println(result); */
 	if ((result == true) && (result2 == true)) {
