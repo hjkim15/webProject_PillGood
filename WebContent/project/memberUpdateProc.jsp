@@ -41,19 +41,20 @@
 			mBean.setEmail(chEmail);
 		}
 	}
-	
-	if(mBean.getUserType()!= 0){
-	if ((mBean.getUserType() == 1) && (showMessage.equals("일치합니다"))) {
-		if (mgr.getPharmMember(pBean.getUserId()) == null) {
-			result2 = mgr.insertPharmacist(pBean);
+
+	if (mBean.getUserType() != 0) {
+		if ((mBean.getUserType() == 1) && (showMessage.equals("일치합니다"))) {
+			if (mgr.getPharmMember(pBean.getUserId()) == null) {
+				result2 = mgr.insertPharmacist(pBean);
+			} else {
+				result2 = mgr.updatePharmacist(pBean);
+			}
 		} else {
-			result2 = mgr.updatePharmacist(pBean);
+			mBean.setUserType(0);
 		}
-	} else {
-		mBean.setUserType(0);
-	}}
+	}
 	boolean result = mgr.updateMember(mBean);
-/* 	System.out.println(result); */
+	/* 	System.out.println(result); */
 	if ((result == true) && (result2 == true)) {
 %>
 <script type="text/javascript">

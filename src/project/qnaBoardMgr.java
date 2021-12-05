@@ -20,7 +20,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 public class qnaBoardMgr {
 
 	private DBConnectionMgr pool;
-	private static final String  SAVEFOLDER = "C:/Jsp/myapp/WebContent/ch15/fileupload";
+	private static final String  SAVEFOLDER = "C:/Jsp/webProject_PillGood/WebContent/project/fileupload";
 	private static final String ENCTYPE = "EUC-KR";
 	private static int MAXSIZE = 5*1024*1024;
 

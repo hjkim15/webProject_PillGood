@@ -246,13 +246,15 @@ img {
             
             for(int i = 0; i < eF.length(); i++){
                
-               out.print(eF.charAt(i));
-               
+              if(eF.charAt(i) == '?')
+            		out.print("&nbsp");
+              else
+              	out.print(eF.charAt(i));
+              
             if((i!=0 )&&((i % 50) == 0)){
                out.print("<br/>");
             }
             }
-            
             
             %>
             </p>
@@ -270,13 +272,16 @@ img {
             String ds = bean.getDosage();
             
             for(int i = 0; i < ds.length(); i++){
-               
-               out.print(ds.charAt(i));
-               
-            if((i!=0 )&&((i % 50) == 0)){
-               out.print("<br/>");
-            }
-            }
+                
+                if(ds.charAt(i) == '?')
+              		out.print("&nbsp");
+                else
+                	out.print(ds.charAt(i));
+                
+              if((i!=0 )&&((i % 50) == 0)){
+                 out.print("<br/>");
+              }
+              }
             %> 
 
             
@@ -298,13 +303,16 @@ img {
             String nt = bean.getNtk();
             
             for(int i = 0; i < nt.length(); i++){
-               
-               out.print(nt.charAt(i));
-               
-            if((i!=0 )&&((i % 50) == 0)){
-               out.print("<br/>");
-            }
-            }
+                
+                if(nt.charAt(i) == '?')
+              		out.print("&nbsp");
+                else
+                	out.print(nt.charAt(i));
+                
+              if((i!=0 )&&((i % 50) == 0)){
+                 out.print("<br/>");
+              }
+              }
             %> 
 
             
@@ -328,15 +336,17 @@ img {
             <p class="alignCenter box areaText">
             <%
             String ct = bean.getCaution();
+            char[] tmp = ct.toCharArray();
             
-            for(int i = 0; i < ct.length(); i++){
-               
-               out.print(ct.charAt(i));
-               
-            if((i!=0 )&&((i % 50) == 0)){
-               out.print("<br/>");
-            }
-            }
+			
+            for(int i = 0; i < tmp.length; i++){
+                
+               out.print(tmp[i]); 
+                
+              if((i!=0 )&&((i % 50) == 0)){
+                 out.print("<br/>");
+              }
+              }  
             %> 
 
             

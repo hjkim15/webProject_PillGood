@@ -90,7 +90,7 @@
     <%
     	if(filename != null){
     %>
-         <img class=" img-fluid mx-auto" src="<%=filename%>" width="300" height="500"></img>
+         <img class=" img-fluid mx-auto" src="fileupload/<%=filename%>" width="300" height="500"></img>
     <%} %>
     </pre><br/></td>
    </tr>
