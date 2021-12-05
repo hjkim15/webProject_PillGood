@@ -1,22 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="project.*"%>
 <jsp:useBean id="mgr" class="project.MemberMgr" />
-<%
-/* 	String id3 = (String) session.getAttribute("idKey");
-	MemberBean bean2 = mgr.getMember(id3);
-	if(id3 !=null){
-		String img = bean2.getImg();
-		System.out.println(img);
-		if(request.getParameter("filename") != null){
-			img = request.getParameter("filename");
-		} */
-		
+<%	
 	String id = request.getParameter("id");
-	System.out.println(id);
+/* 	System.out.println(id); */
 	MemberBean bean = mgr.getMember(id);
 	if(id !=null){
 		String img = bean.getImg();
-		System.out.println(img);
+/* 		System.out.println(img); */
 		if(request.getParameter("filename") != null){
 			img = request.getParameter("filename");}
 %>

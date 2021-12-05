@@ -19,7 +19,6 @@ public class myPageServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("EUC-KR");
 		MemberMgr bMgr = new MemberMgr();
-		System.out.println("???");
 		bMgr.insertImg(request);
 		response.sendRedirect("myPage.jsp");
 	}

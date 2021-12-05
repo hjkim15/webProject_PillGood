@@ -243,7 +243,7 @@ public class RegisterMgr {
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 			} else {
-				System.out.println(efficacy);
+			/*	System.out.println(efficacy);*/
 				sql = "select * from  medicininfo where efficacy" + " like ?  limit ? , ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, "%" + efficacy + "%");

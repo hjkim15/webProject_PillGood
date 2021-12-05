@@ -22,7 +22,7 @@ public class BoardUpdateServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter(); 
 
-		BoardMgr bMgr = new BoardMgr();
+		BoardMgr qMgr = new BoardMgr();
 		BoardBean bean = (BoardBean) session.getAttribute("bean");
 		String nowPage = request.getParameter("nowPage");
 		
@@ -38,7 +38,7 @@ public class BoardUpdateServlet extends HttpServlet {
 		String inPass = bean.getPass();
 
 		if (upPass.equals(inPass)) {
-			bMgr.updateBoard(upBean);
+			qMgr.updateBoard(upBean);
 			String url = "read.jsp?nowPage=" + nowPage + "&num=" + upBean.getNum();
 			response.sendRedirect(url);
 		} else {

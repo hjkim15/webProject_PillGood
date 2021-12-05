@@ -57,7 +57,7 @@ text-align: center;
     <tr>
      <td >´Ð³×ÀÓ</td>
      <td width="80%">
-	  <input class="form-control tblcontent" name="name" value="<%=name%>"  maxlength="20">
+	  <input class="form-control tblcontent" name="nickname" value="<%=name%>"  maxlength="20">
 	 </td>
 	</tr>
 	<tr>
@@ -94,5 +94,6 @@ text-align: center;
  <input type='hidden' name="num" value="<%=num%>">
 </form> 
 </div>
+<%@include file="footer.jsp"%>
 </body>
 </html>

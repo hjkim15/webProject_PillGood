@@ -42,7 +42,7 @@
 <br/><br/>
 <table width="600" cellpadding="3">
 	<tr>
-		<td class="td-col">글읽기</td>	</tr>
+		<td class="td-col">글쓰기</td>	</tr>
 </table>
 <br/>
 <form name="postFrm" method="post" action="qnaBoardPost" enctype="multipart/form-data">

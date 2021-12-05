@@ -21,7 +21,7 @@
 	  String ip = bean.getIp();
 	  int count = bean.getCount();
 	  session.setAttribute("bean", bean);//게시물을 세션에 저장
-	  System.out.println(filename);
+/* 	  System.out.println(filename); */
 /* 	  String id = (String)session.getAttribute("idKey"); */
 	  MemberBean mBean = memMgr.getMember(id2);
 %>

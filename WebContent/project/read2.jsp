@@ -25,7 +25,17 @@
 <title>게시글 읽기</title>
 <link href="script.css" rel="stylesheet">
 <link href="notice.css" rel="stylesheet">
-
+<style>
+      @font-face {
+        font-family: 'RIDIBatang';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+  * {
+    font-family:'RIDIBatang';
+  }
+</style>
 <script type="text/javascript">
 	function list() {
 		document.listFrm.submit();
@@ -48,18 +58,18 @@
 			<td colspan="2">
 				<table cellpadding="3" cellspacing="0" width="100%">
 					<tr>
-						<td align="center" bgcolor="#DDDDDD" width="10%">닉네임</td>
-						<td bgcolor="#FFFFE8"><%=nickname%></td>
-						<td align="center" bgcolor="#DDDDDD" width="10%">등록날짜</td>
-						<td bgcolor="#FFFFE8"><%=regdate%></td>
+						<td align="center" bgcolor="#ccddc5" width="10%">닉네임</td>
+						<td bgcolor="#ffffff"><%=nickname%></td>
+						<td align="center" bgcolor="#ccddc5" width="10%">등록날짜</td>
+						<td bgcolor="#ffffff"><%=regdate%></td>
 					</tr>
 					<tr>
-						<td align="center" bgcolor="#DDDDDD">제 목</td>
-						<td bgcolor="#FFFFE8" colspan="3"><%=subject%></td>
+						<td align="center" bgcolor="#ccddc5">제 목</td>
+						<td bgcolor="#ffffff" colspan="3"><%=subject%></td>
 					</tr>
 					<tr>
-						<td align="center" bgcolor="#DDDDDD">첨부파일</td>
-						<td bgcolor="#FFFFE8" colspan="3">
+						<td align="center" bgcolor="#ccddc5">첨부파일</td>
+						<td bgcolor="#ffffff" colspan="3">
 							<%
 								if (filename != null && !filename.equals("")) {
 							%> <a

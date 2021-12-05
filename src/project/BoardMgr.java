@@ -151,7 +151,6 @@ public class BoardMgr {
          pstmt.setInt(8, filesize);
          pstmt.setString(9, multi.getParameter("boardType"));
          pstmt.setString(10, multi.getParameter("grade"));
-         System.out.println(filename);
          pstmt.executeUpdate();
       } catch (Exception e) {
          e.printStackTrace();
@@ -254,7 +253,7 @@ public class BoardMgr {
       String sql = null;
       try {
          con = pool.getConnection();
-         sql = "update tblBoard set name=?,subject=?,content=? where num=?";
+         sql = "update tblBoard set nickname=?,subject=?,content=? where num=?";
          pstmt = con.prepareStatement(sql);
          pstmt.setString(1, bean.getNickName());
          pstmt.setString(2, bean.getSubject());
